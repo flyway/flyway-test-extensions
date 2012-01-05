@@ -30,7 +30,7 @@ import java.lang.annotation.RetentionPolicy;
  * For usage together with JUnit see {@link com.googlecode.flyway.test.junit.FlywayTestExecutionListener}
  * 
  * @author florian
- * @date  2011-12-10
+ * @version  2011-12-10
  * @version 1.0
  */
 @Retention(RetentionPolicy.RUNTIME)

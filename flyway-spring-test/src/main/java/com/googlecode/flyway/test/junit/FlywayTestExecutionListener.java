@@ -99,7 +99,7 @@ import com.googlecode.flyway.core.Flyway;
  * 
  * @author Florian
  * 
- * @date 2011-12-10
+ * @version 2011-12-10
  * @version 1.0
  * 
  */
@@ -222,7 +222,7 @@ public class FlywayTestExecutionListener implements TestExecutionListener {
 												+ baseDir
 												+ "'  for  '"
 												+ executionInfo + "'.");
-										;
+										
 									}
 
 									flyWay.setBaseDir(baseDir);

@@ -30,9 +30,10 @@ import com.googlecode.flyway.test.sample.helper.BaseDBHelper;
 
 /**
  * Simple Test to show how the annotation can be used inside test execution
- * 
+ *
  * @author florian
- * 
+ * @version 1.0
+ * @version 2011-12-20
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "/context/simple_applicationContext.xml" })

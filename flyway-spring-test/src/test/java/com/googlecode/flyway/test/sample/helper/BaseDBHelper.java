@@ -29,11 +29,12 @@ import org.springframework.context.ApplicationContext;
 /**
  * Simple base class for test make no duplicate code for sql executions.
  * 
- * <b>Important:</b></p>
- * This is only used for simple test execution and the implementation is not really safe.
- *  
+ * <b>Important:</b></p> This is only used for simple test execution and the
+ * implementation is not really safe.
+ * 
  * @author Florian
- * @date   2011-12-20
+ * @version 2011-12-20
+ * @version 1.0
  */
 public abstract class BaseDBHelper {
 
@@ -44,6 +45,7 @@ public abstract class BaseDBHelper {
 
 	/**
 	 * Open a connection to database for test execution statements
+	 * 
 	 * @throws Exception
 	 */
 	@Before
@@ -88,7 +90,7 @@ public abstract class BaseDBHelper {
 
 		rs.close();
 		stmt.close();
-		
+
 		return result;
 	}
 

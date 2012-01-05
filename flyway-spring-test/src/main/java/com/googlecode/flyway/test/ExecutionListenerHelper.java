@@ -23,7 +23,7 @@ import org.springframework.test.context.TestContext;
  * Simple helper for the TestExecutionListener
  * 
  * @author Florian
- * @date 2011-12-28
+ * @version 2011-12-28
  * @version 1.0
  *
  */
