@@ -28,20 +28,23 @@ import com.googlecode.flyway.test.annotation.FlywayTest;
 import com.googlecode.flyway.test.junit.FlywayTestExecutionListener;
 
 /**
- * Simple Test to show how the annotation can be used inside test execution
- * 
+ * Simple Test to show how the annotation can be used inside test execution.
+ *
+ * In this example it will be used spring version 2.5.6
+ *
  * @author florian
- * 
+ *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "/context/simple_applicationContext_spring256.xml" })
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
 		FlywayTestExecutionListener.class })
-@FlywayTest // attention this does not work
+@FlywayTest // Attention: this will be done nothing with spring 2.5.6
 public class Spring256JUnitTest extends BaseDBHelper {
 
 	/**
-	 * Normal test method nothing done per startup
+	 * Normal test method nothing done per startup. With Spring 2.5.6 we
+	 * have no database setup during test class setup.
 	 */
 	@Test
 	public void dummyTestNoLoad() throws Exception {
@@ -52,7 +55,7 @@ public class Spring256JUnitTest extends BaseDBHelper {
 	}
 
 	/**
-	 * Made a clean init migrate usage before execution of test methodes
+	 * Made a clean init migrate usage before execution of test method.
 	 */
 	@Test
 	@FlywayTest
@@ -63,7 +66,9 @@ public class Spring256JUnitTest extends BaseDBHelper {
 	}
 
 	/**
-	 * Made a clean init migrate usage before execution of test methodes
+	 * Made a clean init migrate usage before execution of test method.
+	 * It will be invoke two migration steps, one for <b>sampletest256</b> and than
+	 * <b>loadmsql</b>.
 	 */
 	@Test
 	@FlywayTest(baseDirsForMigrate = { "sampletest256", "loadmsql" })

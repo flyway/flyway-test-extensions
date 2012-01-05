@@ -52,7 +52,7 @@ public abstract class BaseDBHelper {
 
 	/**
 	 * Close the connection
-	 * 
+	 *
 	 * @throws Exception
 	 */
 	@After
@@ -68,7 +68,7 @@ public abstract class BaseDBHelper {
 
 	/**
 	 * Simple counter query to have simple test inside test methods.
-	 * 
+	 *
 	 * @return number of customer in database
 	 * @throws Exception
 	 */
@@ -84,11 +84,11 @@ public abstract class BaseDBHelper {
 
 		rs.close();
 		stmt.close();
-		
+
 		return result;
 	}
 
-	public BaseDBHelper() {
+	protected BaseDBHelper() {
 		super();
 	}
 
