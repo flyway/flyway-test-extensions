@@ -18,10 +18,7 @@
  * 
  * Description how to use Flyway anotation see javadoc of {@link com.googlecode.flyway.test.annotation.FlywayTest}</p>
  * 
- * Additional dbunit integration support annotation {@link com.googlecode.flyway.test.dbunit.DBUnitSupport}.
- * 
- *
- * <b>Hints:</b></br> 
+ * <b>Notes:</b></br> 
  * <ul><il>I suggest to use spring framework version &gt;= 3.x, for better test support and usage of context access. If you must use spring 2.5.6 see the following hints.</il>
  * <li>If you using spring framework version lower than 3.x the
  * annotation {@link FlywayTest} wont work at class level.</li> <li>For spring

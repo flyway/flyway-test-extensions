@@ -27,11 +27,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
 /**
- * Simple base class for test make no duplicate code for sql executions
+ * Simple base class for test make no duplicate code for sql executions.
+ * 
+ * <b>Important:</b></p>
+ * This is only used for simple test execution and the implementation is not really safe.
+ *  
  * @author Florian
- *
+ * @date   2011-12-20
  */
-public class BaseDBHelper {
+public abstract class BaseDBHelper {
 
 	@Autowired
 	protected ApplicationContext context;
@@ -88,7 +92,7 @@ public class BaseDBHelper {
 		return result;
 	}
 
-	public BaseDBHelper() {
+	protected BaseDBHelper() {
 		super();
 	}
 

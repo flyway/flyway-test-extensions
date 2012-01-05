@@ -15,7 +15,6 @@
 	<packaging>jar</packaging>
 
 	<properties>
-		<version.dbunit>2.4.8</version.dbunit>
 		<version.junit>4.10</version.junit>
 		<!-- For some reasons I would prefare to use spring 3.x -->
 		<version.spring>3.0.5.RELEASE</version.spring>
@@ -62,12 +61,6 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>${version.junit}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.dbunit</groupId>
-			<artifactId>dbunit</artifactId>
-			<version>${version.dbunit}</version>
-			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.flyway</groupId>
