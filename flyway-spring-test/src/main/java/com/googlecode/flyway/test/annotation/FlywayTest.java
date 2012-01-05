@@ -23,13 +23,15 @@ import java.lang.annotation.RetentionPolicy;
  * Support for executing flyway commands during test without any special flyway command in test code.</p>
  * 
  * The default behavior is to execute the flyway commands:
+ * <ul>
  * <li>{@link com.googlecode.flyway.core.Flyway#clean()}</li>
  * <li>{@link com.googlecode.flyway.core.Flyway#init()}</li>
  * <li>{@link com.googlecode.flyway.core.Flyway#migrate()}</li>
+ * </ul>
  * 
- * For usage together with JUnit see {@link com.googlecode.flyway.test.junit.FlywayTestExecutionListener}
+ * For usage together with JUnit see {@link com.googlecode.flyway.test.junit.FlywayTestExecutionListener}.</p>
  * 
- * @author florian
+ * @author Florian
  * @version  2011-12-10
  * @version 1.0
  */
@@ -38,27 +40,32 @@ public @interface FlywayTest {
 
 	/**
 	 * invoke flyway command clean before a init/migrate call.</p>
+	 * 
 	 *  Default: true
 	 */
 	public boolean invokeCleanDB() default true;
 
-	/** 
+	/**
 	 * invoke flyway command init before a migrate call</p>
+	 * 
 	 *  Default: true
 	 */
 	public boolean invokeInitDB() default true;
 
-	/** 
+	/**
 	 * invoke flyway command migrate </p>
+	 *
 	 *  Default: true
 	 */
 	public boolean invokeMigrateDB() default true;
 
 	/**
 	 * Support to change the default setting for the base directory setting. </p>
-	 * for each entry in the list a separate flayway migrate call will be executed.</p>
-	 *  Default: empty list
+	 * 
+	 * For each entry in the list a separate flyway migrate call will be executed.</br>
+	 * Afterwards the default base directory will be set.</p>
+	 * 
+	 * Default: empty list - default settings will be used.
 	 */
 	public String[] baseDirsForMigrate() default {};
-
 }

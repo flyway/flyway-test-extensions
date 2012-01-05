@@ -15,20 +15,25 @@
  */
 /**
  * Flyway test extension for unit testing.</p>
- * 
- * Description how to use Flyway anotation see javadoc of {@link com.googlecode.flyway.test.annotation.FlywayTest}</p>
- * 
- * <b>Notes:</b></br> 
- * <ul><il>I suggest to use spring framework version &gt;= 3.x, for better test support and usage of context access. If you must use spring 2.5.6 see the following hints.</il>
+ *
+ * Description how to use Flyway anotation see javadoc
+ * of {@link com.googlecode.flyway.test.annotation.FlywayTest}</p>
+ *
+ * <b>Notes:</b>
+ * <ul><li>I suggest to use spring framework version &gt;= 3.x,
+ * for better test support and usage of context access. </BR>
+ * If you must use spring 2.5.6 see the following hints.</li>
  * <li>If you using spring framework version lower than 3.x the
- * annotation {@link FlywayTest} wont work at class level.</li> <li>For spring
- * framework version 2.5.6 use simple_applicationContext_spring256.xml as
- * application context example</li> <li>If you using the annotation
+ * annotation {@link FlywayTest} wont work at class level.</li>
+ * <li>For spring framework version 2.5.6 use simple_applicationContext_spring256.xml
+ * as application context example</li>
+ * <li>If you using the annotation
  * {@link FlywayTest} more than one time in test classes than <b>do not</b> use
- * parallel execution in surefire plugin.</bR> With this option you will setup
+ * parallel execution in surefire plugin.</BR>
+ * With this option you will setup
  * your database in more than one thread parallel!</li>
  * </ul>
- * 
+ *
  */
 package com.googlecode.flyway.test;
-import com.googlecode.flyway.test.annotation.FlywayTest;
+
