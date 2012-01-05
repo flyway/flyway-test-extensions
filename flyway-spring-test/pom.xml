@@ -72,7 +72,6 @@
 		<dependency>
 			<groupId>com.googlecode.flyway</groupId>
 			<artifactId>flyway-core</artifactId>
-			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>
