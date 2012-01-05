@@ -2,77 +2,73 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
 	http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
- 	<parent>
-		<groupId>com.googlecode.flyway</groupId>
-		<artifactId>flyway-test-extensions</artifactId>
-		<version>1.5-SNAPSHOT</version>
-	</parent>
 
 	<groupId>com.googlecode.flyway</groupId>
-	<artifactId>flyway-spring-test</artifactId>
+	<artifactId>flyway-test-sample-spring3</artifactId>
 	<version>1.5-SNAPSHOT</version>
 	<name>${project.artifactId}</name>
 	<packaging>jar</packaging>
 
 	<properties>
+		<version.junit>4.10</version.junit>
+		<version.spring>3.1.0.RELEASE</version.spring>
+		<version.slf4j>1.5.6</version.slf4j>
+		<version.log4j>1.2.16</version.log4j>
+		<version.h2>1.2.137</version.h2>
 	</properties>
 	<dependencies>
 		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-			<version>${version.spring}</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-jdbc</artifactId>
-			<version>${version.spring}</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${version.slf4j}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-simple</artifactId>
-			<version>${version.slf4j}</version>
-		</dependency>
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
+			<version>${version.junit}</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.flyway</groupId>
-			<artifactId>flyway-core</artifactId>
+			<artifactId>flyway-spring-test</artifactId>
+			<version>${project.version}</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>commons-dbcp</groupId>
-			<artifactId>commons-dbcp</artifactId>
-			<scope>compile</scope>
+			<version>${version.h2}</version>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
-
-
+	<build>
+		<pluginManagement>
+           <plugins>
+           <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.9</version>
+            </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.5</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+           </plugins>
+		 </pluginManagement>
+	</build>
 	<profiles>
 		<profile>
 			<id>h2-test</id>
-			<activation><activeByDefault>true</activeByDefault></activation>
+           	<activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
 			<build>
 				<plugins>
 					<plugin>
@@ -84,7 +80,7 @@
 								<jdbc.url>jdbc:h2:nio:${project.build.directory}/db/flywaytest.db</jdbc.url>
 								<jdbc.username>h2_test</jdbc.username>
 								<jdbc.password>h2_test</jdbc.password>
-								<flyway.basedir>basetest</flyway.basedir>
+								<flyway.basedir>sampletest3</flyway.basedir>
 							</systemPropertyVariables>
 							<includes>
 								<include>**/*JUnitTest.java</include>
@@ -109,6 +105,7 @@
                <dependency>
                     <groupId>com.oracle</groupId>
                     <artifactId>ojdbc5</artifactId>
+                    <version>11.2.0.2.0</version>                    
                     <scope>test</scope>
                 </dependency>
             </dependencies>
@@ -123,7 +120,7 @@
 								<jdbc.url>jdbc:oracle:thin:@localhost:1521/XE</jdbc.url>
 								<jdbc.username>OC_TEST</jdbc.username>	
 								<jdbc.password>OC_TEST</jdbc.password>
-								<flyway.basedir>basetest</flyway.basedir>
+								<flyway.basedir>sampletest3</flyway.basedir>
 							</systemPropertyVariables>
 							<includes>
 								<include>**/*JUnitTest.java</include>
