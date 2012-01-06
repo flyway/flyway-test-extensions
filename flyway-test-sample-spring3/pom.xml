@@ -60,8 +60,52 @@
 					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
+			<plugin>
+					<groupId>com.googlecode.maven-gcu-plugin</groupId>
+					<artifactId>maven-gcu-plugin</artifactId>
+					<version>1.0</version>
+			</plugin>
            </plugins>
 		 </pluginManagement>
+		 <plugins>
+		 	<plugin>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.2.2</version>
+				<configuration>
+					<autoVersionSubmodules>true</autoVersionSubmodules>
+					<mavenExecutorId>forked-path</mavenExecutorId>
+					<preparationGoals>clean install</preparationGoals>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.mycila.maven-license-plugin</groupId>
+				<artifactId>maven-license-plugin</artifactId>
+				<version>1.9.0</version>
+				<inherited>false</inherited>
+				<configuration>
+					<header>${basedir}/../license.txt</header>
+					<aggregate>true</aggregate>
+					<failIfMissing>true</failIfMissing>
+					<encoding>UTF-8</encoding>
+					<excludes>
+						<exclude>.hg*</exclude>
+						<exclude>**/*.sh</exclude>
+						<exclude>**/*.txt</exclude>
+						<exclude>**/*.cnf</exclude>
+						<exclude>**/*.releaseBackup</exclude>
+					</excludes>
+					<strictCheck>true</strictCheck>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>format</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		 </plugins>
 	</build>
 	<profiles>
 		<profile>
