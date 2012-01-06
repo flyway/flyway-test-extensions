@@ -26,7 +26,7 @@
         http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 	<!--  Needed for system properties replacement -->
-<!-- Following will only work with spring 3 	-->
+	<!-- Following will only work with spring 3 	-->
 <context:property-placeholder location="jdbc.properties"  
 		ignore-resource-not-found="true"	
     	system-properties-mode="OVERRIDE"/>
@@ -49,9 +49,6 @@
 	-Djdbc.username=OC_MORE_TEST
 	-Djdbc.password=OC_MORE_TEST
      -->
-     <!-- 
-     If problems with oracle occurs use following pool implementation instead: 
--->
      <bean id="dataSourceRef" name="dataSource"
         class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         
@@ -63,15 +60,4 @@
 		
 	</bean>
  
-<!--  
- 	<bean id="dataSourceRef"  name="dataSource"
- 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
-
-		<property name="driverClassName"><value>${jdbc.driver}</value></property>
-		<property name="url"><value>${jdbc.url}</value></property>
-		<property name="username"><value>${jdbc.username}</value></property>
-		<property name="password"><value>${jdbc.password}</value></property>
-		
-	</bean>
- 	-->	
 </beans>
