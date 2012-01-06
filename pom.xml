@@ -34,6 +34,8 @@
 		<module>flyway-spring-test</module>
 		<module>flyway-test-sample-spring3</module>
 		<module>flyway-test-sample-spring256</module>
+		<module>flyway-dbunit-test</module>
+		<module>flyway-test-sample-dbunit</module>
 	</modules>
 
 	<distributionManagement>
