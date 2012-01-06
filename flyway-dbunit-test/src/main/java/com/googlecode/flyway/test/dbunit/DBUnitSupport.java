@@ -22,6 +22,9 @@ import java.lang.annotation.RetentionPolicy;
  * Add additional DBUnit support for loading data during test
  * or store table content in a specific file.</p>
  *
+ * <b>Attention:</b> This will only be part of the project until a annotation support
+ * will be integrated into dbunit.
+ *
  * @author florian
  *
  * @date 2011-12-10
