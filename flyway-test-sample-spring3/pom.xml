@@ -68,6 +68,20 @@
            </plugins>
 		 </pluginManagement>
 		 <plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.1.2</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>test-jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		 	<plugin>
 				<artifactId>maven-release-plugin</artifactId>
 				<version>2.2.2</version>
@@ -105,8 +119,36 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<groupId>com.googlecode.maven-gcu-plugin</groupId>
+				<artifactId>maven-gcu-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>deploy</phase>
+						<goals>
+							<goal>upload</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<failsOnError>true</failsOnError>
+					<projectName>flyway-test-extensions</projectName>
+					<uploads>
+						<upload>
+							<file>${project.build.directory}/${project.artifactId}-${project.version}-test-sources.jar</file>
+							<summary>Flyway Spring Version 3.x Test Extension Sample (sources)</summary>
+							<labels>
+								<label>Featured</label>
+								<label>Type-Source</label>
+								<label>OpSys-All</label>
+							</labels>
+						</upload>
+					</uploads>
+				</configuration>
+			</plugin>
 		 </plugins>
 	</build>
+
 	<profiles>
 		<profile>
 			<id>h2-test</id>
