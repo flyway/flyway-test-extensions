@@ -3,7 +3,7 @@
 	http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.googlecode.flyway.flyway-test-ext</groupId>
+	<groupId>com.googlecode.flyway-test-extensions</groupId>
 	<artifactId>flyway-test-sample-spring3</artifactId>
 	<version>1.5-SNAPSHOT</version>
 	<name>${project.artifactId}</name>
@@ -24,7 +24,7 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.googlecode.flyway.flyway-test-ext</groupId>
+			<groupId>com.googlecode.flyway-test-extensions</groupId>
 			<artifactId>flyway-spring-test</artifactId>
 			<version>${project.version}</version>
 			<scope>test</scope>
