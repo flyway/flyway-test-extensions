@@ -132,7 +132,7 @@
 					</execution>
 				</executions>
 				<configuration>
-					<failsOnError>true</failsOnError>
+					<failsOnError>false</failsOnError>
 					<projectName>flyway-test-extensions</projectName>
 					<uploads>
 						<upload>
