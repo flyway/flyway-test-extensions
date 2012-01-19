@@ -120,6 +120,7 @@
 					</execution>
 				</executions>
 			</plugin>
+<!-- comment out because plugin work not with maven 3.0.3
 			<plugin>
 				<groupId>com.googlecode.maven-gcu-plugin</groupId>
 				<artifactId>maven-gcu-plugin</artifactId>
@@ -147,6 +148,7 @@
 					</uploads>
 				</configuration>
 			</plugin>
+-->
 		 </plugins>
 	</build>
 	
