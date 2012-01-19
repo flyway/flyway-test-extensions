@@ -9,6 +9,40 @@
 	<name>${project.artifactId}</name>
 	<packaging>jar</packaging>
 
+	<url>http://code.google.com/p/flyway-test-extensions/</url>
+	<licenses>
+		<license>
+			<name>Apache 2</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+			<comments>A business-friendly OSS license</comments>
+		</license>
+	</licenses>
+	<scm>
+		<url>http://code.google.com/p/flyway-test-extensions/source/browse/</url>
+		<connection>scm:hg:https://flyway-test-extensions.googlecode.com/hg/</connection>
+		<developerConnection>scm:hg:file:${basedir}</developerConnection>
+	</scm>
+	<developers>
+		<developer>
+			<id>Florian</id>
+			<name>florian.g.w.e4</name>
+		</developer>
+	</developers>
+	<distributionManagement>
+		<snapshotRepository>
+			<id>sonatype-nexus-snapshots</id>
+			<name>Sonatype Nexus Snapshots</name>
+			<url>http://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>sonatype-nexus-staging</id>
+			<name>Nexus Release Repository</name>
+			<url>http://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
+
+
 	<properties>
 		<version.junit>4.10</version.junit>
 		<version.spring>3.1.0.RELEASE</version.spring>
