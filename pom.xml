@@ -20,8 +20,8 @@
 	</licenses>
 	<scm>
 		<url>http://code.google.com/p/flyway-test-extensions/source/browse/</url>
-		<connection>scm:hg:https://flyway-test-extensions.googlecode.com/hg/</connection>
-		<developerConnection>scm:hg:file:///${basedir}</developerConnection>
+		<connection>scm:hg:https://flyway-test-extensions.googlecode.com/</connection>
+		<developerConnection>scm:hg:file://${basedir}</developerConnection>
 	</scm>
 	<developers>
 		<developer>
