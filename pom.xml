@@ -21,7 +21,7 @@
 	<scm>
 		<url>http://code.google.com/p/flyway-test-extensions/source/browse/</url>
 		<connection>scm:hg:https://flyway-test-extensions.googlecode.com/hg/</connection>
-		<developerConnection>scm:hg:file:///c:/work/Projekt2/flyway/workspace/flyway_clone/flyway-test-extensions</developerConnection>
+		<developerConnection>scm:hg:file:///C:/work/Projekt2/flyway/workspace/flyway_clone/flyway-test-extensions</developerConnection>
 	</scm>
 	<developers>
 		<developer>
