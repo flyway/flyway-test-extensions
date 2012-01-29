@@ -3,7 +3,7 @@
 
 	<groupId>com.googlecode.flyway-test-extensions</groupId>
 	<artifactId>flyway-test-sample-spring3</artifactId>
-	<version>1.5</version>
+	<version>1.5.1-SNAPSHOT</version>
 	<name>${project.artifactId}</name>
 	<description>
         Example how to use flyway-spring-test with spring 3.1.
