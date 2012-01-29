@@ -3,12 +3,12 @@
 	<parent>
 		<groupId>com.googlecode.flyway-test-extensions</groupId>
 		<artifactId>flyway-test-extensions</artifactId>
-		<version>1.5.1-SNAPSHOT</version>
+		<version>1.5</version>
 	</parent>
 
 	<groupId>com.googlecode.flyway-test-extensions</groupId>
 	<artifactId>flyway-dbunit-test</artifactId>
-	<version>1.5.1-SNAPSHOT</version>
+	<version>1.5</version>
 	<name>${project.artifactId}</name>
 	<packaging>jar</packaging>
 
