@@ -44,7 +44,6 @@
 		</dependency>
 	</dependencies>
 
-<!-- comment out because plugin work not with maven 3.0.3 -->
 	<build>
 		<plugins>
  			<plugin>
