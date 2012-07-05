@@ -233,6 +233,7 @@
 								<jdbc.username>h2_test</jdbc.username>
 								<jdbc.password>h2_test</jdbc.password>
 								<flyway.basedir>sampletest256</flyway.basedir>
+								<flyway.basePackage>sampletest256</flyway.basePackage>
 							</systemPropertyVariables>
 							<includes>
 								<include>**/*JUnitTest.java</include>
@@ -272,6 +273,7 @@
 								<jdbc.username>OC_TEST</jdbc.username>	
 								<jdbc.password>OC_TEST</jdbc.password>
 								<flyway.basedir>sampletest256</flyway.basedir>
+								<flyway.basePackage>sampletest256</flyway.basePackage>
 							</systemPropertyVariables>
 							<includes>
 								<include>**/*JUnitTest.java</include>

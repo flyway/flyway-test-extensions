@@ -203,6 +203,7 @@
 								<jdbc.username>h2_test</jdbc.username>
 								<jdbc.password>h2_test</jdbc.password>
 								<flyway.basedir>sampletest3</flyway.basedir>
+								<flyway.basePackage>sampletest3</flyway.basePackage>
 							</systemPropertyVariables>
 							<threadCount>1</threadCount>
 							<runOrder>alphabetical</runOrder>
@@ -240,6 +241,7 @@
 								<jdbc.username>OC_TEST</jdbc.username>	
 								<jdbc.password>OC_TEST</jdbc.password>
 								<flyway.basedir>sampletest3</flyway.basedir>
+								<flyway.basePackage>sampletest3</flyway.basePackage>
 							</systemPropertyVariables>
 							<threadCount>1</threadCount>
 							<runOrder>alphabetical</runOrder>
