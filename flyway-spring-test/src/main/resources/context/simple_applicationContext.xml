@@ -27,7 +27,7 @@
 
 	<!--  Needed for system properties replacement -->
 	<!-- Following will only work with spring 3 	-->
-<context:property-placeholder location="classpath*:jdbc.properties,classpath*:flyway.properties"  
+<context:property-placeholder location="classpath*:jdbc.properties,classpath*:flyway.properties,classpath*:flyway.default.properties"  
 		ignore-resource-not-found="true"	
     	system-properties-mode="OVERRIDE"/>
 
@@ -36,6 +36,7 @@
 	    <property name="dataSource" ref="dataSourceRef"/>
 	    <property name="baseDir" value="${flyway.basedir}"/>
 	    <property name="basePackage" value="${flyway.basePackage}"/>
+	    <property name="locations" value="${flyway.locations}"/>
 	</bean>
 
     <!-- H2 Setup
