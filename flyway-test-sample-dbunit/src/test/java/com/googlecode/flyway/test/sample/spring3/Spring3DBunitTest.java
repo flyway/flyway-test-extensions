@@ -33,7 +33,7 @@ import com.googlecode.flyway.test.dbunit.FlywayDBUnitTestExecutionListener;
  *
  * @author florian
  *
- * @version 1.0
+ * @version 1.7
  * @version 2012-01-06
  *
  */
@@ -83,7 +83,7 @@ public class Spring3DBunitTest extends BaseDBHelper {
 	 * afterwards
 	 */
 	@Test
-	@FlywayTest(baseDirsForMigrate = { "sampletest3", "loadmsql" })
+	@FlywayTest(locationsForMigrate = {  "loadmsql" })
 	@DBUnitSupport(saveTableAfterRun = { "CUSTOMER", "select * from CUSTOMER" }, saveFileAfterRun = "target/dbunitresult/customer1.xml")
 	public void storeDBUnitSQLs() throws Exception {
 		int res = countCustomer();

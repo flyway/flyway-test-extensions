@@ -39,7 +39,7 @@ import com.googlecode.flyway.test.sample.helper.BaseDBHelper;
  *
  * @author florian
  *
- * @version 1.0
+ * @version 1.7
  * @version 2012-01-06
  *
  */
@@ -90,7 +90,7 @@ public class BaseDBunitTest extends BaseDBHelper {
 	 * afterwards
 	 */
 	@Test
-	@FlywayTest(baseDirsForMigrate = { "basetest", "loadMultibleSQLs" })
+	@FlywayTest(locationsForMigrate = { "loadMultibleSQLs" })
 	@DBUnitSupport(saveTableAfterRun = { "CUSTOMER", "select * from CUSTOMER" }, saveFileAfterRun = "target/dbunitresult/customer1.xml")
 	public void storeDBUnitSQLs() throws Exception {
 		int res = countCustomer();

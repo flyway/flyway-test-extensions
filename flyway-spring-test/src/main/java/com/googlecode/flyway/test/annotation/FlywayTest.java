@@ -21,33 +21,33 @@ import java.lang.annotation.RetentionPolicy;
 
 /**
  * Support for executing flyway commands during test without any special flyway command in test code.</p>
- * 
+ *
  * The default behavior is to execute the flyway commands:
  * <ul>
  * <li>{@link com.googlecode.flyway.core.Flyway#clean()}</li>
  * <li>{@link com.googlecode.flyway.core.Flyway#init()}</li>
  * <li>{@link com.googlecode.flyway.core.Flyway#migrate()}</li>
  * </ul>
- * 
+ *
  * For usage together with JUnit see {@link com.googlecode.flyway.test.junit.FlywayTestExecutionListener}.</p>
- * 
+ *
  * @author Florian
  * @version  2011-12-10
- * @version 1.0
+ * @version 1.7
  */
 @Retention(RetentionPolicy.RUNTIME)
 public @interface FlywayTest {
 
 	/**
 	 * invoke flyway command clean before a init/migrate call.</p>
-	 * 
+	 *
 	 *  Default: true
 	 */
 	public boolean invokeCleanDB() default true;
 
 	/**
 	 * invoke flyway command init before a migrate call</p>
-	 * 
+	 *
 	 *  Default: true
 	 */
 	public boolean invokeInitDB() default true;
@@ -61,11 +61,32 @@ public @interface FlywayTest {
 
 	/**
 	 * Support to change the default setting for the base directory setting. </p>
-	 * 
+	 *
 	 * For each entry in the list a separate flyway migrate call will be executed.</br>
 	 * Afterwards the default base directory will be set.</p>
-	 * 
-	 * Default: empty list - default settings will be used.
+	 *
+	 * Default: empty list - default settings will be used. <p/>
+	 *
+	 * Attention: This annotation are deprecated and can not used together  with {@link #locationsForMigrate}.
+	 *
+	 * @deprecated
 	 */
 	public String[] baseDirsForMigrate() default {};
+
+	/**
+	 * Support to add locations to the default location settings. <p/>
+	 *
+	 * if {link #overrideLocations()} returns true the complete locations will
+	 * be changed.<p/>
+	 *
+	 * Default: empty list  <p/>
+	 */
+	public String[] locationsForMigrate() default {};
+
+	/**
+	 * With this attribute the handling of the locationsForMigrate can be changed. <p/>
+	 *
+	 * Default: false
+	 */
+	public boolean overrideLocations() default false;
 }

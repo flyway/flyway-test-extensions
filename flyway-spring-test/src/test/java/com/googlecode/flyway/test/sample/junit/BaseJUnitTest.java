@@ -32,7 +32,7 @@ import com.googlecode.flyway.test.sample.helper.BaseDBHelper;
  * Simple Test to show how the annotation can be used inside test execution
  *
  * @author florian
- * @version 1.0
+ * @version 1.7
  * @version 2011-12-20
  */
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -53,7 +53,7 @@ public class BaseJUnitTest extends BaseDBHelper {
 	}
 
 	/**
-	 * Made a clean init migrate usage before execution of test methodes
+	 * Made a clean init migrate usage before execution of test methods
 	 */
 	@Test
 	@FlywayTest
@@ -64,11 +64,33 @@ public class BaseJUnitTest extends BaseDBHelper {
 	}
 
 	/**
-	 * Made a clean init migrate usage before execution of test methodes
+	 * Made a clean init migrate usage before execution of test methods
 	 */
 	@Test
 	@FlywayTest(baseDirsForMigrate = { "basetest", "loadMultibleSQLs" })
 	public void loadMultibleSQLs() throws Exception {
+		int res = countCustomer();
+
+		Assert.assertEquals("Count of customer", 2, res);
+	}
+
+	/**
+	 * Made a clean init migrate usage before execution of test methods
+	 */
+	@Test
+	@FlywayTest(locationsForMigrate = { "basetest", "loadMultibleSQLs" }, overrideLocations=true)
+	public void loadMultibleSQLsOverrideLocations() throws Exception {
+		int res = countCustomer();
+
+		Assert.assertEquals("Count of customer", 2, res);
+	}
+
+	/**
+	 * Made a clean init migrate usage before execution of test methods
+	 */
+	@Test
+	@FlywayTest(locationsForMigrate = {  "loadMultibleSQLs" } )
+	public void loadMultibleSQLsLocations() throws Exception {
 		int res = countCustomer();
 
 		Assert.assertEquals("Count of customer", 2, res);

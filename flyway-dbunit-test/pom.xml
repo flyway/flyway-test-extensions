@@ -111,8 +111,7 @@
 								<jdbc.url>jdbc:h2:nio:${project.build.directory}/db/flywaytest.db</jdbc.url>
 								<jdbc.username>h2_test</jdbc.username>
 								<jdbc.password>h2_test</jdbc.password>
-								<flyway.basedir>basetest</flyway.basedir>
-								<flyway.basePackage>basetest</flyway.basePackage>
+								<flyway.locations>basetest</flyway.locations>
 							</systemPropertyVariables>
 							<includes>
 								<include>**/*DBunitTest.java</include>
@@ -151,8 +150,7 @@
 								<jdbc.url>jdbc:oracle:thin:@localhost:1521/XE</jdbc.url>
 								<jdbc.username>OC_TEST</jdbc.username>
 								<jdbc.password>OC_TEST</jdbc.password>
-								<flyway.basedir>basetest</flyway.basedir>
-								<flyway.basePackage>basetest</flyway.basePackage>
+								<flyway.locations>basetest</flyway.locations>
 							</systemPropertyVariables>
 							<includes>
 								<include>**/*DBunitTest.java</include>

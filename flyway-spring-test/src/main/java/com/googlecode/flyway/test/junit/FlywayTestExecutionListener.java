@@ -17,6 +17,7 @@ package com.googlecode.flyway.test.junit;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -35,14 +36,15 @@ import com.googlecode.flyway.test.annotation.FlywayTest;
  * <p>
  * If the annotation {@link FlywayTest} used on class level a clean , init ,
  * migrate cycle is done during class load.<br>
- * If the annotation
- * {@link FlywayTest} used on test method level a clean , init , migrate cycle
- * is done before test execution.
+ * If the annotation {@link FlywayTest} used on test method level a clean , init
+ * , migrate cycle is done before test execution.
  * </p>
  *
- * <p>Important if the annotation {@link FlywayTest} are used the system properties
+ * <p>
+ * Important if the annotation {@link FlywayTest} are used the system properties
  * for <code>jdbc.url</code>, <code>jdbc.driver</code>,
- * <code>jdbc.username</code>, and <code>jdbc.password</code> should be set.</p>
+ * <code>jdbc.username</code>, and <code>jdbc.password</code> should be set.
+ * </p>
  * Also the test application context should contains code like this:
  *
  * <pre>
@@ -89,15 +91,14 @@ import com.googlecode.flyway.test.annotation.FlywayTest;
  * </p>
  * <b>Notes:</b>
  * <ul>
- * <li>If you using spring framework version lower than 3.x the
- * annotation {@link FlywayTest} wont work at class level.</li>
- * <li>For spring
- * framework version 2.5.6 use simple_applicationContext_spring256.xml as
- * application context example</li>
- * <li>If you using the annotation
- * {@link FlywayTest} more than one time in test classes than <b>do not</b> use
- * parallel execution in surefire plugin.</bR> With this option you will setup
- * your database in more than one thread parallel!</li>
+ * <li>If you using spring framework version lower than 3.x the annotation
+ * {@link FlywayTest} wont work at class level.</li>
+ * <li>For spring framework version 2.5.6 use
+ * simple_applicationContext_spring256.xml as application context example</li>
+ * <li>If you using the annotation {@link FlywayTest} more than one time in test
+ * classes than <b>do not</b> use parallel execution in surefire plugin.</bR>
+ * With this option you will setup your database in more than one thread
+ * parallel!</li>
  * </ul>
  *
  * </p>
@@ -105,12 +106,12 @@ import com.googlecode.flyway.test.annotation.FlywayTest;
  * @author Florian
  *
  * @version 2011-12-10
- * @version 1.0
+ * @version 1.7
  *
  */
 public class FlywayTestExecutionListener implements TestExecutionListener {
 
-   /**
+	/**
 	 * Used for logging inside test executions.
 	 */
 	// @@ Construction
@@ -138,7 +139,8 @@ public class FlywayTestExecutionListener implements TestExecutionListener {
 	 * @param testContext
 	 *            default test context filled from spring
 	 *
-	 * @throws Exception if any error occurred
+	 * @throws Exception
+	 *             if any error occurred
 	 */
 	public void beforeTestClass(final TestContext testContext) throws Exception {
 		// no we check for the DBResetForClass
@@ -155,7 +157,8 @@ public class FlywayTestExecutionListener implements TestExecutionListener {
 	 * @param testContext
 	 *            default test context filled from spring
 	 *
-	 * @throws Exception if any error occurred
+	 * @throws Exception
+	 *             if any error occurred
 	 */
 	public void prepareTestInstance(final TestContext testContext)
 			throws Exception {
@@ -167,7 +170,8 @@ public class FlywayTestExecutionListener implements TestExecutionListener {
 	 * @param testContext
 	 *            default test context filled from spring
 	 *
-	 * @throws Exception if any error occurred
+	 * @throws Exception
+	 *             if any error occurred
 	 */
 	public void beforeTestMethod(final TestContext testContext)
 			throws Exception {
@@ -185,7 +189,8 @@ public class FlywayTestExecutionListener implements TestExecutionListener {
 	 * @param testContext
 	 *            default test context filled from spring
 	 *
-	 * @throws Exception if any error occurred
+	 * @throws Exception
+	 *             if any error occurred
 	 */
 	public void afterTestMethod(final TestContext testContext) throws Exception {
 	}
@@ -196,7 +201,8 @@ public class FlywayTestExecutionListener implements TestExecutionListener {
 	 * @param testContext
 	 *            default test context filled from spring
 	 *
-	 * @throws Exception if any error occurred
+	 * @throws Exception
+	 *             if any error occurred
 	 */
 	public void afterTestClass(final TestContext testContext) throws Exception {
 	}
@@ -244,42 +250,34 @@ public class FlywayTestExecutionListener implements TestExecutionListener {
 						flyWay.init();
 					}
 					if (annotation.invokeMigrateDB()) {
+						String[] locations = annotation.locationsForMigrate();
 						String[] baseDirs = annotation.baseDirsForMigrate();
-						if (baseDirs == null || baseDirs.length == 0) {
+
+						if ((locations == null || locations.length == 0) //
+								&& (baseDirs == null || baseDirs.length == 0)) {
+
 							if (logger.isDebugEnabled()) {
 								logger.debug("******** Default migrate database for  '"
 										+ executionInfo + "'.");
 							}
+
 							flyWay.migrate();
 						} else {
-							// Store setting of the old base directory from
-							// outside
-							// configuration
-							// and reset it afterwards so default annotation
-							// will still work
-
-							String oldBaseDir = flyWay.getBaseDir();
-							try {
-
-								for (int i = 0; i < baseDirs.length; i++) {
-									String baseDir = baseDirs[i];
-
-									if (logger.isDebugEnabled()) {
-										logger.debug("******** Start migration from base directory '"
-												+ baseDir
-												+ "'  for  '"
-												+ executionInfo + "'.");
-
-									}
-
-									flyWay.setBaseDir(baseDir);
-									flyWay.migrate();
+							if ( locations != null && locations.length > 0 //
+								&& baseDirs != null && baseDirs.length > 0) {
+									throw new IllegalArgumentException(
+											"Usage of old annotation configuration with base dir and new configuration with locations are not supported.");
 								}
-							} finally {
-								// now reset the old base dir value
-								flyWay.setBaseDir(oldBaseDir);
-							}
+								if (locations == null || locations.length == 0) {
 
+								baseDirAnnotationHandlingDeprecated(annotation,
+										flyWay, executionInfo);
+
+							} else {
+
+								locationsMigrationHandling(annotation, flyWay,
+										executionInfo);
+							}
 						}
 					}
 					if (logger.isInfoEnabled()) {
@@ -305,14 +303,112 @@ public class FlywayTestExecutionListener implements TestExecutionListener {
 	}
 
 	/**
+	 * Handling of the change of locations configuration of a flyway.
+	 *
+	 * @param annotation
+	 *            current annotation
+	 * @param flyWay
+	 *            bean
+	 * @param executionInfo
+	 *            current test context.
+	 */
+	private void locationsMigrationHandling(final FlywayTest annotation,
+			final Flyway flyWay, final String executionInfo) {
+		final String[] locations = annotation.locationsForMigrate();
+
+		// now migration handling for locations support
+		String[] oldLocations = flyWay.getLocations();
+		boolean override = annotation.overrideLocations();
+		try {
+			String[] useLocations = null;
+			if (override) {
+				useLocations = locations;
+			} else {
+				// Fill the locations
+				useLocations = Arrays.copyOf(oldLocations, oldLocations.length
+						+ locations.length);
+				for (int i = 0; i < locations.length; i++) {
+					useLocations[i + oldLocations.length] = locations[i];
+				}
+
+			}
+			if (logger.isDebugEnabled()) {
+				logger.debug(String
+						.format("******** Start migration from locations directories '%s'  for  '%s'.",
+								Arrays.asList(useLocations), executionInfo));
+
+			}
+
+			flyWay.setLocations(useLocations);
+
+			flyWay.migrate();
+		} finally {
+			// reset the flyway bean to original configuration.
+			flyWay.setLocations(oldLocations);
+		}
+	}
+
+	/**
+	 * Internal handling for the baseDirForMigrate annotation support.
+	 *
+	 * @param annotation
+	 *            current annotation.
+	 * @param flyWay
+	 *            bean
+	 * @param executionInfo
+	 *
+	 * @deprecated
+	 */
+	@Deprecated
+	private void baseDirAnnotationHandlingDeprecated(
+			final FlywayTest annotation, final Flyway flyWay,
+			final String executionInfo) {
+		String[] baseDirs = annotation.baseDirsForMigrate();
+		// Store setting of the old base directory from
+		// outside
+		// configuration
+		// and reset it afterwards so default annotation
+		// will still work
+
+		logger.warn("Usage of deprecated annotation 'FlywayTest.baseDirForMigrate' use 'FlywayTest.locationsForMigrate' instead.");
+
+		String[] locations = annotation.locationsForMigrate();
+		if (locations != null && locations.length > 0) {
+			throw new IllegalArgumentException(
+					"Usage of old annotation configuration with base dir and new configuration with locations are not supported.");
+		}
+
+		String oldBaseDir = flyWay.getBaseDir();
+		try {
+
+			for (int i = 0; i < baseDirs.length; i++) {
+				String baseDir = baseDirs[i];
+
+				if (logger.isDebugEnabled()) {
+					logger.debug("******** Start migration from base directory '"
+							+ baseDir + "'  for  '" + executionInfo + "'.");
+
+				}
+
+				flyWay.setBaseDir(baseDir);
+				flyWay.migrate();
+			}
+		} finally {
+			// now reset the old base dir value
+			flyWay.setBaseDir(oldBaseDir);
+		}
+	}
+
+	/**
 	 * Wrapper to get a method
 	 * <code>ApplicationContext.getBean(Class _class)</code> like in spring 3.0.
-	 * It will returns allways the first instance of the founded class.
+	 * It will returns always the first instance of the founded class.
 	 *
 	 * @param context
 	 *            from which the bean should be retrieved
 	 * @param classType
-	 *            class type that should be retireved from the configuration file.
+	 *            class type that should be retrieved from the configuration
+	 *            file.
 	 *
 	 * @return a object of the type or <code>null</code>
 	 */

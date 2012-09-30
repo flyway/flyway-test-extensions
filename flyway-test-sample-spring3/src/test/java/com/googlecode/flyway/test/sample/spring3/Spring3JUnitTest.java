@@ -33,7 +33,7 @@ import com.googlecode.flyway.test.junit.FlywayTestExecutionListener;
  * The test class use the annotation during test class setup.
  *
  * @author florian
- * @version 1.0
+ * @version 1.7
  * @version 2011-12-27
  *
  */
@@ -72,7 +72,7 @@ public class Spring3JUnitTest extends BaseDBHelper {
 	 * load SQL statements from two directories.
 	 */
 	@Test
-	@FlywayTest(baseDirsForMigrate = { "sampletest3", "loadmsql" })
+	@FlywayTest(locationsForMigrate = {  "loadmsql" })
 	public void loadMultibleSQLs() throws Exception {
 		int res = countCustomer();
 
