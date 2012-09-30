@@ -132,6 +132,7 @@
 								<jdbc.username>h2_test</jdbc.username>
 								<jdbc.password>h2_test</jdbc.password>
 								<flyway.basedir>basetest</flyway.basedir>
+								<flyway.locations>basetest</flyway.locations>
 							</systemPropertyVariables>
 							<includes>
 								<include>**/*JUnitTest.java</include>

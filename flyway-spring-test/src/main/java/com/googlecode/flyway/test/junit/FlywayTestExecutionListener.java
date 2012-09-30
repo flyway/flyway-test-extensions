@@ -257,6 +257,7 @@ public class FlywayTestExecutionListener implements TestExecutionListener {
 							// configuration
 							// and reset it afterwards so default annotation
 							// will still work
+
 							String oldBaseDir = flyWay.getBaseDir();
 							try {
 
