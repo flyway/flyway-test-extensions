@@ -129,7 +129,7 @@ import com.googlecode.flyway.test.ExecutionListenerHelper;
  * @author Florian Eska
  *
  * @date 2011-12-10
- * @version 1.0
+ * @version 1.7
  *
  */
 public class DBUnitTestExecutionListener implements TestExecutionListener {
@@ -189,7 +189,8 @@ public class DBUnitTestExecutionListener implements TestExecutionListener {
 		final Annotation annotation = testMethod
 				.getAnnotation(DBUnitSupport.class);
 
-		String executionInfo = ExecutionListenerHelper.getExecutionInformation(testContext);
+		String executionInfo = ExecutionListenerHelper
+				.getExecutionInformation(testContext);
 
 		if (annotation != null) {
 			final DBUnitSupport dbUnitAnnotaton = (DBUnitSupport) annotation;
@@ -198,8 +199,8 @@ public class DBUnitTestExecutionListener implements TestExecutionListener {
 
 			if (saveIt != null && saveIt.trim().length() > 0) {
 				if (logger.isDebugEnabled()) {
-					logger.debug("******** Start save information '" + executionInfo
-							+ "' info file '" + saveIt + "'.");
+					logger.debug("******** Start save information '"
+							+ executionInfo + "' info file '" + saveIt + "'.");
 				}
 				final DataSource ds = getSaveDataSource(testContext);
 
@@ -210,8 +211,8 @@ public class DBUnitTestExecutionListener implements TestExecutionListener {
 				final FileWriter fileWriter = new FileWriter(fileToExport);
 				FlatXmlDataSet.write(dataSet, fileWriter);
 				if (logger.isDebugEnabled()) {
-					logger.debug("******** Finished save information '" + executionInfo
-							+ "' info file '" + saveIt + "'.");
+					logger.debug("******** Finished save information '"
+							+ executionInfo + "' info file '" + saveIt + "'.");
 				}
 			}
 		}
@@ -233,7 +234,8 @@ public class DBUnitTestExecutionListener implements TestExecutionListener {
 
 		if (loadFiles != null && loadFiles.length > 0) {
 			// we have some files to load
-			String executionInfo = ExecutionListenerHelper.getExecutionInformation(testContext);
+			String executionInfo = ExecutionListenerHelper
+					.getExecutionInformation(testContext);
 
 			if (logger.isDebugEnabled()) {
 				logger.debug("******** Load files  '" + executionInfo + "'.");
@@ -382,7 +384,7 @@ public class DBUnitTestExecutionListener implements TestExecutionListener {
 	 * @return
 	 * @throws Exception
 	 */
-	private IDatabaseConnection getConnection(final DataSource dataSource)
+	protected IDatabaseConnection getConnection(final DataSource dataSource)
 			throws Exception {
 		// get connection
 		final Connection con = dataSource.getConnection();
@@ -392,19 +394,26 @@ public class DBUnitTestExecutionListener implements TestExecutionListener {
 		// FIXME not nice I found not a fast possibility to generate inside H2
 		// the tables inside a
 		// schema as oracle do.
-		if (databaseMetaData.getDriverName().contains("H2")) {
-			connection = new DatabaseConnection(con);
-		} else {
+		final String driverName = databaseMetaData.getDriverName();
+		if (driverName.toLowerCase().contains("oracle")) {
 			// oracle schema name is the user name
 			connection = new DatabaseConnection(con, databaseMetaData
 					.getUserName().toUpperCase());
+		} else {
+			if (driverName.contains("H2")) {
+				// H2
+				connection = new DatabaseConnection(con);
+			} else {
+				// all other
+				connection = new DatabaseConnection(con);
+			}
 		}
-
 		// final DatabaseConfig config = connection.getConfig();
 		// // oracle 10g
-		// // FIXME at the momement we have a hard coded oracle notation
+		// // FIXME at the moment we have a hard coded oracle notation
 		// config.setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY, new
 		// Oracle10DataTypeFactory());
+
 		return connection;
 	}
 
@@ -426,7 +435,8 @@ public class DBUnitTestExecutionListener implements TestExecutionListener {
 	 *
 	 * @return a object of the type or <code>null</code>
 	 */
-	private DataSource getBean(final ApplicationContext context, final Class<?> classType) {
+	private DataSource getBean(final ApplicationContext context,
+			final Class<?> classType) {
 		DataSource result = null;
 
 		String[] names = context.getBeanNamesForType(classType);
