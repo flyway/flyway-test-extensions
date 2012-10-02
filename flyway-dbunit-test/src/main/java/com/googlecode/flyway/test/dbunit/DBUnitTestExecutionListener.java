@@ -30,7 +30,6 @@ import javax.sql.DataSource;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.dbunit.database.AmbiguousTableNameException;
-import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.DatabaseSequenceFilter;
 import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.database.QueryDataSet;
@@ -41,6 +40,7 @@ import org.dbunit.dataset.filter.ITableFilter;
 import org.dbunit.dataset.xml.FlatXmlDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.TestContext;
@@ -124,7 +124,9 @@ import com.googlecode.flyway.test.ExecutionListenerHelper;
  * }
  * </pre>
  *
- * </p>
+ * If the default implementation for the {@link DefaultDatabaseConnectionFactory} must be changed. <br/>
+ * A implementation of {@link DatabaseConnectionFactory} must be at as a bean definition into a spring context
+ * configuration. </p>
  *
  * @author Florian Eska
  *
@@ -135,6 +137,9 @@ import com.googlecode.flyway.test.ExecutionListenerHelper;
 public class DBUnitTestExecutionListener implements TestExecutionListener {
 	// @@ Construction
 	protected final Log logger = LogFactory.getLog(getClass());
+
+	@Autowired(required = false)
+	protected DatabaseConnectionFactory dbConnectionFactory = new DefaultDatabaseConnectionFactory();
 
 	/**
 	 * Allocates new <code>AbstractDbSpringContextTests</code> instance.
@@ -204,7 +209,7 @@ public class DBUnitTestExecutionListener implements TestExecutionListener {
 				}
 				final DataSource ds = getSaveDataSource(testContext);
 
-				final IDatabaseConnection con = getConnection(ds);
+				final IDatabaseConnection con = getConnection(ds, testContext);
 				final IDataSet dataSet = getDataSetToExport(tables, con);
 				final File fileToExport = getFileToExport(saveIt);
 
@@ -262,7 +267,7 @@ public class DBUnitTestExecutionListener implements TestExecutionListener {
 				// now we try to load the data into database
 				final DataSource ds = getSaveDataSource(testContext);
 
-				final IDatabaseConnection con = getConnection(ds);
+				final IDatabaseConnection con = getConnection(ds, testContext);
 				final FlatXmlDataSet dataSet = getFileDataSet(is);
 				operation.execute(con, dataSet);
 			}
@@ -384,37 +389,39 @@ public class DBUnitTestExecutionListener implements TestExecutionListener {
 	 * @return
 	 * @throws Exception
 	 */
-	protected IDatabaseConnection getConnection(final DataSource dataSource)
+	protected IDatabaseConnection getConnection(final DataSource dataSource,final TestContext context)
 			throws Exception {
 		// get connection
 		final Connection con = dataSource.getConnection();
 		final DatabaseMetaData databaseMetaData = con.getMetaData();
 		IDatabaseConnection connection = null;
 
-		// FIXME not nice I found not a fast possibility to generate inside H2
-		// the tables inside a
-		// schema as oracle do.
-		final String driverName = databaseMetaData.getDriverName();
-		if (driverName.toLowerCase().contains("oracle")) {
-			// oracle schema name is the user name
-			connection = new DatabaseConnection(con, databaseMetaData
-					.getUserName().toUpperCase());
-		} else {
-			if (driverName.contains("H2")) {
-				// H2
-				connection = new DatabaseConnection(con);
-			} else {
-				// all other
-				connection = new DatabaseConnection(con);
+		try {
+
+			DatabaseConnectionFactory factory = context.getApplicationContext().getBean(DatabaseConnectionFactory.class);
+
+			if ( factory != null )
+			{
+				dbConnectionFactory = factory;
 			}
 		}
-		// final DatabaseConfig config = connection.getConfig();
-		// // oracle 10g
-		// // FIXME at the moment we have a hard coded oracle notation
-		// config.setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY, new
-		// Oracle10DataTypeFactory());
+		catch ( Exception e)
+		{
+			logger.debug(String.format("We ignore if we could not find a instance of '%s'",DatabaseConnectionFactory.class.getName()));
+		}
 
-		return connection;
+		if ( dbConnectionFactory != null ) {
+			connection = dbConnectionFactory.createConnection(con, databaseMetaData);
+			return connection;
+		}
+//		else {
+//			//nnneee
+//			DatabaseConnectionFactory factory = context.getApplicationContext().getBean(DatabaseConnectionFactory.class);
+//			dbConnectionFactory = factory;
+//			connection = dbConnectionFactory.createConnection(con, databaseMetaData);
+//			return connection;
+//		}
+		return null;
 	}
 
 	private FlatXmlDataSet getFileDataSet(final InputStream is)
@@ -449,4 +456,5 @@ public class DBUnitTestExecutionListener implements TestExecutionListener {
 
 		return result;
 	}
+
 }

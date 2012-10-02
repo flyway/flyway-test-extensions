@@ -56,7 +56,7 @@ import com.googlecode.flyway.test.annotation.FlywayTest;
  *
  * <bean id="flyway" class="com.googlecode.flyway.core.Flyway" depends-on="data.source.id">
  *   <property name="dataSource" ref="data.source.id"/>
- *   <property name="baseDir" value="oracle"/>
+ *   <property name="locations" value="oracle"/>
  * </bean>
  *
  *     <!-- H2 Setup
