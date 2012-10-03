@@ -89,7 +89,10 @@ import com.googlecode.flyway.test.junit.FlywayTestExecutionListener;
  *    public void testMethod() ....
  * </pre>
  *
- * </p>
+ * If the {@link DefaultDatabaseConnectionFactory} do not fit for usage with DBunit it can be customized.<br/>
+ * Define a bean in the application context that implement the interface {@link DatabaseConnectionFactory}.
+ * Afterwards the own implementation of the database connection factory will be used for generating database connection.
+ * <p/>
  *
  * @author florian
  *

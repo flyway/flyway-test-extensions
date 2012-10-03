@@ -124,9 +124,10 @@ import com.googlecode.flyway.test.ExecutionListenerHelper;
  * }
  * </pre>
  *
- * If the default implementation for the {@link DefaultDatabaseConnectionFactory} must be changed. <br/>
- * A implementation of {@link DatabaseConnectionFactory} must be at as a bean definition into a spring context
- * configuration. </p>
+ * If the {@link DefaultDatabaseConnectionFactory} do not fit for usage with DBunit it can be customized.<br/>
+ * Define a bean in the application context that implement the interface {@link DatabaseConnectionFactory}.
+ * Afterwards the own implementation of the database connection factory will be used for generating database connection.
+ * <p/>
  *
  * @author Florian Eska
  *
