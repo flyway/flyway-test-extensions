@@ -4,3 +4,6 @@ target
 .project
 .classpath
 .settings
+.idea
+.iml
+Maven__*.xml
