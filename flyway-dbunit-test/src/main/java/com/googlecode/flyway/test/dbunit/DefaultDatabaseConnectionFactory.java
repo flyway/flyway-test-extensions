@@ -30,18 +30,19 @@ import org.dbunit.database.IDatabaseConnection;
  *
  * Current implementation:
  * <pre>
-		if (driverName.toLowerCase().contains("oracle")) {
-			// oracle schema name is the user name
-			connection = new DatabaseConnection(con, databaseMetaData
-					.getUserName().toUpperCase());
+	if (driverName.toLowerCase().contains("oracle")) {
+		// oracle schema name is the user name
+		connection = new DatabaseConnection(con, databaseMetaData
+				.getUserName().toUpperCase());
+	} else {
+		if (driverName.contains("H2")) {
+			// H2
+			connection = new DatabaseConnection(con);
 		} else {
-			if (driverName.contains("H2")) {
-				// H2
-				connection = new DatabaseConnection(con);
-			} else {
-				// all other
-				connection = new DatabaseConnection(con);
-			}
+			// all other
+			connection = new DatabaseConnection(con);
+		}
+    }
  * </pre>
  *
  * @author Florian
