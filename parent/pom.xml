@@ -50,7 +50,9 @@
 		<version.log4j>1.2.16</version.log4j>
 		<version.junit>4.10</version.junit>
 		<version.commons.dbcp>1.4</version.commons.dbcp>
-	</properties>
+        <version.h2>1.2.137</version.h2>
+        <version.oracle>11.2.0.2.0</version.oracle>
+    </properties>
 
 	<dependencyManagement>
 		<dependencies>
@@ -99,14 +101,14 @@
 			<dependency>
 				<groupId>com.h2database</groupId>
 				<artifactId>h2</artifactId>
-				<version>1.2.137</version>
+				<version>${version.h2}</version>
 				<optional>true</optional>
 				<scope>test</scope>
 			</dependency>
 			<dependency>
 				<groupId>com.oracle</groupId>
 				<artifactId>ojdbc5</artifactId>
-				<version>11.2.0.2.0</version>
+				<version>${version.oracle}</version>
 				<optional>true</optional>
 				<scope>test</scope>
 			</dependency>

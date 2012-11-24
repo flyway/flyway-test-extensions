@@ -9,18 +9,15 @@
 		<relativePath>../parent/pom.xml</relativePath>
 	</parent>
 
-	<groupId>com.googlecode.flyway-test-extensions</groupId>
-	<artifactId>flyway-dbunit-test</artifactId>
-	<version>1.8.0-SNAPSHOT</version>
-	<name>${project.artifactId}</name>
+    <artifactId>flyway-dbunit-test</artifactId>
+
+    <name>${project.artifactId}</name>
 	<packaging>jar</packaging>
 
 	<properties>
 		<version.dbunit>2.4.8</version.dbunit>
-		<version.junit>4.10</version.junit>
-		<version.h2>1.2.137</version.h2>
-		<version.commons.dbcp>1.3</version.commons.dbcp>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>com.googlecode.flyway-test-extensions</groupId>
