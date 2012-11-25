@@ -59,14 +59,7 @@
 	</distributionManagement>
 
 	<properties>
-		<version.flyway>1.7</version.flyway>
-		<version.spring>3.1.0.RELEASE</version.spring>
-		<version.maven>3.0.3</version.maven>
-		<version.slf4j>1.5.6</version.slf4j>
-		<version.log4j>1.2.16</version.log4j>
-		<version.junit>4.10</version.junit>
-		<version.commons.dbcp>1.4</version.commons.dbcp>
-	</properties>
+    </properties>
 	<profiles>
 		<profile>
 			<id>license-check</id>
