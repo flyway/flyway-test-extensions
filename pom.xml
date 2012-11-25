@@ -2,9 +2,14 @@
    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.googlecode.flyway-test-extensions</groupId>
+
+    <parent>
+        <groupId>com.googlecode.flyway-test-extensions</groupId>
+        <artifactId>parent</artifactId>
+        <version>1.8.0-SNAPSHOT</version>
+        <relativePath>parent/pom.xml</relativePath>
+    </parent>
 	<artifactId>flyway-test-extensions</artifactId>
-	<version>1.8.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>${project.artifactId}</name>
 	<description>
@@ -62,7 +67,6 @@
 		<version.junit>4.10</version.junit>
 		<version.commons.dbcp>1.4</version.commons.dbcp>
 	</properties>
-
 	<profiles>
 		<profile>
 			<id>license-check</id>
@@ -79,7 +83,8 @@
 							<failIfMissing>true</failIfMissing>
 							<encoding>UTF-8</encoding>
 							<excludes>
-								<exclude>.hg*</exclude>
+                                <exclude>.idea/**</exclude>
+                                <exclude>.hg*</exclude>
 								<exclude>**/*.sh</exclude>
 								<exclude>**/*.txt</exclude>
 								<exclude>**/*.cnf</exclude>
