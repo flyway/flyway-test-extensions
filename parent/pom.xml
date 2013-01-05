@@ -43,8 +43,8 @@
 	</distributionManagement>
 
 	<properties>
-		<version.flyway>2.0.2</version.flyway>
-		<version.spring>3.1.0.RELEASE</version.spring>
+		<version.flyway>2.0.3</version.flyway>
+		<version.spring>3.1.2.RELEASE</version.spring>
 		<version.maven>3.0.3</version.maven>
 		<version.slf4j>1.5.6</version.slf4j>
 		<version.log4j>1.2.16</version.log4j>
