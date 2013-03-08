@@ -36,7 +36,7 @@
 	<!-- flyway part -->
 	<bean id="flyway" class="com.googlecode.flyway.core.Flyway" depends-on="dataSourceRef">
 	    <property name="dataSource" ref="dataSourceRef"/>
-	    <property name="baseDir" value="${flyway.basedir}"/>
+	    <property name="locations" value="${flyway.basedir}"/>
 	</bean>
 
     <!-- H2 Setup

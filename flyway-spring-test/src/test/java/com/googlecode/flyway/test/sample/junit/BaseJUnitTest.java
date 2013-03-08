@@ -67,17 +67,6 @@ public class BaseJUnitTest extends BaseDBHelper {
 	 * Made a clean init migrate usage before execution of test methods
 	 */
 	@Test
-	@FlywayTest(baseDirsForMigrate = { "basetest", "loadMultibleSQLs" })
-	public void loadMultibleSQLs() throws Exception {
-		int res = countCustomer();
-
-		Assert.assertEquals("Count of customer", 2, res);
-	}
-
-	/**
-	 * Made a clean init migrate usage before execution of test methods
-	 */
-	@Test
 	@FlywayTest(locationsForMigrate = { "basetest", "loadMultibleSQLs" }, overrideLocations=true)
 	public void loadMultibleSQLsOverrideLocations() throws Exception {
 		int res = countCustomer();

@@ -378,6 +378,8 @@ public class FlywayTestExecutionListener implements TestExecutionListener {
 					"Usage of old annotation configuration with base dir and new configuration with locations are not supported.");
 		}
 
+        throw new IllegalArgumentException("Basedir usage");
+/*
 		String oldBaseDir = flyWay.getBaseDir();
 		try {
 
@@ -397,6 +399,7 @@ public class FlywayTestExecutionListener implements TestExecutionListener {
 			// now reset the old base dir value
 			flyWay.setBaseDir(oldBaseDir);
 		}
+*/
 	}
 
 	/**
