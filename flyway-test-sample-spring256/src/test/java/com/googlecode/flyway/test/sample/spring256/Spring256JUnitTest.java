@@ -71,7 +71,7 @@ public class Spring256JUnitTest extends BaseDBHelper {
 	 * <b>loadmsql</b>.
 	 */
 	@Test
-	@FlywayTest(baseDirsForMigrate = { "sampletest256", "loadmsql" })
+	@FlywayTest(locationsForMigrate = { "sampletest256", "loadmsql" })
 	public void loadMultibleSQLs() throws Exception {
 		int res = countCustomer();
 

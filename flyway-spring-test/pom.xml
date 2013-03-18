@@ -128,7 +128,7 @@
 								<jdbc.url>jdbc:h2:nio:${project.build.directory}/db/flywaytest.db</jdbc.url>
 								<jdbc.username>h2_test</jdbc.username>
 								<jdbc.password>h2_test</jdbc.password>
-								<flyway.locations>basetest</flyway.locations>
+								<flyway.locations>/basetest</flyway.locations>
 							</systemPropertyVariables>
 							<includes>
 								<include>**/*JUnitTest.java</include>
