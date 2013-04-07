@@ -129,7 +129,12 @@
 								<jdbc.username>h2_test</jdbc.username>
 								<jdbc.password>h2_test</jdbc.password>
 								<flyway.locations>/basetest</flyway.locations>
-							</systemPropertyVariables>
+                                <flyway.driver>org.h2.Driver</flyway.driver>
+                                <flyway.url>jdbc:h2:nio:${project.build.directory}/db/flywaytest.db</flyway.url>
+                                <flyway.user>h2_test</flyway.user>
+                                <flyway.password>h2_test</flyway.password>
+
+                            </systemPropertyVariables>
 							<includes>
 								<include>**/*JUnitTest.java</include>
 							</includes>
@@ -168,7 +173,11 @@
 								<jdbc.username>OC_TEST</jdbc.username>	
 								<jdbc.password>OC_TEST</jdbc.password>
 								<flyway.locations>basetest</flyway.locations>
-							</systemPropertyVariables>
+                                <flyway.driver>oracle.jdbc.driver.OracleDriver</flyway.driver>
+                                <flyway.url>jdbc:oracle:thin:@localhost:1521/XE</flyway.url>
+                                <flyway.user>OC_TEST</flyway.user>
+                                <flyway.password>OC_TEST</flyway.password>
+                            </systemPropertyVariables>
 							<includes>
 								<include>**/*JUnitTest.java</include>
 							</includes>
