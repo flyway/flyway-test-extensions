@@ -220,7 +220,7 @@ public class DBUnitTestExecutionListener implements TestExecutionListener {
                     FlatXmlDataSet.write(dataSet, fileWriter);
                 } finally {
                     if (logger.isDebugEnabled()) {
-                        logger.debug("******** Close database connection "+ con);
+                        logger.debug("******** Close database connection " + con);
                     }
                     con.close();
                 }
@@ -273,19 +273,26 @@ public class DBUnitTestExecutionListener implements TestExecutionListener {
 
 				final InputStream is = resource.getInputStream();
 
-				// now we try to load the data into database
-				final DataSource ds = getSaveDataSource(testContext);
-
-				final IDatabaseConnection con = getConnection(ds, testContext);
-                // Issue 16 fix leaking database connection - will look better with Java 7 Closable
                 try {
-                    final FlatXmlDataSet dataSet = getFileDataSet(is);
-                    operation.execute(con, dataSet);
-                } finally {
-                    if (logger.isDebugEnabled()) {
-                        logger.debug("******** Close database connection "+ con);
+                    // now we try to load the data into database
+                    final DataSource ds = getSaveDataSource(testContext);
+
+                    final IDatabaseConnection con = getConnection(ds, testContext);
+                    // Issue 16 fix leaking database connection - will look better with Java 7 Closable
+                    try {
+                        final FlatXmlDataSet dataSet = getFileDataSet(is);
+                        operation.execute(con, dataSet);
+                    } finally {
+                        if (logger.isDebugEnabled()) {
+                            logger.debug("******** Close database connection " + con);
+                        }
+                        con.close();
                     }
-                    con.close();
+                } finally {
+                    if ( is != null ) {
+                        // avoid memory leak in streams
+                        is.close();
+                    }
                 }
             }
 			if (logger.isDebugEnabled()) {
