@@ -211,16 +211,24 @@ public class DBUnitTestExecutionListener implements TestExecutionListener {
 				final DataSource ds = getSaveDataSource(testContext);
 
 				final IDatabaseConnection con = getConnection(ds, testContext);
-				final IDataSet dataSet = getDataSetToExport(tables, con);
-				final File fileToExport = getFileToExport(saveIt);
+                // Issue 16 fix leaking database connection - will look better with Java 7 Closable
+                try {
+                    final IDataSet dataSet = getDataSetToExport(tables, con);
+                    final File fileToExport = getFileToExport(saveIt);
 
-				final FileWriter fileWriter = new FileWriter(fileToExport);
-				FlatXmlDataSet.write(dataSet, fileWriter);
-				if (logger.isDebugEnabled()) {
-					logger.debug("******** Finished save information '"
-							+ executionInfo + "' info file '" + saveIt + "'.");
-				}
-			}
+                    final FileWriter fileWriter = new FileWriter(fileToExport);
+                    FlatXmlDataSet.write(dataSet, fileWriter);
+                } finally {
+                    if (logger.isDebugEnabled()) {
+                        logger.debug("******** Close database connection "+ con);
+                    }
+                    con.close();
+                }
+                if (logger.isDebugEnabled()) {
+                    logger.debug("******** Finished save information '"
+                            + executionInfo + "' info file '" + saveIt + "'.");
+                }
+            }
 		}
 	}
 
@@ -269,9 +277,17 @@ public class DBUnitTestExecutionListener implements TestExecutionListener {
 				final DataSource ds = getSaveDataSource(testContext);
 
 				final IDatabaseConnection con = getConnection(ds, testContext);
-				final FlatXmlDataSet dataSet = getFileDataSet(is);
-				operation.execute(con, dataSet);
-			}
+                // Issue 16 fix leaking database connection - will look better with Java 7 Closable
+                try {
+                    final FlatXmlDataSet dataSet = getFileDataSet(is);
+                    operation.execute(con, dataSet);
+                } finally {
+                    if (logger.isDebugEnabled()) {
+                        logger.debug("******** Close database connection "+ con);
+                    }
+                    con.close();
+                }
+            }
 			if (logger.isDebugEnabled()) {
 				logger.debug("******** Finished load files '" + executionInfo
 						+ "'.");
