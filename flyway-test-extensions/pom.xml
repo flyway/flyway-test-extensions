@@ -23,6 +23,7 @@
 		</license>
 	</licenses>
 	<scm>
+                <!-- TODO SCM must be corrected for github -->
 		<url>http://code.google.com/p/flyway-test-extensions/source/browse/</url>
 		<connection>scm:hg:https://flyway-test-extensions.googlecode.com/hg/</connection>
 		<developerConnection>scm:hg:file:///work/flyway-test-extensions-release</developerConnection>
