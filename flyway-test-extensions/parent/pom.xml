@@ -18,10 +18,11 @@
 		</license>
 	</licenses>
 	<scm>
-		<url>http://code.google.com/p/flyway-test-extensions/source/browse/</url>
-		<connection>scm:hg:https://flyway-test-extensions.googlecode.com/hg/</connection>
-		<developerConnection>scm:hg:file:///work/flyway-test-extensions-release</developerConnection>
-	</scm>
+        <url>https://github.com/flyway/flyway-test-extensions/</url>
+        <connection>scm:git:git@github.com:${github.user}/flyway/flyway-test-extensions</connection>
+        <developerConnection>scm:git:git@github.com:${github.user}/flyway/flyway-test-extensions</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
 	<developers>
 		<developer>
 			<id>Florian</id>
