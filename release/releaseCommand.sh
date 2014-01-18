@@ -23,6 +23,6 @@ mvn versions:set -DnewVersion=$1 -f parent/pom.xml
 mvn -N versions:update-child-modules  -DnewVersion=$1
 
 ## deploy and tag version
-mvn deploy scm:tag -DperformRelease=true 
+mvn deploy scm:tag -DperformRelease=true -DskipTests=true 
 
 
