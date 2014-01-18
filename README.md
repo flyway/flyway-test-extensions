@@ -46,7 +46,7 @@ For a detail usage description see the [UsageFlywaySpringTest](https://github.co
     <dependency>
        <groupId>com.googlecode.flyway-test-extensions</groupId>
        <artifactId>flyway-spring-test</artifactId>
-       <version>2.2.1</version>
+       <version>2.3</version>
        <scope>test</scope>
     </dependency>
 ```
@@ -68,12 +68,12 @@ For a detail usage description see the [UsageFlywaySpringTest](https://github.co
 
 Project depend on
 -----------------
-* [Flyway](https://github.com/flyway/) (2.2.1)
+* [Flyway](https://github.com/flyway/) (2.3)
 * [Spring Framework](http://www.springsource.org/) test, context, jdbc (3.1 or 2.5.6)
 
 Notes
 -----
-* The project depends on flyway version 2.2.1
+* The project depends on flyway version 2.3
 * The project will be supported until the extension will be integrated into the flyway project.
 * The project depends on Spring version 3.1
   * All features works with Spring version 3.x
