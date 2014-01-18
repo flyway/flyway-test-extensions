@@ -26,8 +26,7 @@
 	</licenses>
 	<scm>
         <url>https://github.com/flyway/flyway-test-extensions/</url>
-        <connection>scm:git:git@github.com:${github.user}/flyway/flyway-test-extensions</connection>
-        <developerConnection>scm:git:file:///work/flyway-test-extensions-release</developerConnection>
+        <connection>scm:git:git@github.com:/flyway/flyway-test-extensions</connection>
         <tag>HEAD</tag>
     </scm>
 	<developers>
