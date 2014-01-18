@@ -19,8 +19,8 @@
 	</licenses>
 	<scm>
         <url>https://github.com/flyway/flyway-test-extensions/</url>
-        <connection>scm:git:git@github.com:${github.user}/flyway/flyway-test-extensions</connection>
-        <developerConnection>scm:git:file:///work/flyway-test-extensions-release</developerConnection>
+        <connection>scm:git:git@github.com:/flyway/flyway-test-extensions</connection>
+
         <tag>HEAD</tag>
     </scm>
 	<developers>
@@ -249,7 +249,12 @@
 					</execution>
 				</executions>
 			</plugin>
-			<plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>2.1</version>
+            </plugin>
+            <plugin>
 				<artifactId>maven-release-plugin</artifactId>
 				<version>2.2.2</version>
 				<configuration>
@@ -271,7 +276,14 @@
 			</activation>
 			<build>
 				<plugins>
-					<plugin>
+                    <plugin>
+                        <artifactId>maven-scm-plugin</artifactId>
+                        <version>1.8.1</version>
+                        <configuration>
+                            <tag>flyway-test-extensions${project.version}</tag>
+                        </configuration>
+                    </plugin>
+                    <plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-gpg-plugin</artifactId>
 						<version>1.4</version>
