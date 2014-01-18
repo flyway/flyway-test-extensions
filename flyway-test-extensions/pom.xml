@@ -25,7 +25,7 @@
 	<scm>
         <!-- TODO SCM must be corrected for github -->
 		<url>https://github.com/flyway/flyway-test-extensions</url>
-		<connection>scm:git:https://github.com/flyway//flyway-test-extensions.git</connection>
+		<connection>scm:git:https://github.com/flyway/flyway-test-extensions.git</connection>
         <developerConnection>scm:git:https://github.com/flyway/flyway-test-extensions.git</developerConnection>
 
         <tag>HEAD</tag>
