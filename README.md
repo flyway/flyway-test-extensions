@@ -7,12 +7,12 @@ Test extensions for the Flyway project
 
 For feature of Flyway see [Flyway Db Org Page](http://flywaydb.org/) 
 
-Version 2.2.1 Released 
+Version 2.3 Released 
 ----------------------
 
-<b>2013-09-12</b> flyway-test-extensions version <b>2.2.1</b> released.
+<b>2014-01-18</b> flyway-test-extensions version <b>2.3</b> released.
 
-Version number 2.2.1 are used to show the dependency to Flyway version 2.2.1.
+Version number 2.3 are used to show the dependency to Flyway version 2.3.
 
 See also [Release Notes](https://github.com/flyway/flyway-test-extensions/wiki/Release-Notes) 
 
