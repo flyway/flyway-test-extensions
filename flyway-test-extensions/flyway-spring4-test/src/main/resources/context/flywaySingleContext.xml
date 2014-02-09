@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (C) 2011-2014 the original author or authors.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+            http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+<!--
+    Attention:
+
+    This application context can not be used without a additional context that provide the data source bean.
+    This application can be used in a application context that import this application context.
+
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <!-- flyway part -->
+    <!--
+    alternative one:
+    load flyway.properties with spring and add it to the factory class.
+
+    <util:properties id="flyway.prop" location="/flyway.properties"/>
+
+    <bean id="flywayFactory" class="com.googlecode.flyway.test.junit.FlywayHelperFactory" depends-on="dataSourceRef">
+        <property name="flywayProperties" ref="flyway.prop"/>
+
+    </bean>
+    -->
+    <!--
+        alternative two
+
+        load flyway.properties with the factory class.
+    -->
+    <bean id="flywayFactory" class="com.googlecode.flyway.test.junit.FlywayHelperFactory" depends-on="dataSourceRef"/>
+
+    <bean id="flyway" class="com.googlecode.flyway.core.Flyway" depends-on="dataSourceRef" factory-bean="flywayFactory" factory-method="createFlyway">
+        <property name="dataSource" ref="dataSourceRef"/>
+    </bean>
+
+</beans>

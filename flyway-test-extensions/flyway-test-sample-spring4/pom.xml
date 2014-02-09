@@ -7,11 +7,10 @@
 		<version>2.3-SNAPSHOT</version>
 		<relativePath>../parent/pom.xml</relativePath>
 	</parent>
-
-	<artifactId>flyway-test-sample-dbunit</artifactId>
+	<artifactId>flyway-test-sample-spring4</artifactId>
 	<name>${project.artifactId}</name>
 	<description>
-        Example how to use flyway-dbunit-test with spring 3.1.
+        Example how to use flyway-spring-test with spring 4.0.
     </description>
 	<packaging>jar</packaging>
 
@@ -26,8 +25,8 @@
 	</licenses>
 	<scm>
         <url>https://github.com/flyway/flyway-test-extensions/</url>
-        <connection>scm:git:https://github.com/flyway/flyway-test-extensions.git</connection>
-        <developerConnection>scm:git:https://github.com/flyway/flyway-test-extensions.git</developerConnection>
+        <connection>scm:git:git@github.com:${github.user}/flyway/flyway-test-extensions</connection>
+        <developerConnection>scm:git:git@github.com:${github.user}/flyway/flyway-test-extensions</developerConnection>
         <tag>HEAD</tag>
     </scm>
 	<developers>
@@ -50,6 +49,7 @@
 	</distributionManagement>
 
 
+
 	<properties>
     </properties>
 
@@ -60,9 +60,9 @@
 			<version>${version.junit}</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
+        <dependency>
 			<groupId>com.googlecode.flyway-test-extensions</groupId>
-			<artifactId>flyway-dbunit-test</artifactId>
+			<artifactId>flyway-spring4-test</artifactId>
 			<version>${project.version}</version>
 			<scope>test</scope>
 		</dependency>
@@ -73,7 +73,6 @@
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
-	
 	<build>
 		<pluginManagement>
            <plugins>
@@ -174,7 +173,7 @@
 					<uploads>
 						<upload>
 							<file>${project.build.directory}/${project.artifactId}-${project.version}-test-sources.jar</file>
-							<summary>Flyway DBUnit Test Extension Sample (sources)</summary>
+							<summary>Flyway Spring Version 4.0 Test Extension Sample (sources)</summary>
 							<labels>
 								<label>Featured</label>
 								<label>Type-Source</label>
@@ -186,7 +185,7 @@
 			</plugin>
 		 </plugins>
 	</build>
-	
+
 	<profiles>
 		<profile>
 			<id>h2-test</id>
@@ -204,12 +203,15 @@
 								<jdbc.url>jdbc:h2:nio:${project.build.directory}/db/flywaytest.db</jdbc.url>
 								<jdbc.username>h2_test</jdbc.username>
 								<jdbc.password>h2_test</jdbc.password>
-								<flyway.locations>sampletest3</flyway.locations>
+								<flyway.locations>sampletest4</flyway.locations>
                                 <flyway.driver>org.h2.Driver</flyway.driver>
                                 <flyway.url>jdbc:h2:nio:${project.build.directory}/db/flywaytest.db</flyway.url>
                                 <flyway.user>h2_test</flyway.user>
                                 <flyway.password>h2_test</flyway.password>
                             </systemPropertyVariables>
+							<includes>
+								<include>**/*JUnitTest.java</include>
+							</includes>
 							<threadCount>1</threadCount>
 							<runOrder>alphabetical</runOrder>
 							<perCoreThreadCount>false</perCoreThreadCount>
@@ -245,12 +247,15 @@
 								<jdbc.url>jdbc:oracle:thin:@localhost:1521/XE</jdbc.url>
 								<jdbc.username>OC_TEST</jdbc.username>	
 								<jdbc.password>OC_TEST</jdbc.password>
-								<flyway.locations>sampletest3</flyway.locations>
+								<flyway.locations>sampletest4</flyway.locations>
                                 <flyway.driver>oracle.jdbc.driver.OracleDriver</flyway.driver>
                                 <flyway.url>jdbc:oracle:thin:@localhost:1521/XE</flyway.url>
                                 <flyway.user>OC_TEST</flyway.user>
                                 <flyway.password>OC_TEST</flyway.password>
                             </systemPropertyVariables>
+							<includes>
+								<include>**/*JUnitTest.java</include>
+							</includes>
 							<threadCount>1</threadCount>
 							<runOrder>alphabetical</runOrder>
 							<perCoreThreadCount>false</perCoreThreadCount>

@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.googlecode.flyway-test-extensions</groupId>
         <artifactId>parent</artifactId>
-        <version>2.4-SNAPSHOT</version>
+        <version>2.3-SNAPSHOT</version>
         <relativePath>parent/pom.xml</relativePath>
     </parent>
 	<artifactId>flyway-test-extensions</artifactId>
@@ -40,6 +40,8 @@
 	<modules>
 		<module>parent</module>
 		<module>flyway-spring-test</module>
+		<module>flyway-spring4-test</module>
+		<module>flyway-test-sample-spring4</module>
 		<module>flyway-test-sample-spring3</module>
 		<module>flyway-test-sample-spring256</module>
 		<module>flyway-dbunit-test</module>
