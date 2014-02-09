@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.googlecode.flyway-test-extensions</groupId>
 		<artifactId>parent</artifactId>
-		<version>2.3-SNAPSHOT</version>
+		<version>2.4-SNAPSHOT</version>
 		<relativePath>../parent/pom.xml</relativePath>
 	</parent>
 
@@ -26,8 +26,8 @@
 	</licenses>
 	<scm>
         <url>https://github.com/flyway/flyway-test-extensions/</url>
-        <connection>scm:git:git@github.com:${github.user}/flyway/flyway-test-extensions</connection>
-        <developerConnection>scm:git:git@github.com:${github.user}/flyway/flyway-test-extensions</developerConnection>
+        <connection>scm:git:https://github.com/flyway/flyway-test-extensions.git</connection>
+        <developerConnection>scm:git:https://github.com/flyway/flyway-test-extensions.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
 	<developers>
