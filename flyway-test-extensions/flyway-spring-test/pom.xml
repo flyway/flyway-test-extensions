@@ -19,6 +19,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
+			<version>${version.spring}</version>
 			<scope>compile</scope>
 		</dependency>
         <dependency>
