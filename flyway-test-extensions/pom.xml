@@ -39,6 +39,8 @@
 	<modules>
 		<module>parent</module>
 		<module>flyway-spring-test</module>
+		<module>flyway-spring4-test</module>
+		<module>flyway-test-sample-spring4</module>
 		<module>flyway-test-sample-spring3</module>
 		<module>flyway-test-sample-spring256</module>
 		<module>flyway-dbunit-test</module>
