@@ -8,11 +8,10 @@
 		<relativePath>../parent/pom.xml</relativePath>
 	</parent>
 
-	<artifactId>flyway-test-sample-dbunit</artifactId>
+	<artifactId>flyway-test-sample-dbunit-spring3</artifactId>
 	<name>${project.artifactId}</name>
 	<description>
         Example how to use flyway-dbunit-test with spring 3.1.
-        Deprecated see flyway-test-sample-dbunit-spring3.
     </description>
 	<packaging>jar</packaging>
 

@@ -7,18 +7,10 @@
 		<relativePath>../parent/pom.xml</relativePath>
 	</parent>
 
-    <artifactId>flyway-dbunit-test</artifactId>
+    <artifactId>flyway-dbunit-spring3-test</artifactId>
 
     <name>${project.artifactId}</name>
-    <description>
-        Implementation for dbunit support and spring 3.
-        Future implemantation will be change to spring 4 support.
-        If spring 3 support needed please use flyway-dbunit-spring3-test.
-        If spring 4 support needed please use flyway-dbunit-spring4-test.
-    </description>
-
-
-    <packaging>jar</packaging>
+	<packaging>jar</packaging>
 
 	<properties>
 		<version.dbunit>2.4.9</version.dbunit>
@@ -27,7 +19,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.googlecode.flyway-test-extensions</groupId>
-			<artifactId>flyway-spring-test</artifactId>
+			<artifactId>flyway-spring3-test</artifactId>
 			<version>${project.version}</version>
 			<scope>compile</scope>
 		</dependency>

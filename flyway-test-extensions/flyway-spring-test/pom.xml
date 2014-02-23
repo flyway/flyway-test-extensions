@@ -10,7 +10,16 @@
     <artifactId>flyway-spring-test</artifactId>
 
     <name>${project.artifactId}</name>
-	<packaging>jar</packaging>
+
+    <description>
+        Implementation for test support for spring 3.
+        Future implemantation will be change to spring 4 support.
+        If spring 3 support needed please use flyway-spring3-test.
+        If spring 4 support needed please use flyway-spring4-test.
+    </description>
+
+
+    <packaging>jar</packaging>
 
 	<properties>
 	</properties>
