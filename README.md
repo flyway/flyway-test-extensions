@@ -1,6 +1,8 @@
 flyway-test-extensions
 ======================
 
+![flyway-test-extension logo](https://github.com/flyway/flyway-test-extensions/blob/master/image/logo-flyway-test-extensions.png)
+
 
 Test extensions for the Flyway project
 --------------------------------------
