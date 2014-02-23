@@ -59,19 +59,19 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
-			<version>${version.spring}</version>
+			<version>${version.spring2}</version>
 			<scope>test</scope>
 		</dependency>
         <dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>${version.spring}</version>
+			<version>${version.spring2}</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
-			<version>${version.spring}</version>
+			<version>${version.spring2}</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
@@ -82,7 +82,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.flyway-test-extensions</groupId>
-			<artifactId>flyway-spring-test</artifactId>
+			<artifactId>flyway-spring3-test</artifactId>
 			<version>${project.version}</version>
 			<scope>test</scope>
 			<exclusions>

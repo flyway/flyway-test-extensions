@@ -62,7 +62,7 @@
 		</dependency>
         <dependency>
 			<groupId>com.googlecode.flyway-test-extensions</groupId>
-			<artifactId>flyway-spring-test</artifactId>
+			<artifactId>flyway-spring3-test</artifactId>
 			<version>${project.version}</version>
 			<scope>test</scope>
 		</dependency>
