@@ -19,7 +19,7 @@ import com.googlecode.flyway.test.annotation.FlywayTest;
 import com.googlecode.flyway.test.dbunit.DBUnitSupport;
 import com.googlecode.flyway.test.dbunit.FlywayDBUnitTestExecutionListener;
 import com.googlecode.flyway.test.sample.helper.BaseDBHelper;
-import junit.framework.Assert;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.annotation.Repeat;

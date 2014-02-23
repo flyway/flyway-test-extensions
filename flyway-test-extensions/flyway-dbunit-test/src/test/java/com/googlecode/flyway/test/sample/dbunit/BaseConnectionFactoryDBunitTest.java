@@ -16,7 +16,7 @@
 package com.googlecode.flyway.test.sample.dbunit;
 
 
-import junit.framework.Assert;
+import org.junit.Assert;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
