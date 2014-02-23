@@ -38,7 +38,7 @@ How to use it
 -------------
 The flyway test extension are available at [Maven Central](http://repo1.maven.org/maven2/com/googlecode/flyway-test-extensions).
 
-For a detail usage description see the [UsageFlywaySpringTest](https://github.com/flyway/flyway-test-extensions/wiki/Usage-flyway-spring-test) usage page.
+For a detail usage description see the [UsageFlywaySpringTest](https://github.com/flyway/flyway-test-extensions/wiki/Usage-flyway-spring-test) usage page. Attention: this version has a dependency to spring 3. If spring 4 support is needed use flyway-spring4-test instead.
 
 * add dependency to flyway-spring-test to your Mavan pom file
 
@@ -58,7 +58,7 @@ For a detail usage description see the [UsageFlywaySpringTest](https://github.co
     @ContextConfiguration(locations = {"/context/simple_applicationContext.xml" })
     @TestExecutionListeners({DependencyInjectionTestExecutionListener.class, FlywayTestExecutionListener.class })
 ```
-   
+    
 * add the @[FlywayTest](https://github.com/flyway/flyway-test-extensions/wiki/Usage-of-Annotation-FlywayTest) annotation on each class or method were you need a clean database
 
 ```java
@@ -69,13 +69,14 @@ For a detail usage description see the [UsageFlywaySpringTest](https://github.co
 Project depend on
 -----------------
 * [Flyway](https://github.com/flyway/) (2.3)
-* [Spring Framework](http://www.springsource.org/) test, context, jdbc (3.1 or 2.5.6)
+* [Spring Framework](http://www.springsource.org/) test, context, jdbc (4.0, 3.1 or 2.5.6)
 
 Notes
 -----
 * The project depends on flyway version 2.3
 * The project will be supported until the extension will be integrated into the flyway project.
-* The project depends on Spring version 3.1
+* The project depends on Spring version 4.x (see flyway-spring4-test and flyway-dbunit-spring4-test)
+* The project depends on Spring version 3.1 (see flyways-swpring3-test and flyway-dbunit-spring3-test)
   * All features works with Spring version 3.x
   * It works also with Spring version 2.5.6, but you can not use all features. A example project show how to use it with Spring 2.5.6
 * At the moment the code is tested with database H2 and Oracle.<br>Only the DBunit part contains database specific code. 
