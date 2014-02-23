@@ -97,11 +97,6 @@
 					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
-			<plugin>
-					<groupId>com.googlecode.maven-gcu-plugin</groupId>
-					<artifactId>maven-gcu-plugin</artifactId>
-					<version>1.1</version>
-			</plugin>
            </plugins>
 		 </pluginManagement>
 		 <plugins>
@@ -155,33 +150,6 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin>
-			<plugin>
-				<groupId>com.googlecode.maven-gcu-plugin</groupId>
-				<artifactId>maven-gcu-plugin</artifactId>
-				<executions>
-					<execution>
-						<phase>deploy</phase>
-						<goals>
-							<goal>upload</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<failsOnError>false</failsOnError>
-					<projectName>flyway-test-extensions</projectName>
-					<uploads>
-						<upload>
-							<file>${project.build.directory}/${project.artifactId}-${project.version}-test-sources.jar</file>
-							<summary>Flyway Spring Version 4.0 Test Extension Sample (sources)</summary>
-							<labels>
-								<label>Featured</label>
-								<label>Type-Source</label>
-								<label>OpSys-All</label>
-							</labels>
-						</upload>
-					</uploads>
-				</configuration>
 			</plugin>
 		 </plugins>
 	</build>
