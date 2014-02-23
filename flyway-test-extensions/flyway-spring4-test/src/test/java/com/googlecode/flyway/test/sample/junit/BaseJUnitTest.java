@@ -15,8 +15,6 @@
  */
 package com.googlecode.flyway.test.sample.junit;
 
-import junit.framework.Assert;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -28,61 +26,63 @@ import com.googlecode.flyway.test.annotation.FlywayTest;
 import com.googlecode.flyway.test.junit.FlywayTestExecutionListener;
 import com.googlecode.flyway.test.sample.helper.BaseDBHelper;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 /**
  * Simple Test to show how the annotation can be used inside test execution
  *
  * @author florian
- * @version 1.7
  * @version 2011-12-20
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "/context/simple_applicationContext.xml" })
-@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
-		FlywayTestExecutionListener.class })
+@ContextConfiguration(locations = {"/context/simple_applicationContext.xml"})
+@TestExecutionListeners({DependencyInjectionTestExecutionListener.class,
+        FlywayTestExecutionListener.class})
 @FlywayTest
 public class BaseJUnitTest extends BaseDBHelper {
 
-	/**
-	 * Normal test method nothing done per startup
-	 */
-	@Test
-	public void dummyTestNoLoad() throws Exception {
-		int res = countCustomer();
+    /**
+     * Normal test method nothing done per startup
+     */
+    @Test
+    public void dummyTestNoLoad() throws Exception {
+        int res = countCustomer();
 
-		Assert.assertEquals("Count of customer", 0, res);
-	}
+        assertTrue("This test must runs without an error, because we can not guarantee that this test method run as first. " + res, true);
+    }
 
-	/**
-	 * Made a clean init migrate usage before execution of test methods
-	 */
-	@Test
-	@FlywayTest
-	public void dummyTestMethodLoad() throws Exception {
-		int res = countCustomer();
+    /**
+     * Made a clean init migrate usage before execution of test methods
+     */
+    @Test
+    @FlywayTest
+    public void dummyTestMethodLoad() throws Exception {
+        int res = countCustomer();
 
-		Assert.assertEquals("Count of customer", 0, res);
-	}
+        assertEquals("Count of customer", 0, res);
+    }
 
-	/**
-	 * Made a clean init migrate usage before execution of test methods
-	 */
-	@Test
-	@FlywayTest(locationsForMigrate = { "basetest", "loadMultibleSQLs" }, overrideLocations=true)
-	public void loadMultibleSQLsOverrideLocations() throws Exception {
-		int res = countCustomer();
+    /**
+     * Made a clean init migrate usage before execution of test methods
+     */
+    @Test
+    @FlywayTest(locationsForMigrate = {"basetest", "loadMultibleSQLs"}, overrideLocations = true)
+    public void loadMultibleSQLsOverrideLocations() throws Exception {
+        int res = countCustomer();
 
-		Assert.assertEquals("Count of customer", 2, res);
-	}
+        assertEquals("Count of customer", 2, res);
+    }
 
-	/**
-	 * Made a clean init migrate usage before execution of test methods
-	 */
-	@Test
-	@FlywayTest(locationsForMigrate = {  "loadMultibleSQLs" } )
-	public void loadMultibleSQLsLocations() throws Exception {
-		int res = countCustomer();
+    /**
+     * Made a clean init migrate usage before execution of test methods
+     */
+    @Test
+    @FlywayTest(locationsForMigrate = {"loadMultibleSQLs"})
+    public void loadMultibleSQLsLocations() throws Exception {
+        int res = countCustomer();
 
-		Assert.assertEquals("Count of customer", 2, res);
-	}
+        assertEquals("Count of customer", 2, res);
+    }
 
 }
