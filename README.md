@@ -9,10 +9,10 @@ Test extensions for the Flyway project
 
 For feature of Flyway see [Flyway Db Org Page](http://flywaydb.org/) 
 
-Version 2.3 Released 
-----------------------
+Version 2.3.0.1 Released 
+------------------------
 
-<b>2014-01-18</b> flyway-test-extensions version <b>2.3</b> released.
+<b>2014-03-14</b> flyway-test-extensions version <b>2.3.0.1</b> released.
 
 Version number 2.3 are used to show the dependency to Flyway version 2.3.
 
@@ -32,6 +32,7 @@ This extension give the possibility to reset and/or fill the database with defin
   * each test class (once per test case)
   * each test method  
 * Samples projects to use annotation inside a unit testing environment
+  * Spring 4.x sample (see [UsageFlywaySpringTest4](https://github.com/flyway/flyway-test-extensions/wiki/Usage-flyway-spring-test4) )
   * Spring 3.x sample (see [UsageFlywaySpringTest](https://github.com/flyway/flyway-test-extensions/wiki/Usage-flyway-spring-test) )
   * Spring 2.5.6 (see [UsageFlywaySpringTest256](http://code.google.com/p/flyway-test-extensions/wiki/UsageFlywaySpringTest256) )
 * Additional project supports a DBUnit annotation use together with FlywayTest [DBUnitSupport](https://github.com/flyway/flyway-test-extensions/blob/master/flyway-test-extensions/flyway-dbunit-test/src/main/java/com/googlecode/flyway/test/dbunit/DBUnitSupport.java). A usage example you will find at [UsageFlywayDBUnitTest](https://github.com/flyway/flyway-test-extensions/wiki//Usage-of-Annotation-DBUnitSupport).
@@ -48,7 +49,7 @@ For a detail usage description see the [UsageFlywaySpringTest](https://github.co
     <dependency>
        <groupId>com.googlecode.flyway-test-extensions</groupId>
        <artifactId>flyway-spring-test</artifactId>
-       <version>2.3</version>
+       <version>2.3.0.1</version>
        <scope>test</scope>
     </dependency>
 ```
