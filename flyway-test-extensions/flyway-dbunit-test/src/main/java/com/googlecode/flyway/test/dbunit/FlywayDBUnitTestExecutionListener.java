@@ -42,7 +42,7 @@ import com.googlecode.flyway.test.junit.FlywayTestExecutionListener;
  * 	</bean>
  *
  * 	<!-- flyway part -->
- * 	<bean id="flyway" class="com.googlecode.flyway.core.Flyway" depends-on="dataSourceId">
+ * 	<bean id="flyway" class="org.flywaydb.core.Flyway" depends-on="dataSourceId">
  * 	    <property name="dataSource" ref="dataSourceId"/>
  * 	    <property name="baseDir" value="oracle"/>
  * 	</bean>

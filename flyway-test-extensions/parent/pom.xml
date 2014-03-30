@@ -45,7 +45,7 @@
 	</distributionManagement>
 
 	<properties>
-		<version.flyway>2.3</version.flyway>
+		<version.flyway>0-SNAPSHOT</version.flyway>  <!-- TODO change flyway development version -->
 		<version.spring>3.1.2.RELEASE</version.spring>
         <version.spring2>2.5.6.SEC03</version.spring2>
         <version.spring3>3.1.2.RELEASE</version.spring3>
@@ -62,7 +62,7 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>com.googlecode.flyway</groupId>
+				<groupId>org.flywaydb</groupId>
 				<artifactId>flyway-core</artifactId>
 				<version>${version.flyway}</version>
 			</dependency>

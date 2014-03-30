@@ -18,7 +18,7 @@
  * 
  * Implementation will be found inside {@link com.googlecode.flyway.test.junit.FlywayTestExecutionListener}.
  *
- * A factory helper for {@link com.googlecode.flyway.core.Flyway} provide {@link FlywayHelperFactory}. This are needed
+ * A factory helper for {@link org.flywaydb.core.Flyway} provide {@link FlywayHelperFactory}. This are needed
  * to configure Flyway to use the flyway.properties file correct.
  */
 package com.googlecode.flyway.test.junit;

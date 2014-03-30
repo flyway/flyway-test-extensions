@@ -29,7 +29,7 @@
                                   ignore-resource-not-found="true"
                                   system-properties-mode="OVERRIDE"/>
 
-    <bean id="flyway" class="com.googlecode.flyway.core.Flyway" depends-on="dataSourceRef">
+    <bean id="flyway" class="org.flywaydb.core.Flyway" depends-on="dataSourceRef">
         <property name="dataSource" ref="dataSourceRef"/>
         <property name="locations" value="${flyway.locations}"/>
     </bean>

@@ -15,7 +15,7 @@
  */
 package com.googlecode.flyway.test.junit;
 
-import com.googlecode.flyway.core.Flyway;
+import org.flywaydb.core.Flyway;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.core.io.ClassPathResource;

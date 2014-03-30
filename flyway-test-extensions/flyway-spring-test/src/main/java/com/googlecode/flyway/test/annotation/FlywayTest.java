@@ -24,9 +24,9 @@ import java.lang.annotation.RetentionPolicy;
  *
  * The default behavior is to execute the flyway commands:
  * <ul>
- * <li>{@link com.googlecode.flyway.core.Flyway#clean()}</li>
- * <li>{@link com.googlecode.flyway.core.Flyway#init()}</li>
- * <li>{@link com.googlecode.flyway.core.Flyway#migrate()}</li>
+ * <li>{@link org.flywaydb.core.Flyway#clean()}</li>
+ * <li>{@link org.flywaydb.core.Flyway#init()}</li>
+ * <li>{@link org.flywaydb.core.Flyway#migrate()}</li>
  * </ul>
  *
  * For usage together with JUnit see {@link com.googlecode.flyway.test.junit.FlywayTestExecutionListener}.</p>

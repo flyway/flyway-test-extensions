@@ -25,7 +25,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.TestContext;
 import org.springframework.test.context.TestExecutionListener;
 
-import com.googlecode.flyway.core.Flyway;
+import org.flywaydb.core.Flyway;
 import com.googlecode.flyway.test.ExecutionListenerHelper;
 import com.googlecode.flyway.test.annotation.FlywayTest;
 
@@ -54,7 +54,7 @@ import com.googlecode.flyway.test.annotation.FlywayTest;
  *   <property name="ignoreResourceNotFound" value="true"/>
  * </bean>
  *
- * <bean id="flyway" class="com.googlecode.flyway.core.Flyway" depends-on="data.source.id">
+ * <bean id="flyway" class="org.flywaydb.core.Flyway" depends-on="data.source.id">
  *   <property name="dataSource" ref="data.source.id"/>
  *   <property name="locations" value="oracle"/>
  * </bean>
