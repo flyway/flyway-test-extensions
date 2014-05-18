@@ -30,7 +30,7 @@
         <level value="warn"/>
         <appender-ref ref="console"/>
     </logger>
-    <logger name="com.googlecode.flyway.test" additivity="false">
+    <logger name="org.flywaydb.test" additivity="false">
         <level value="debug"/>
         <appender-ref ref="console"/>
     </logger>

@@ -30,5 +30,5 @@
     
     <!-- Create the test factory for changing the default implementation -->
     <bean id="connectionFactory" name="connectionFactory"
-    class="com.googlecode.flyway.test.sample.helper.TestDatabaseConnectionFactory"/> 
+    class="org.flywaydb.test.sample.helper.TestDatabaseConnectionFactory"/>
 </beans>

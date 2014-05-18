@@ -130,7 +130,7 @@
                                     <directory>${project.build.directory}/generated-sources</directory>
                                     <filtering>false</filtering>
                                     <excludes>
-                                        <exclude>com/**</exclude>
+                                        <exclude>org/**</exclude>
                                         <exclude>META-INF/**</exclude>
                                     </excludes>
                                     <includes>
@@ -151,7 +151,7 @@
                                     <directory>${project.build.directory}/generated-test-sources</directory>
                                     <filtering>false</filtering>
                                     <excludes>
-                                        <exclude>com/**</exclude>
+                                        <exclude>org/**</exclude>
                                         <exclude>META-INF/**</exclude>
                                     </excludes>
                                     <includes>
