@@ -1,12 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.flywaydb.flyway-test-extensions</groupId>
-	<artifactId>parent</artifactId>
+	<artifactId>flyway-test-samples-parent</artifactId>
 	<version>3.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>Flyway-test-extensions ${project.artifactId}</name>
+	<name>${project.artifactId}</name>
 	<description>
-        Parent pom for flyway-test-extensions
+        Parent pom for flyway-test-samples
     </description>
 	<url>https://github.com/flyway/flyway-test-extensions/</url>
 	<licenses>
@@ -210,7 +210,6 @@
 						<id>attach-sources</id>
 						<phase>verify</phase>
 						<goals>
-							<goal>jar</goal>
 							<goal>test-jar</goal>
 						</goals>
 					</execution>
@@ -230,7 +229,38 @@
 					<preparationGoals>clean install</preparationGoals>
 				</configuration>
 			</plugin>
-		</plugins>
+            <plugin>
+                <groupId>com.mycila.maven-license-plugin</groupId>
+                <artifactId>maven-license-plugin</artifactId>
+                <version>1.9.0</version>
+                <inherited>false</inherited>
+                <configuration>
+                    <header>${project.basedir}/../../license.txt</header>
+                    <aggregate>true</aggregate>
+                    <failIfMissing>true</failIfMissing>
+                    <encoding>UTF-8</encoding>
+                    <excludes>
+                        <exclude>.idea/**</exclude>
+                        <exclude>.hg*</exclude>
+                        <exclude>**/*.sh</exclude>
+                        <exclude>**/*.txt</exclude>
+                        <exclude>**/*.cnf</exclude>
+                        <exclude>**/*.releaseBackup</exclude>
+                    </excludes>
+                    <strictCheck>true</strictCheck>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>format</goal>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
 	</build>
 	<profiles>
 		<profile>
@@ -270,6 +300,9 @@
 		</profile>
 		<profile>
 			<id>license-check</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
 			<build>
 				<plugins>
 					<plugin>
@@ -278,7 +311,7 @@
 						<version>1.9.0</version>
 						<inherited>false</inherited>
 						<configuration>
-                            <header>${project.basedir}/../license.txt</header>
+                            <header>${project.basedir}/../../license.txt</header>
                             <aggregate>true</aggregate>
 							<failIfMissing>true</failIfMissing>
 							<encoding>UTF-8</encoding>

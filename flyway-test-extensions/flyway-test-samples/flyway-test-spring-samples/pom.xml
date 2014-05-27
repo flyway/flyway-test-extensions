@@ -1,0 +1,63 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.flywaydb.flyway-test-extensions</groupId>
+        <artifactId>flyway-test-samples-parent</artifactId>
+        <version>3.0-SNAPSHOT</version>
+        <relativePath>../flyway-test-samples-parent/pom.xml</relativePath>
+    </parent>
+
+    <groupId>org.flywaydb.flyway-test-extensions</groupId>
+	<artifactId>flyway-test-spring-samples</artifactId>
+    <version>3.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>${project.artifactId}</name>
+	<description>
+        Parent pom for all samples
+    </description>
+	<url>http://code.google.com/p/flyway-test-extensions/</url>
+	<licenses>
+		<license>
+			<name>Apache 2</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+			<comments>A business-friendly OSS license</comments>
+		</license>
+	</licenses>
+	<scm>
+		<url>https://github.com/flyway/flyway-test-extensions</url>
+		<connection>scm:git:https://github.com/flyway/flyway-test-extensions.git</connection>
+        <developerConnection>scm:git:https://github.com/flyway/flyway-test-extensions.git</developerConnection>
+
+        <tag>HEAD</tag>
+	</scm>
+	<developers>
+		<developer>
+			<id>Florian</id>
+			<name>florian.g.w.e4</name>
+		</developer>
+	</developers>
+
+	<modules>
+        <module>flyway-test-sample-spring4</module>
+        <module>flyway-test-sample-spring3</module>
+        <module>flyway-test-sample-spring256</module>
+    </modules>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>sonatype-nexus-snapshots</id>
+			<name>Sonatype Nexus Snapshots</name>
+			<url>http://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>sonatype-nexus-staging</id>
+			<name>Nexus Release Repository</name>
+			<url>http://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
+
+	<properties>
+    </properties>
+</project>
