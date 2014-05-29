@@ -17,6 +17,7 @@ package org.flywaydb.test.sample.spring3;
 
 import org.flywaydb.test.annotation.FlywayTest;
 import org.flywaydb.test.dbunit.DBUnitSupport;
+import org.flywaydb.test.dbunit.DatabaseConnectionFactory;
 import org.flywaydb.test.dbunit.FlywayDBUnitTestExecutionListener;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,21 +30,29 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
- * Simple Test to show how the annotation can be used inside test execution.
+ * Simple Test to show how the annotation can be used inside test execution.<p/>
+ * This test execute the identically tests as {@link SpringDBunitTest}, but
+ * with using a own {@link DatabaseConnectionFactory}.<br/>
+ * Important are the usage of a own application context
+ * <pre>
+ *   ContextConfiguration(locations = { "/context/dbunit_connection_applicationContext.xml" })
+ * </pre>
+ * This application conntext contains the bean definition of {@link TestDatabaseConnectionFactory}<p/>
  *
  * @author florian
  *
  * @version 1.7
- * @version 2012-01-06
+ * @since 1.7.0
+ * @version 2012-10-03
  *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "/context/simple_applicationContext.xml" })
+@ContextConfiguration(locations = { "/context/dbunit_connection_applicationContext.xml" })
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
 		FlywayDBUnitTestExecutionListener.class })
 @FlywayTest
 @DBUnitSupport(loadFilesForRun = { "INSERT", "/dbunit3/dbunit.cus1.xml"})
-public class Spring3DBunitTest extends BaseDBHelper {
+public class SpringDBunitConnectionFactoryTest extends BaseDBHelper {
 
 	/**
 	 * Normal test method nothing done per startup

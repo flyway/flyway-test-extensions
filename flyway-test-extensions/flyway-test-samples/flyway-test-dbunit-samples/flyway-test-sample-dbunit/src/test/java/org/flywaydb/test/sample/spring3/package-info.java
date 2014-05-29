@@ -21,7 +21,7 @@
  *
  * <ul>
  * <li>Maven extension see the pom.xml file</li>
- * <li>Usage inside a test see {@link org.flywaydb.test.sample.spring3.Spring3JUnitTest}
+ * <li>Usage inside a test see {@link SpringJUnitTest}
  * <li>Test resources with SQL statements see the directories
  * <b>loadmsql</b> and <b>sampletest3</b></li>
  * </ul>

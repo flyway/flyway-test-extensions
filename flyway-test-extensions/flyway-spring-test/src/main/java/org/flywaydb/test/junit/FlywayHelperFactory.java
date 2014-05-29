@@ -71,10 +71,8 @@ public class FlywayHelperFactory {
                 setFlywayProperties(configuredProperties);
 
                 ClassPathResource classPathResource = new ClassPathResource("flyway.properties");
-                try {
-                    InputStream inputStream = classPathResource.getInputStream();
+                try ( InputStream inputStream = classPathResource.getInputStream() ) {
                     configuredProperties.load(inputStream);
-                    inputStream.close();
                 } catch (IOException e) {
                     logger.error("Can not load flyway.properties.",e);
                 }

@@ -16,7 +16,9 @@
 package org.flywaydb.test.sample.spring4;
 
 import org.flywaydb.test.annotation.FlywayTest;
-import org.flywaydb.test.junit.FlywayTestExecutionListener;
+import org.flywaydb.test.dbunit.DBUnitSupport;
+import org.flywaydb.test.dbunit.DatabaseConnectionFactory;
+import org.flywaydb.test.dbunit.FlywayDBUnitTestExecutionListener;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -28,25 +30,32 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
- * Simple Test to show how the annotation can be used inside test execution.</p>
- *
- * The test class use the annotation during test class setup.
+ * Simple Test to show how the annotation can be used inside test execution.<p/>
+ * This test execute the identically tests as {@link Spring4DBunitTest}, but
+ * with using a own {@link DatabaseConnectionFactory}.<br/>
+ * Important are the usage of a own application context
+ * <pre>
+ *   ContextConfiguration(locations = { "/context/dbunit_connection_applicationContext.xml" })
+ * </pre>
+ * This application conntext contains the bean definition of {@link TestDatabaseConnectionFactory}<p/>
  *
  * @author florian
+ *
  * @version 1.7
- * @version 2011-12-27
+ * @since 1.7.0
+ * @version 2012-10-03
  *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "/context/simple_applicationContext.xml" })
+@ContextConfiguration(locations = { "/context/dbunit_connection_applicationContext.xml" })
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
-		FlywayTestExecutionListener.class })
+		FlywayDBUnitTestExecutionListener.class })
 @FlywayTest
-public class Spring3JUnitTest extends BaseDBHelper {
+@DBUnitSupport(loadFilesForRun = { "INSERT", "/dbunit3/dbunit.cus1.xml"})
+public class Spring4DBunitConnectionFactoryTest extends BaseDBHelper {
 
 	/**
-	 * Normal test method nothing done per startup.
-	 * All startup code is be done during class setup.
+	 * Normal test method nothing done per startup
 	 */
 	@Test
 	public void dummyTestNoLoad() throws Exception {
@@ -56,8 +65,7 @@ public class Spring3JUnitTest extends BaseDBHelper {
     }
 
 	/**
-	 * Made a clean init migrate usage before execution of test method.
-	 * SQL statements will be loaded from the default location.
+	 * Made a clean init migrate usage before execution of test methods
 	 */
 	@Test
 	@FlywayTest
@@ -68,12 +76,25 @@ public class Spring3JUnitTest extends BaseDBHelper {
 	}
 
 	/**
-	 * Made a clean init migrate usage before execution of test method and
-	 * load SQL statements from two directories.
+	 * Made a clean init migrate and insert sql with dbunit
+	 */
+	@Test
+	@FlywayTest
+	@DBUnitSupport(loadFilesForRun = { "INSERT", "/dbunit3/dbunit.cus1.xml"})
+	public void loadDBUnitSQLs() throws Exception {
+		int res = countCustomer();
+
+		assertEquals("Count of customer", 2, res);
+	}
+
+	/**
+	 * Made a clean init migrate with inserts from flyway and store it
+	 * afterwards
 	 */
 	@Test
 	@FlywayTest(locationsForMigrate = {"loadmsql"})
-	public void loadMultibleSQLs() throws Exception {
+	@DBUnitSupport(saveTableAfterRun = { "CUSTOMER", "select * from CUSTOMER" }, saveFileAfterRun = "target/dbunitresult/customer1.xml")
+	public void storeDBUnitSQLs() throws Exception {
 		int res = countCustomer();
 
 		assertEquals("Count of customer", 2, res);

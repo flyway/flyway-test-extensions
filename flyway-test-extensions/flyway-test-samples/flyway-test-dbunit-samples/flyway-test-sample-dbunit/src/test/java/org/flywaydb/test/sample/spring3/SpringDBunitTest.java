@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.flywaydb.test.sample.spring4;
+package org.flywaydb.test.sample.spring3;
 
 import org.flywaydb.test.annotation.FlywayTest;
 import org.flywaydb.test.dbunit.DBUnitSupport;
@@ -43,7 +43,7 @@ import static org.junit.Assert.assertTrue;
 		FlywayDBUnitTestExecutionListener.class })
 @FlywayTest
 @DBUnitSupport(loadFilesForRun = { "INSERT", "/dbunit3/dbunit.cus1.xml"})
-public class Spring3DBunitTest extends BaseDBHelper {
+public class SpringDBunitTest extends BaseDBHelper {
 
 	/**
 	 * Normal test method nothing done per startup
