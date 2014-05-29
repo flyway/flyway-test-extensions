@@ -12,8 +12,7 @@
     <name>${project.artifactId}</name>
 
     <description>
-        Implementation for test support for spring 3.
-        Future implemantation will be change to spring 4 support.
+        Implementation for test support for spring 4.
         If spring 3 support needed please use flyway-spring3-test.
         If spring 4 support needed please use flyway-spring4-test.
     </description>
