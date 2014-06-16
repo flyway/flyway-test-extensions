@@ -251,34 +251,19 @@ public class FlywayTestExecutionListener implements TestExecutionListener {
 					}
 					if (annotation.invokeMigrateDB()) {
 						String[] locations = annotation.locationsForMigrate();
-						String[] baseDirs = annotation.baseDirsForMigrate();
 
-						if ((locations == null || locations.length == 0) //
-								&& (baseDirs == null || baseDirs.length == 0)) {
+                        if ((locations == null || locations.length == 0)) {
 
-							if (logger.isDebugEnabled()) {
-								logger.debug("******** Default migrate database for  '"
-										+ executionInfo + "'.");
-							}
+                            if (logger.isDebugEnabled()) {
+                                logger.debug("******** Default migrate database for  '"
+                                        + executionInfo + "'.");
+                            }
 
-							flyWay.migrate();
-						} else {
-							if ( locations != null && locations.length > 0 //
-								&& baseDirs != null && baseDirs.length > 0) {
-									throw new IllegalArgumentException(
-											"Usage of old annotation configuration with base dir and new configuration with locations are not supported.");
-								}
-								if (locations == null || locations.length == 0) {
-
-								baseDirAnnotationHandlingDeprecated(annotation,
-										flyWay, executionInfo);
-
-							} else {
-
-								locationsMigrationHandling(annotation, flyWay,
-										executionInfo);
-							}
-						}
+                            flyWay.migrate();
+                        } else {
+                            locationsMigrationHandling(annotation, flyWay,
+                                    executionInfo);
+                        }
 					}
 					if (logger.isInfoEnabled()) {
 						logger.info("<--- Finished reset database  for  '"
@@ -327,10 +312,8 @@ public class FlywayTestExecutionListener implements TestExecutionListener {
 				// Fill the locations
 				useLocations = Arrays.copyOf(oldLocations, oldLocations.length
 						+ locations.length);
-				for (int i = 0; i < locations.length; i++) {
-					useLocations[i + oldLocations.length] = locations[i];
-				}
 
+                System.arraycopy(locations, 0, useLocations, oldLocations.length, locations.length);
 			}
 			if (logger.isDebugEnabled()) {
 				logger.debug(String
@@ -346,60 +329,6 @@ public class FlywayTestExecutionListener implements TestExecutionListener {
 			// reset the flyway bean to original configuration.
 			flyWay.setLocations(oldLocations);
 		}
-	}
-
-	/**
-	 * Internal handling for the baseDirForMigrate annotation support.
-	 *
-	 * @param annotation
-	 *            current annotation.
-	 * @param flyWay
-	 *            bean
-	 * @param executionInfo
-	 *
-	 * @deprecated
-	 */
-	@Deprecated
-	private void baseDirAnnotationHandlingDeprecated(
-			final FlywayTest annotation, final Flyway flyWay,
-			final String executionInfo) {
-		String[] baseDirs = annotation.baseDirsForMigrate();
-		// Store setting of the old base directory from
-		// outside
-		// configuration
-		// and reset it afterwards so default annotation
-		// will still work
-
-		logger.warn("Usage of deprecated annotation 'FlywayTest.baseDirForMigrate' use 'FlywayTest.locationsForMigrate' instead.");
-
-		String[] locations = annotation.locationsForMigrate();
-		if (locations != null && locations.length > 0) {
-			throw new IllegalArgumentException(
-					"Usage of old annotation configuration with base dir and new configuration with locations are not supported.");
-		}
-
-        throw new IllegalArgumentException("Basedir usage");
-/*
-		String oldBaseDir = flyWay.getBaseDir();
-		try {
-
-			for (int i = 0; i < baseDirs.length; i++) {
-				String baseDir = baseDirs[i];
-
-				if (logger.isDebugEnabled()) {
-					logger.debug("******** Start migration from base directory '"
-							+ baseDir + "'  for  '" + executionInfo + "'.");
-
-				}
-
-				flyWay.setBaseDir(baseDir);
-				flyWay.migrate();
-			}
-		} finally {
-			// now reset the old base dir value
-			flyWay.setBaseDir(oldBaseDir);
-		}
-*/
 	}
 
 	/**

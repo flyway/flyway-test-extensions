@@ -44,7 +44,7 @@ import org.flywaydb.test.junit.FlywayTestExecutionListener;
  * 	<!-- flyway part -->
  * 	<bean id="flyway" class="org.flywaydb.core.Flyway" depends-on="dataSourceId">
  * 	    <property name="dataSource" ref="dataSourceId"/>
- * 	    <property name="baseDir" value="oracle"/>
+ * 	    <property name="locations" value="oracle"/>
  * 	</bean>
  *
  *     <!-- H2 Setup

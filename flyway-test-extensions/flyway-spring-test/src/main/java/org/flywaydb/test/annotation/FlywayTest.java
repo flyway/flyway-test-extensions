@@ -60,20 +60,6 @@ public @interface FlywayTest {
 	public boolean invokeMigrateDB() default true;
 
 	/**
-	 * Support to change the default setting for the base directory setting. </p>
-	 *
-	 * For each entry in the list a separate flyway migrate call will be executed.</br>
-	 * Afterwards the default base directory will be set.</p>
-	 *
-	 * Default: empty list - default settings will be used. <p/>
-	 *
-	 * Attention: This annotation are deprecated and can not used together  with {@link #locationsForMigrate}.
-	 *
-	 * @deprecated
-	 */
-	public String[] baseDirsForMigrate() default {};
-
-	/**
 	 * Support to add locations to the default location settings. <p/>
 	 *
 	 * if {link #overrideLocations()} returns true the complete locations will
