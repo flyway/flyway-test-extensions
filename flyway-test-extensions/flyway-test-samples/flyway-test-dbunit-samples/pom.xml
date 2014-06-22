@@ -4,13 +4,13 @@
     <parent>
         <groupId>org.flywaydb.flyway-test-extensions.samples</groupId>
         <artifactId>flyway-test-samples-parent</artifactId>
-        <version>3.0-SNAPSHOT</version>
+        <version>3.0.1-SNAPSHOT</version>
         <relativePath>../flyway-test-samples-parent/pom.xml</relativePath>
     </parent>
 
     <groupId>org.flywaydb.flyway-test-extensions.samples.dbunit</groupId>
     <artifactId>flyway-test-dbunit-samples</artifactId>
-    <version>3.0-SNAPSHOT</version>
+    <version>3.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>${project.artifactId}</name>
 	<description>
