@@ -34,7 +34,7 @@ This extension give the possibility to reset and/or fill the database with defin
 * Samples projects to use annotation inside a unit testing environment
   * Spring 4.x sample (see [UsageFlywaySpringTest4](https://github.com/flyway/flyway-test-extensions/wiki/Usage-flyway-spring-test) )
   * Spring 2.5.6 (see [UsageFlywaySpringTest256](http://code.google.com/p/flyway-test-extensions/wiki/UsageFlywaySpringTest256) )
-* Additional project supports a DBUnit annotation use together with FlywayTest [DBUnitSupport](https://github.com/flyway/flyway-test-extensions/blob/master/flyway-test-extensions/flyway-dbunit-test/src/main/java/org/flywaydb/test/dbunit/DBUnitSupport.java). A usage example you will find at [UsageFlywayDBUnitTest](https://github.com/flyway/flyway-test-extensions/wiki//Usage-of-Annotation-DBUnitSupport).
+* Additional project supports a DBUnit annotation use together with FlywayTest [DBUnitSupport](https://github.com/flyway/flyway-test-extensions/blob/master/flyway-test-extensions/flyway-dbunit-test/src/main/java/org/flywaydb/test/dbunit/DBUnitSupport.java). A usage example you will find at [UsageFlywayDBUnitTest](https://github.com/flyway/flyway-test-extensions/wiki/Usage-flyway-dbunit-test).
 
 How to use it
 -------------
