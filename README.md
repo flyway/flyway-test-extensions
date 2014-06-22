@@ -62,22 +62,21 @@ For a detail usage description see the [UsageFlywaySpringTest](https://github.co
                              FlywayTestExecutionListener.class })
 ```
     
-* add the @[FlywayTest](https://github.com/flyway/flyway-test-extensions/wiki/Usage-of-Annotation-FlywayTest) annotation on each class or method were you need a clean database
+* add the @[FlywayTest](https://github.com/flyway/flyway-test-extensions/wiki/Usage-of-Annotation-FlywayTest) annotation on each class or method were you need a clean database. You can also use the anntotation on class basis and every test method in the class where a clean database is also needed.
 
 ```java
+    // usage as once per class
     @FlywayTest
     public class Spring4JUnitTest 
-```
-or
-```java
-    .
+
+    // another TestClass
+    
     public class Spring4JUnitTest {
-    . . .
+    
+    // usage as per test method
     @Test
     @FlywayTest
     public void testMethod() { 
-```
-
 ```
 
 
