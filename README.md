@@ -58,7 +58,8 @@ For a detail usage description see the [UsageFlywaySpringTest](https://github.co
 ```java
     @RunWith(SpringJUnit4ClassRunner.class)
     @ContextConfiguration(locations = {"/context/simple_applicationContext.xml" })
-    @TestExecutionListeners({DependencyInjectionTestExecutionListener.class, FlywayTestExecutionListener.class })
+    @TestExecutionListeners({DependencyInjectionTestExecutionListener.class, 
+                             FlywayTestExecutionListener.class })
 ```
     
 * add the @[FlywayTest](https://github.com/flyway/flyway-test-extensions/wiki/Usage-of-Annotation-FlywayTest) annotation on each class or method were you need a clean database
