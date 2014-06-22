@@ -1,7 +1,7 @@
 flyway-test-extensions
 ======================
 
-![flyway-test-extension logo](https://github.com/flyway/flyway-test-extensions/blob/master/image/logo-flyway-test-extensions.png) [[https://github.com/flyway/flyway-test-extensions/raw/master/image/logo-flyway-test-extensions.png]]
+![flyway-test-extension logo](https://github.com/flyway/flyway-test-extensions/blob/master/image/logo-flyway-test-extensions.png) 
 
 
 Test extensions for the Flyway project
