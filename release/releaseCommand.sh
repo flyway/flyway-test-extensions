@@ -22,7 +22,15 @@ cd flyway-test-extensions/flyway-test-extensions
 mvn versions:set -DnewVersion=$1 -f parent/pom.xml
 mvn -N versions:update-child-modules  -DnewVersion=$1
 
+## set new versions for sample parts
+cd flyway-test-samples
+mvn versions:set -DnewVersion=$1 -f flyway-test-samples-parent/pom.xml
+mvn -N versions:update-child-modules  -DnewVersion=$1
+
+# go back to build directory
+cd ..
+
 ## deploy and tag version
-mvn deploy scm:tag -DperformRelease=true -DskipTests=true 
+mvn deploy scm:tag -DperformRelease=true 
 
 
