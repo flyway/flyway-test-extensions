@@ -66,8 +66,20 @@ For a detail usage description see the [UsageFlywaySpringTest](https://github.co
 
 ```java
     @FlywayTest
-    public class Spring3JUnitTest 
+    public class Spring4JUnitTest 
 ```
+or
+```java
+    .
+    public class Spring4JUnitTest {
+    . . .
+    @Test
+    @FlywayTest
+    public void testMethod() { 
+```
+
+```
+
 
 Project depend on
 -----------------
