@@ -14,7 +14,9 @@
 
 	<properties>
 		<version.dbunit>2.4.9</version.dbunit>
-	</properties>
+        <maven.compiler.source>1.6</maven.compiler.source>
+        <maven.compiler.target>1.6</maven.compiler.target>
+    </properties>
 
 	<dependencies>
 		<dependency>

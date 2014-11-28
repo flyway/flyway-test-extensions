@@ -271,7 +271,9 @@ public class DBUnitTestExecutionListener implements TestExecutionListener {
 				final ClassPathResource resource = new ClassPathResource(
 						fileResource);
 
-				try ( final InputStream is = resource.getInputStream() ) {
+                final InputStream is = resource.getInputStream();
+
+                try {
 
                     // now we try to load the data into database
                     final DataSource ds = getSaveDataSource(testContext);
@@ -286,6 +288,11 @@ public class DBUnitTestExecutionListener implements TestExecutionListener {
                             logger.debug("******** Close database connection " + con);
                         }
                         con.close();
+                    }
+                } finally {
+                    if ( is != null ) {
+                        // avoid memory leak in streams
+                        is.close();
                     }
                 }
             }

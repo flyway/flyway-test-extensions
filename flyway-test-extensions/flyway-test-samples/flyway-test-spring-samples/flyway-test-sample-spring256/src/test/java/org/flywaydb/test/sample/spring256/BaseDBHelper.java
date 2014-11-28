@@ -75,15 +75,16 @@ public abstract class BaseDBHelper {
 	public int countCustomer() throws Exception {
 		int result = -1;
 
-        try (Statement stmt = con.createStatement()) {
-            String query = "select count(*) from Customer";
+        Statement stmt = con.createStatement();
+        String query = "select count(*) from Customer";
 
-            try (ResultSet rs = stmt.executeQuery(query)) {
-                rs.next();
-                Long cnt = rs.getLong(1);
-                result = cnt.intValue();
-            }
-        }
+        ResultSet rs = stmt.executeQuery(query);
+        rs.next();
+        Long cnt = rs.getLong(1);
+        result = cnt.intValue();
+
+        rs.close();
+        stmt.close();
 
         return result;
 	}
