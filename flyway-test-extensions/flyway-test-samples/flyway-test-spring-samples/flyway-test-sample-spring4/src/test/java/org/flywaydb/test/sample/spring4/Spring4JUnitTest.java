@@ -15,8 +15,17 @@
  */
 package org.flywaydb.test.sample.spring4;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.flywaydb.core.Flyway;
+import org.flywaydb.core.api.MigrationInfo;
+import org.flywaydb.core.api.MigrationInfoService;
+import org.junit.After;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -24,6 +33,9 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 
 import org.flywaydb.test.annotation.FlywayTest;
 import org.flywaydb.test.junit.FlywayTestExecutionListener;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -44,6 +56,26 @@ import static org.junit.Assert.assertTrue;
 		FlywayTestExecutionListener.class })
 @FlywayTest
 public class Spring4JUnitTest extends BaseDBHelper {
+    private final Log logger = LogFactory.getLog(getClass());
+
+    @Rule
+    public TestName testName = new TestName();
+
+    @After
+    public void after() {
+        Flyway flyway = context.getBean(Flyway.class);
+        logger.info(String.format("\t***** AFTER %s **********", testName.getMethodName()));
+
+       MigrationInfoService
+               info = flyway.info();
+        System.out.println(info);
+        MigrationInfo[] mig = info.all();
+        for ( MigrationInfo mi : mig ) {
+            logger.info(String.format("\t%s\t%s\t%s", mi.getVersion(), mi.getScript(), mi.getType()));
+        }
+        List list = Arrays.asList(info.all());
+        logger.info("\t***** AFTER **********");
+    }
 
 	/**
 	 * Normal test method nothing done per startup.
@@ -80,4 +112,15 @@ public class Spring4JUnitTest extends BaseDBHelper {
 		assertEquals("Count of customer", 2, res);
 	}
 
+    /**
+     * Made a clean init migrate usage before execution of test method.
+     * SQL statements will be loaded from the default location.
+     */
+    @Test
+    @FlywayTest(invokeInitDB=true)
+    public void testMethodLoadWithInit() throws Exception {
+        int res = countCustomer();
+
+        assertEquals("Count of customer", 0, res);
+    }
 }

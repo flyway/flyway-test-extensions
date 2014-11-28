@@ -47,10 +47,14 @@ public @interface FlywayTest {
 
 	/**
 	 * invoke flyway command init before a migrate call</p>
+     *
+     * Init will create the schema_version table with a initialization entry
+     * depending on {@link org.flywaydb.core.Flyway} configuration property
+     * {@link org.flywaydb.core.Flyway#initVersion}.
 	 *
-	 *  Default: true
+	 *  Default: false
 	 */
-	public boolean invokeInitDB() default true;
+	public boolean invokeInitDB() default false;
 
 	/**
 	 * invoke flyway command migrate </p>
