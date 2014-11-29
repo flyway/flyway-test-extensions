@@ -242,12 +242,12 @@ public class FlywayTestExecutionListener implements TestExecutionListener {
 						}
 						flyWay.clean();
 					}
-					if (annotation.invokeInitDB()) {
+					if (annotation.invokeInitDB() || annotation.invokeBaselineDB()) {
 						if (logger.isDebugEnabled()) {
-							logger.debug("******** Init database  for  '"
+							logger.debug("******** Baseline database  for  '"
 									+ executionInfo + "'.");
 						}
-						flyWay.init();
+						flyWay.baseline();
 					}
 					if (annotation.invokeMigrateDB()) {
 						String[] locations = annotation.locationsForMigrate();

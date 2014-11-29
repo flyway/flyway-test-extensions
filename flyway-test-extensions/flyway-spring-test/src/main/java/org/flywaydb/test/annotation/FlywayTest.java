@@ -54,9 +54,21 @@ public @interface FlywayTest {
 	 *
 	 *  Default: false
 	 */
+    @Deprecated
 	public boolean invokeInitDB() default false;
 
-	/**
+    /**
+     * invoke flyway command baseline before a migrate call</p>
+     *
+     * Baseline will create the schema_version table with a initialization entry
+     * depending on {@link org.flywaydb.core.Flyway} configuration property
+     * {@link org.flywaydb.core.Flyway#baselineVersion}.
+     *
+     *  Default: false
+     */
+    public boolean invokeBaselineDB() default false;
+
+    /**
 	 * invoke flyway command migrate </p>
 	 *
 	 *  Default: true

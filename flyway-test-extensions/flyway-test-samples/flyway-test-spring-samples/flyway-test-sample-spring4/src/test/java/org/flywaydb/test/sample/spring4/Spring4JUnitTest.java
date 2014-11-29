@@ -117,8 +117,8 @@ public class Spring4JUnitTest extends BaseDBHelper {
      * SQL statements will be loaded from the default location.
      */
     @Test
-    @FlywayTest(invokeInitDB=true)
-    public void testMethodLoadWithInit() throws Exception {
+    @FlywayTest(invokeBaselineDB=true)
+    public void testMethodLoadWithBaseline() throws Exception {
         int res = countCustomer();
 
         assertEquals("Count of customer", 0, res);
