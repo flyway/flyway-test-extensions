@@ -217,12 +217,17 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>2.4</version>
+                <version>2.5</version>
                 <configuration>
                     <archive>
                         <manifest>
                             <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                         </manifest>
+                        <manifestEntries>
+                            <project-url>${scm.url}</project-url>
+                            <compile-class-version>${maven.compiler.target}</compile-class-version>
+                            <build-timestamp>${maven.build.timestamp}</build-timestamp>
+                        </manifestEntries>
                     </archive>
                 </configuration>
             </plugin>
