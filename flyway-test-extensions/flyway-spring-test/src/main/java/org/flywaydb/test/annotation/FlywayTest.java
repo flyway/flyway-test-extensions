@@ -40,7 +40,8 @@ public @interface FlywayTest {
 
 	/**
 	 * invoke flyway command clean before a init/migrate call.</p>
-	 *
+     * If set to true it will invoke {@link org.flywaydb.core.Flyway#clean()}.
+     *
 	 *  Default: true
 	 */
 	public boolean invokeCleanDB() default true;
@@ -50,7 +51,10 @@ public @interface FlywayTest {
      *
      * Init will create the schema_version table with a initialization entry
      * depending on {@link org.flywaydb.core.Flyway} configuration property
-     * {@link org.flywaydb.core.Flyway#initVersion}.
+     * {@link org.flywaydb.core.Flyway#baselineVersion}.
+     *
+     * <b>Note:</b> if this is set to <code>true</code> than it will invoke
+     * {@link org.flywaydb.core.Flyway#baseline()}.
 	 *
 	 *  Default: false
 	 */
@@ -63,6 +67,7 @@ public @interface FlywayTest {
      * Baseline will create the schema_version table with a initialization entry
      * depending on {@link org.flywaydb.core.Flyway} configuration property
      * {@link org.flywaydb.core.Flyway#baselineVersion}.
+     * It will invoke {@link org.flywaydb.core.Flyway#baseline()}.
      *
      *  Default: false
      */
@@ -70,7 +75,8 @@ public @interface FlywayTest {
 
     /**
 	 * invoke flyway command migrate </p>
-	 *
+     * If set to true it will invoke {@link org.flywaydb.core.Flyway#migrate()}.
+     *
 	 *  Default: true
 	 */
 	public boolean invokeMigrateDB() default true;
