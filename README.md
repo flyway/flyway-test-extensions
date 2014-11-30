@@ -9,12 +9,12 @@ Test extensions for the Flyway project
 
 For feature of Flyway see [Flyway Db Org Page](http://flywaydb.org/) 
 
-Version 3.0 Released 
+Version 3.0.1 Released 
 ------------------------
 
-<b>2014-06-23</b> flyway-test-extensions version <b>3.0</b> released.
+<b>2014-11-28</b> flyway-test-extensions version <b>3.0</b> released.
 
-Version number 3.0 are used to show the dependency to Flyway version 3.0.
+Version number 3.0.x are used to show the dependency to Flyway version 3.0.
 
 See also [Release Notes](https://github.com/flyway/flyway-test-extensions/wiki/Release-Notes) 
 
