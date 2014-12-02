@@ -42,6 +42,7 @@ import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.TestContext;
 import org.springframework.test.context.TestExecutionListener;
@@ -154,9 +155,8 @@ public class DBUnitTestExecutionListener implements TestExecutionListener {
 	public void beforeTestClass(final TestContext testContext) throws Exception {
 		// no we check for the DBResetForClass
 		final Class<?> testClass = testContext.getTestClass();
-
-		final Annotation annotation = testClass
-				.getAnnotation(DBUnitSupport.class);
+		// For convinience one may annotate tests superclass.
+		final Annotation annotation = AnnotationUtils.findAnnotation(testClass,DBUnitSupport.class);
 		if (annotation != null) {
 			final DBUnitSupport dbUnitAnnotaton = (DBUnitSupport) annotation;
 
