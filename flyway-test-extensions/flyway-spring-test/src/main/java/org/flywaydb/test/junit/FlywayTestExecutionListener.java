@@ -22,6 +22,7 @@ import java.util.Arrays;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.context.ApplicationContext;
+import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.test.context.TestContext;
 import org.springframework.test.context.TestExecutionListener;
 
@@ -146,7 +147,7 @@ public class FlywayTestExecutionListener implements TestExecutionListener {
 		// no we check for the DBResetForClass
 		final Class<?> testClass = testContext.getTestClass();
 
-		final Annotation annotation = testClass.getAnnotation(FlywayTest.class);
+		final Annotation annotation = AnnotationUtils.findAnnotation(testClass, FlywayTest.class);
 
 		dbResetWithAnotation(testContext, (FlywayTest) annotation);
 	}
