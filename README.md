@@ -12,7 +12,7 @@ For feature of Flyway see [Flyway Db Org Page](http://flywaydb.org/)
 Version 3.0.1 Released 
 ------------------------
 
-<b>2014-11-28</b> flyway-test-extensions version <b>3.0</b> released.
+<b>2014-11-28</b> flyway-test-extensions version <b>3.0.1</b> released.
 
 Version number 3.0.x are used to show the dependency to Flyway version 3.0.
 
@@ -48,7 +48,7 @@ For a detail usage description see the [UsageFlywaySpringTest](https://github.co
     <dependency>
        <groupId>org.flywaydb.flyway-test-extensions</groupId>
        <artifactId>flyway-spring-test</artifactId>
-       <version>3.0</version>
+       <version>3.0.1</version>
        <scope>test</scope>
     </dependency>
 ```
