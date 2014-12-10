@@ -179,6 +179,7 @@
 							<configuration>
 								<encoding>UTF-8</encoding>
                                 <additionalparam>-Xdoclint:none</additionalparam> <!-- for java 8 -->
+                                <failOnError>false</failOnError> <!-- javadoc error  should not break the build -->
                             </configuration>
 						</plugin>
 						<plugin>
