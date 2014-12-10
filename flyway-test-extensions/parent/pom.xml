@@ -178,7 +178,8 @@
 							<version>2.8</version>
 							<configuration>
 								<encoding>UTF-8</encoding>
-							</configuration>
+                                <additionalparam>-Xdoclint:none</additionalparam> <!-- for java 8 -->
+                            </configuration>
 						</plugin>
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
