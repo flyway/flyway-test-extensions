@@ -32,7 +32,7 @@ public abstract class ExecutionListenerHelper {
 	 * Helper method to build test execution information with test class and
 	 * method
 	 * 
-	 * @param testContext
+	 * @param testContext of spring test environment
 	 * 
 	 * @return String like &lt;Class Name&gt;[.&lt;Method Name&gt;]
 	 */
