@@ -9,12 +9,12 @@ Test extensions for the Flyway project
 
 For feature of Flyway see [Flyway Db Org Page](http://flywaydb.org/) 
 
-Version 3.1 Released 
----------------------
+Version 3.2.1 Released 
+-----------------------
 
-<b>2014-12-13</b> flyway-test-extensions version <b>3.1</b> released.
+<b>2015-03-21</b> flyway-test-extensions version <b>3.2.1</b> released.
 
-Version number 3.1.x are used to show the dependency to Flyway version 3.1.
+Version number 3.2.1.x are used to show the dependency to Flyway version 3.2.1.
 
 See also [Release Notes](https://github.com/flyway/flyway-test-extensions/wiki/Release-Notes) 
 
@@ -48,7 +48,7 @@ For a detail usage description see the [UsageFlywaySpringTest](https://github.co
     <dependency>
        <groupId>org.flywaydb.flyway-test-extensions</groupId>
        <artifactId>flyway-spring-test</artifactId>
-       <version>3.1</version>
+       <version>3.2.1</version>
        <scope>test</scope>
     </dependency>
 ```
@@ -82,12 +82,12 @@ For a detail usage description see the [UsageFlywaySpringTest](https://github.co
 
 Project depend on
 -----------------
-* [Flyway](https://github.com/flyway/) (3.1)
+* [Flyway](https://github.com/flyway/) (3.2.1)
 * [Spring Framework](http://www.springsource.org/) test, context, jdbc (4.1, 3.1 or 2.5.6)
 
 Notes
 -----
-* The project depends on flyway version 3.1
+* The project depends on flyway version 3.2.1
 * The project will be supported until the extension will be integrated into the flyway project.
 * The project depends on Spring version 4.x (see flyway-spring4-test and flyway-dbunit-spring4-test)
 * The project depends on Spring version 3.1 (see flyways-swpring3-test and flyway-dbunit-spring3-test)
