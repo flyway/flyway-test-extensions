@@ -143,6 +143,9 @@ public class DBUnitTestExecutionListener implements TestExecutionListener {
 	@Autowired(required = false)
 	protected DatabaseConnectionFactory dbConnectionFactory = new DefaultDatabaseConnectionFactory();
 
+	/** default order 4500 */
+	private int order = 4500;
+
 	/**
 	 * Allocates new <code>AbstractDbSpringContextTests</code> instance.
 	 */
@@ -482,4 +485,22 @@ public class DBUnitTestExecutionListener implements TestExecutionListener {
 		return result;
 	}
 
+	/**
+	 * change the default order value;
+	 * @since 3.2.1.1
+	 *
+	 */
+	public void setOrder(int order) {
+		this.order = order;
+	}
+
+	/**
+	 *
+	 * @return order default 4500
+	 * @since 3.2.1.1
+	 *
+	 */
+	public int getOrder() {
+		return order;
+	}
 }

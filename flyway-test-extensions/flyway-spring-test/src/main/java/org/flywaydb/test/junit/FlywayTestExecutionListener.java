@@ -22,6 +22,7 @@ import java.util.Arrays;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.context.ApplicationContext;
+import org.springframework.core.Ordered;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.test.context.TestContext;
 import org.springframework.test.context.TestExecutionListener;
@@ -110,13 +111,17 @@ import org.flywaydb.test.annotation.FlywayTest;
  * @version 1.7
  *
  */
-public class FlywayTestExecutionListener implements TestExecutionListener {
+public class FlywayTestExecutionListener
+		implements TestExecutionListener {
 
 	/**
 	 * Used for logging inside test executions.
 	 */
 	// @@ Construction
 	private final Log logger = LogFactory.getLog(getClass());
+
+	/** default order 4000 */
+	private int order = 4000;
 
 	/**
 	 * Allocates new <code>AbstractDbSpringContextTests</code> instance.
@@ -358,5 +363,24 @@ public class FlywayTestExecutionListener implements TestExecutionListener {
 		}
 
 		return result;
+	}
+
+	/**
+	 * change the default order value;
+	 * @since 3.2.1.1
+	 *
+	 */
+	public void setOrder(int order) {
+		this.order = order;
+	}
+
+	/**
+	 *
+	 * @return order default 4500
+	 * @since 3.2.1.1
+	 *
+	 */
+	public int getOrder() {
+		return order;
 	}
 }

@@ -110,6 +110,9 @@ public class FlywayDBUnitTestExecutionListener
 
 	protected final FlywayTestExecutionListener dbReset = new FlywayTestExecutionListener();
 
+	/** default order 4000 */
+	private int order = 4000;
+
 	/**
 	 * Allocates new <code>AbstractDbSpringContextTests</code> instance.
 	 */
@@ -145,5 +148,25 @@ public class FlywayDBUnitTestExecutionListener
 	{
 		dbUnit.afterTestClass(testContext);
 		dbReset.afterTestClass(testContext);
+	}
+
+
+	/**
+	 * change the default order value;
+	 * @since 3.2.1.1
+	 *
+	 */
+	public void setOrder(int order) {
+		this.order = order;
+	}
+
+	/**
+	 *
+	 * @return order default 4000
+	 * @since 3.2.1.1
+	 *
+	 */
+	public int getOrder() {
+		return order;
 	}
 }
