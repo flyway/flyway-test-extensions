@@ -42,7 +42,15 @@
 			<version>${version.h2}</version>
 			<scope>test</scope>
 		</dependency>
-	</dependencies>
+        <!-- dbunit internal need a slf4j implementation -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${version.slf4j}</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
 
     <build>
         <plugins>
