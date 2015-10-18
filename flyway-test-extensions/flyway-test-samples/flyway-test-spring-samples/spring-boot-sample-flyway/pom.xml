@@ -11,7 +11,7 @@
         <relativePath>../../flyway-test-samples-parent/pom.xml</relativePath>
     </parent>
 
-    <groupId>org.flywaydb.flyway-test-extensions</groupId>
+    <groupId>org.flywaydb.flyway-test-extensions.samples.spring</groupId>
     <artifactId>spring-boot-sample-flyway</artifactId>
 	<name>Spring Boot Flyway Sample</name>
 	<description>Spring Boot Flyway Sample</description>
