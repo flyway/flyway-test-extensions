@@ -1,0 +1,2 @@
+INSERT into CUSTOMER(CUS_ID,CUS_NAME)
+  VALUES (-300,'loadSqlScript Name 1');
