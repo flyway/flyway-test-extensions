@@ -37,6 +37,8 @@ import static org.junit.Assert.assertEquals;
 @FlywayTest
 /**
  * Show a spring-boot test configuration with {@link FlywayTest} annotation.
+ *
+ * @since 3.2.1.1
  */
 public class FlywayTestApplicationTest {
 

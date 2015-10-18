@@ -29,6 +29,8 @@ import static org.junit.Assert.assertEquals;
 @SpringApplicationConfiguration(classes = SampleFlywayApplication.class)
 /**
  * Show standard spring-boot test test.
+ *
+ * @since 3.2.1.1
  */
 public class SampleFlywayApplicationTests {
 

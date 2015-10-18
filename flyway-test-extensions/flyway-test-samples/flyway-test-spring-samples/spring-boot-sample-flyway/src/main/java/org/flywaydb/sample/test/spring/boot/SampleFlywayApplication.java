@@ -29,6 +29,8 @@ import org.springframework.stereotype.Repository;
 @SpringBootApplication
 /**
  * Spring boot application that use Flyway.
+ *
+ * @since 3.2.1.1
  */
 public class SampleFlywayApplication implements CommandLineRunner {
 
