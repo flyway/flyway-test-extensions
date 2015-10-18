@@ -49,6 +49,7 @@ import org.springframework.test.context.TestExecutionListener;
 import org.springframework.test.context.TestExecutionListeners;
 
 import org.flywaydb.test.ExecutionListenerHelper;
+import org.springframework.test.context.support.AbstractTestExecutionListener;
 
 /**
  * A {@link TestExecutionListeners} to get the annotation {@link DBUnitSupport}
@@ -136,7 +137,9 @@ import org.flywaydb.test.ExecutionListenerHelper;
  * @version 1.7
  *
  */
-public class DBUnitTestExecutionListener implements TestExecutionListener {
+public class DBUnitTestExecutionListener
+	extends AbstractTestExecutionListener
+		implements TestExecutionListener {
 	// @@ Construction
 	protected final Log logger = LogFactory.getLog(getClass());
 

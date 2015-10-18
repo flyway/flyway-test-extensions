@@ -23,6 +23,7 @@ import org.springframework.test.context.TestExecutionListeners;
 
 import org.flywaydb.test.annotation.FlywayTest;
 import org.flywaydb.test.junit.FlywayTestExecutionListener;
+import org.springframework.test.context.support.AbstractTestExecutionListener;
 
 
 /**
@@ -101,6 +102,7 @@ import org.flywaydb.test.junit.FlywayTestExecutionListener;
  *
  */
 public class FlywayDBUnitTestExecutionListener
+	extends AbstractTestExecutionListener
 	implements TestExecutionListener
 {
 	// @@ Construction

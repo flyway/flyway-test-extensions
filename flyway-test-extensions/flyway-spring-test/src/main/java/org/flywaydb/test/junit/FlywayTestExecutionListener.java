@@ -30,6 +30,7 @@ import org.springframework.test.context.TestExecutionListener;
 import org.flywaydb.core.Flyway;
 import org.flywaydb.test.ExecutionListenerHelper;
 import org.flywaydb.test.annotation.FlywayTest;
+import org.springframework.test.context.support.AbstractTestExecutionListener;
 
 /**
  * Spring test execution listener to get annotation {@link FlywayTest} up and
@@ -112,6 +113,7 @@ import org.flywaydb.test.annotation.FlywayTest;
  *
  */
 public class FlywayTestExecutionListener
+	extends AbstractTestExecutionListener
 		implements TestExecutionListener {
 
 	/**
