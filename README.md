@@ -9,12 +9,12 @@ Test extensions for the Flyway project
 
 For feature of Flyway see [Flyway Db Org Page](http://flywaydb.org/) 
 
-Version 3.2.1.1 Released 
+Version 4.0 Released 
 ------------------------
 
-<b>2015-10-18</b> flyway-test-extensions version <b>3.2.1.1</b> released.
+<b>2016-03-06</b> flyway-test-extensions version <b>4.0</b> released.
 
-Version number 3.2.1.x are used to show the dependency to Flyway version 3.2.1.
+Version number 4.0.x are used to show the dependency to Flyway version 4.0.
 
 See also [Release Notes](https://github.com/flyway/flyway-test-extensions/wiki/Release-Notes) 
 
@@ -48,7 +48,7 @@ For a detail usage description see the [UsageFlywaySpringTest](https://github.co
     <dependency>
        <groupId>org.flywaydb.flyway-test-extensions</groupId>
        <artifactId>flyway-spring-test</artifactId>
-       <version>3.2.1.1</version>
+       <version>4.0</version>
        <scope>test</scope>
     </dependency>
 ```
@@ -82,15 +82,15 @@ For a detail usage description see the [UsageFlywaySpringTest](https://github.co
 
 Project depend on
 -----------------
-* [Flyway](https://github.com/flyway/) (3.2.1)
-* [Spring Framework](http://www.springsource.org/) test, context, jdbc (4.2, 3.1 or 2.5.6)
+* [Flyway](https://github.com/flyway/) (4.0)
+* [Spring Framework](http://www.springsource.org/) test, context, jdbc (4.2, 3.2 or 2.5.6)
 
 Notes
 -----
-* The project depends on flyway version 3.2.1
+* The project depends on flyway version 4.0
 * The project will be supported until the extension will be integrated into the flyway project.
 * The project depends on Spring version 4.x (see flyway-spring4-test and flyway-dbunit-spring4-test)
-* The project depends on Spring version 3.1 (see flyways-swpring3-test and flyway-dbunit-spring3-test)
+* The project depends on Spring version 3.2 (see flyways-swpring3-test and flyway-dbunit-spring3-test)
   * All features works with Spring version 3.x
   * It works also with Spring version 2.5.6, but you can not use all features. A example project show how to use it with Spring 2.5.6
 * At the moment the code is tested with database H2 and Oracle.<br>Only the DBunit part contains database specific code. 
