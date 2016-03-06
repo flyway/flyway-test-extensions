@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.flywaydb.flyway-test-extensions.samples</groupId>
         <artifactId>flyway-test-samples-parent</artifactId>
-        <version>3.2.1.2-SNAPSHOT</version>
+        <version>4.0-SNAPSHOT</version>
         <relativePath>../../flyway-test-samples-parent/pom.xml</relativePath>
     </parent>
 
@@ -16,9 +16,9 @@
 	<name>Spring Boot Flyway Sample</name>
 	<description>Spring Boot Flyway Sample</description>
 	<properties>
-        <spring.boot.version>1.3.0.BUILD-SNAPSHOT</spring.boot.version>
+        <spring.boot.version>1.3.0.RELEASE</spring.boot.version>
         <!-- spring-boot 1.3 depends on spring 4.2 code !! -->
-        <spring.version>4.2.1.RELEASE</spring.version>
+        <spring.version>4.2.3.RELEASE</spring.version>
 	</properties>
 	<dependencies>
         <!-- slf4j-bridge for commons-logging -->
@@ -101,7 +101,7 @@
         <dependency>
             <groupId>org.flywaydb.flyway-test-extensions</groupId>
             <artifactId>flyway-spring-test</artifactId>
-            <version>3.2.1.2-SNAPSHOT</version>
+            <version>4.0-SNAPSHOT</version>
             <scope>test</scope>
             <exclusions>
                 <exclusion>
