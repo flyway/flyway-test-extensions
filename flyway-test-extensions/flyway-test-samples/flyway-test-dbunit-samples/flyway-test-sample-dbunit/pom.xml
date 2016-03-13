@@ -4,7 +4,7 @@
 	<parent>
         <groupId>org.flywaydb.flyway-test-extensions.samples</groupId>
         <artifactId>flyway-test-samples-parent</artifactId>
-		<version>4.0-SNAPSHOT</version>
+		<version>4.0.1-SNAPSHOT</version>
 		<relativePath>../../flyway-test-samples-parent/pom.xml</relativePath>
 	</parent>
 
