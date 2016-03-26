@@ -97,4 +97,6 @@ public @interface FlywayTest {
 	 * Default: false
 	 */
 	public boolean overrideLocations() default false;
+
+	public String flywayName() default "";
 }

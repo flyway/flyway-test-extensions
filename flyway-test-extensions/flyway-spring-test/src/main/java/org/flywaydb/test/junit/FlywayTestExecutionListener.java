@@ -235,7 +235,7 @@ public class FlywayTestExecutionListener
 					.getExecutionInformation(testContext);
 
 			if (appContext != null) {
-				flyWay = getBean(appContext, Flyway.class);
+				flyWay = getBean(appContext, Flyway.class, annotation.flywayName());
 
 				if (flyWay != null) {
 					// we have a fly way configuration no lets try
@@ -353,15 +353,22 @@ public class FlywayTestExecutionListener
 	 * @return a object of the type or <code>null</code>
 	 */
 	private Flyway getBean(final ApplicationContext context,
-			final Class<?> classType) {
+			final Class<?> classType, String idName) {
 		Flyway result = null;
 
 		String[] names = context.getBeanNamesForType(classType);
 
 		if (names != null && names.length > 0) {
-			// we always return the bean with the first name
+			if ( idName == null || idName.trim().isEmpty() ) {
+				// old behavioud
+				// we always return the bean with the first name
 
-			result = (Flyway) context.getBean(names[0]);
+				result = (Flyway) context.getBean(names[0]);
+			} else {
+//				int index = Arrays.binarySearch(names, idName);
+
+				result = (Flyway) context.getBean(idName);
+			}
 		}
 
 		return result;
