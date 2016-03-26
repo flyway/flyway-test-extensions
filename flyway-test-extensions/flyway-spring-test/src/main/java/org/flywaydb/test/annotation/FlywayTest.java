@@ -98,5 +98,16 @@ public @interface FlywayTest {
 	 */
 	public boolean overrideLocations() default false;
 
+	/**
+	 * Reference the flyway bean name.<p/>
+	 *
+	 * If no name are specified the first Flyway instance {@link org.flywaydb.core.Flyway} of the
+	 * application context are used.<p/>
+	 *
+	 * If the name of the {@link org.flywaydb.core.Flyway} instance are not part of the application
+	 * context, the test will fail with {@link org.springframework.beans.factory.NoSuchBeanDefinitionException}.<p/>
+	 *
+	 * Default: empty string<p/>
+     */
 	public String flywayName() default "";
 }

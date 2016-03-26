@@ -360,13 +360,11 @@ public class FlywayTestExecutionListener
 
 		if (names != null && names.length > 0) {
 			if ( idName == null || idName.trim().isEmpty() ) {
-				// old behavioud
+				// old behaviour
 				// we always return the bean with the first name
 
 				result = (Flyway) context.getBean(names[0]);
 			} else {
-//				int index = Arrays.binarySearch(names, idName);
-
 				result = (Flyway) context.getBean(idName);
 			}
 		}

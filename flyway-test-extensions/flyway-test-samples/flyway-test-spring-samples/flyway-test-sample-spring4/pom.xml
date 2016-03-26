@@ -102,7 +102,7 @@
                                 <flyway.password>h2_test</flyway.password>
                             </systemPropertyVariables>
 							<includes>
-								<include>**/*JUnitTest.java</include>
+								<include>**/*Test.java</include>
 							</includes>
 							<threadCount>1</threadCount>
 							<runOrder>alphabetical</runOrder>
