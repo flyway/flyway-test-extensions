@@ -9,10 +9,10 @@ Test extensions for the Flyway project
 
 For feature of Flyway see [Flyway Db Org Page](http://flywaydb.org/) 
 
-Version 4.0 Released 
+Version 4.0.1 Released 
 ------------------------
 
-<b>2016-03-06</b> flyway-test-extensions version <b>4.0</b> released.
+<b>2016-05-15</b> flyway-test-extensions version <b>4.0.1</b> released.
 
 Version number 4.0.x are used to show the dependency to Flyway version 4.0.
 
@@ -48,7 +48,7 @@ For a detail usage description see the [UsageFlywaySpringTest](https://github.co
     <dependency>
        <groupId>org.flywaydb.flyway-test-extensions</groupId>
        <artifactId>flyway-spring-test</artifactId>
-       <version>4.0</version>
+       <version>4.0.1</version>
        <scope>test</scope>
     </dependency>
 ```
@@ -82,12 +82,12 @@ For a detail usage description see the [UsageFlywaySpringTest](https://github.co
 
 Project depend on
 -----------------
-* [Flyway](https://github.com/flyway/) (4.0)
+* [Flyway](https://github.com/flyway/) (4.0.1)
 * [Spring Framework](http://www.springsource.org/) test, context, jdbc (4.2, 3.2 or 2.5.6)
 
 Notes
 -----
-* The project depends on flyway version 4.0
+* The project depends on flyway version 4.0.1
 * The project will be supported until the extension will be integrated into the flyway project.
 * The project depends on Spring version 4.x (see flyway-spring4-test and flyway-dbunit-spring4-test)
 * The project depends on Spring version 3.2 (see flyways-swpring3-test and flyway-dbunit-spring3-test)
