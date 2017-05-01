@@ -250,7 +250,7 @@ public class FlywayTestExecutionListener
 						}
 						flyWay.clean();
 					}
-					if (annotation.invokeInitDB() || annotation.invokeBaselineDB()) {
+					if (annotation.invokeBaselineDB()) {
 						if (logger.isDebugEnabled()) {
 							logger.debug("******** Baseline database  for  '"
 									+ executionInfo + "'.");

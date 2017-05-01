@@ -25,7 +25,7 @@ import java.lang.annotation.RetentionPolicy;
  * The default behavior is to execute the flyway commands:
  * <ul>
  * <li>{@link org.flywaydb.core.Flyway#clean()}</li>
- * <li>{@link org.flywaydb.core.Flyway#init()}</li>
+ * <li>{@link org.flywaydb.core.Flyway#baseline()}</li>
  * <li>{@link org.flywaydb.core.Flyway#migrate()}</li>
  * </ul>
  *
@@ -45,21 +45,6 @@ public @interface FlywayTest {
 	 *  Default: true
 	 */
 	public boolean invokeCleanDB() default true;
-
-	/**
-	 * invoke flyway command init before a migrate call</p>
-     *
-     * Init will create the schema_version table with a initialization entry
-     * depending on {@link org.flywaydb.core.Flyway} configuration property
-     * {@link org.flywaydb.core.Flyway#baselineVersion}.
-     *
-     * <b>Note:</b> if this is set to <code>true</code> than it will invoke
-     * {@link org.flywaydb.core.Flyway#baseline()}.
-	 *
-	 *  Default: false
-	 */
-    @Deprecated
-	public boolean invokeInitDB() default false;
 
     /**
      * invoke flyway command baseline before a migrate call</p>
