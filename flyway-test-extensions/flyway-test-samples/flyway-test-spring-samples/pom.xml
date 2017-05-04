@@ -44,6 +44,7 @@
         <module>flyway-test-sample-spring3</module>
         <module>flyway-test-sample-spring256</module>
         <module>spring-boot-sample-flyway</module>
+		<module>flyway-test-sample-spring5</module>
     </modules>
 
 	<distributionManagement>
