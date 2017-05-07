@@ -241,7 +241,7 @@
                             <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                         </manifest>
                         <manifestEntries>
-                            <project-url>${scm.url}</project-url>
+                            <project-url>${project.scm.url}</project-url>
                             <compile-class-version>${maven.compiler.target}</compile-class-version>
                             <build-timestamp>${maven.build.timestamp}</build-timestamp>
                         </manifestEntries>
