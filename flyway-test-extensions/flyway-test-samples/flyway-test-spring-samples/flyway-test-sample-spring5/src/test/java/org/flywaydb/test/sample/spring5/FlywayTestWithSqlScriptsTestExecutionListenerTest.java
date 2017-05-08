@@ -27,7 +27,8 @@ import org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
-import static org.junit.Assert.assertEquals;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  *
@@ -44,7 +45,7 @@ public class FlywayTestWithSqlScriptsTestExecutionListenerTest extends BaseDBHel
     public void laodFlywayTestInsertWithoutSqlScriptExecutionTest() throws Exception {
         int countCustomer = countCustomer();
 
-        assertEquals("Only Flyway customer should be loaded.", 2, countCustomer);
+        assertThat("Only Flyway customer should be loaded.", countCustomer, is(2));
     }
 
     @FlywayTest
@@ -53,7 +54,7 @@ public class FlywayTestWithSqlScriptsTestExecutionListenerTest extends BaseDBHel
     public void loadSqlScriptExecutionsWithoutFlywayTestInsertTest() throws Exception {
         int countCustomer = countCustomer();
 
-        assertEquals("Only Sql script customer should be loaded.", 1, countCustomer);
+        assertThat("Only Sql script customer should be loaded.", countCustomer, is (1));
     }
 
     @FlywayTest(locationsForMigrate = "loadmsql")
@@ -62,6 +63,6 @@ public class FlywayTestWithSqlScriptsTestExecutionListenerTest extends BaseDBHel
     public void loadSqlScriptExecutionsWithFlywayTestInsertTest() throws Exception {
         int countCustomer = countCustomer();
 
-        assertEquals("All customer (Flyway and Sql script) should be loaded.", 3, countCustomer);
+        assertThat("All customer (Flyway and Sql script) should be loaded.", countCustomer, is(3));
     }
 }

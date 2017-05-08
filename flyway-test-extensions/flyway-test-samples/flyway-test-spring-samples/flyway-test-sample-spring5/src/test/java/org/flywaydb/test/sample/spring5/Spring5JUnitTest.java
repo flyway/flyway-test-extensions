@@ -35,8 +35,10 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.greaterThan;
+
 
 /**
  * Simple Test to show how the annotation can be used inside test execution.</p>
@@ -81,7 +83,7 @@ public class Spring5JUnitTest extends BaseDBHelper {
 	public void dummyTestNoLoad() throws Exception {
 		int res = countCustomer();
 
-        assertTrue("This test must runs without an error, because we can not guarantee that this test method run as first. " + res, true);
+        assertThat("This test must runs without an error, because we can not guarantee that this test method run as first. " + res, res , greaterThan(0)  );
     }
 
 	/**
@@ -93,7 +95,7 @@ public class Spring5JUnitTest extends BaseDBHelper {
 	public void dummyTestMethodLoad() throws Exception {
 		int res = countCustomer();
 
-		assertEquals("Count of customer", 0, res);
+		assertThat("Count of customer", res, is(0));
 	}
 
 	/**
@@ -105,7 +107,7 @@ public class Spring5JUnitTest extends BaseDBHelper {
 	public void loadMultibleSQLs() throws Exception {
 		int res = countCustomer();
 
-		assertEquals("Count of customer", 2, res);
+		assertThat("Count of customer", res, is(2));
 	}
 
     /**
@@ -117,6 +119,6 @@ public class Spring5JUnitTest extends BaseDBHelper {
     public void testMethodLoadWithBaseline() throws Exception {
         int res = countCustomer();
 
-        assertEquals("Count of customer", 0, res);
+        assertThat("Count of customer", res, is(0));
     }
 }

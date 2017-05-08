@@ -36,8 +36,10 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 
 import javax.sql.DataSource;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.greaterThan;
+
 
 /**
  * Show a Flyway Test with Spring configuration and two different flyway configurations.
@@ -62,7 +64,7 @@ public class SpringConfigTest extends BaseDBHelper {
     public void dummyTestNoLoad() throws Exception {
         int res = countCustomer();
 
-        assertTrue("This test must runs without an error, because we can not guarantee that this test method run as first. " + res, true);
+        assertThat("This test must runs without an error, because we can not guarantee that this test method run as first. " + res, res, is(greaterThan(0)));
     }
 
     /**
@@ -74,7 +76,7 @@ public class SpringConfigTest extends BaseDBHelper {
     public void useFlywayOne_noCustomer() throws Exception {
         int res = countCustomer();
 
-        assertEquals("Count of customer", 0, res);
+        assertThat("Count of customer", res, is(0));
     }
 
     /**
@@ -86,7 +88,7 @@ public class SpringConfigTest extends BaseDBHelper {
     public void useFlywaySecond_withCustomer() throws Exception {
         int res = countCustomer();
 
-        assertEquals("Count of customer", 4, res);
+        assertThat("Count of customer", res, is(4));
     }
 
     /**
@@ -98,7 +100,7 @@ public class SpringConfigTest extends BaseDBHelper {
     public void useFlywayOne_loadMultibleSQLs() throws Exception {
         int res = countCustomer();
 
-        assertEquals("Count of customer", 2, res);
+        assertThat("Count of customer", res, is(2));
     }
 
     /**
@@ -110,7 +112,7 @@ public class SpringConfigTest extends BaseDBHelper {
     public void useFlywaySecond_loadMultibleSQLs() throws Exception {
         int res = countCustomer();
 
-        assertEquals("Count of customer", 6, res);
+        assertThat("Count of customer", res, is(6));
     }
 
     /**
@@ -122,7 +124,7 @@ public class SpringConfigTest extends BaseDBHelper {
     public void useFlywayOne_testMethodLoadWithBaseline() throws Exception {
         int res = countCustomer();
 
-        assertEquals("Count of customer", 0, res);
+        assertThat("Count of customer", res, is(0));
     }
 
     /**
@@ -134,10 +136,10 @@ public class SpringConfigTest extends BaseDBHelper {
     public void useFlywaySecond_testMethodLoadWithBaseline() throws Exception {
         int res = countCustomer();
 
-        assertEquals("Count of customer", 4, res);
+        assertThat("Count of customer", res, is(4));
     }
 
-     // Spring 4 Java Configuration Example
+     // Spring 5 Java Configuration Example
 
 
     @Configuration
