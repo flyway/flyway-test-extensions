@@ -24,6 +24,12 @@
 
         <tag>HEAD</tag>
     </scm>
+	
+	<issueManagement>
+		<system>GITHUB</system>
+		<url>https://github.com/flyway/flyway-test-extensions/issues</url>
+	</issueManagement>
+
 	<developers>
 		<developer>
 			<id>Florian</id>
@@ -42,9 +48,17 @@
 			<name>Nexus Release Repository</name>
 			<url>http://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
 		</repository>
+
+		<site>
+			<id>flyway-test-extensions-dummy-site</id>
+			<url>https://github.com/flyway/flyway-test-extensions/site/${project.version}</url>
+		</site>
+
 	</distributionManagement>
 
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
 		<version.flyway>4.2.0</version.flyway>
 		<version.spring>4.2.5.RELEASE</version.spring>
         <version.spring2>2.5.6.SEC03</version.spring2>
@@ -60,6 +74,89 @@
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
     </properties>
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>2.9</version>
+				<reportSets>
+					<reportSet>
+						<configuration>
+							<dependencyDetailsEnabled>false</dependencyDetailsEnabled>
+							<dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+						</configuration>
+						<!-- simpler configuration without reportSets available for usual
+                            cases -->
+						<reports>
+							<report>index</report>
+							<report>dependencies</report>
+							<report>scm</report>
+							<report>license</report>
+							<report>modules</report>
+							<report>summary</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.10.4</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+					<additionalparam>-Xdoclint:none</additionalparam> <!-- for java 8  -->
+					<failOnError>false</failOnError> <!-- javadoc error  should not break the build -->
+				</configuration>
+
+				<reportSets>
+					<reportSet>
+						<id>aggregate</id>
+						<inherited>false</inherited>
+						<configuration>
+							<!-- Specific configuration for the aggregate report -->
+							<sourcepath>${project.build.sourceDirectory}/../generated</sourcepath>
+						</configuration>
+						<reports>
+							<report>aggregate</report>
+						</reports>
+					</reportSet>
+					<reportSet>
+						<id>default</id>
+						<reports>
+							<report>javadoc</report>
+							<report>test-javadoc</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+				<version>2.20</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jxr-plugin</artifactId>
+				<version>2.5</version>
+				<reportSets>
+					<reportSet>
+						<id>aggregate</id>
+						<inherited>false</inherited>
+						<reports>
+							<report>aggregate</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+
+			</plugin>
+		</plugins>
+
+	</reporting>
 
 	<dependencyManagement>
 		<dependencies>
@@ -185,44 +282,13 @@
             <plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-site-plugin</artifactId>
-				<version>3.0</version>
+				<version>3.6</version>
+
 				<configuration>
-					<reportPlugins>
-						<plugin>
-							<groupId>org.apache.maven.plugins</groupId>
-							<artifactId>maven-project-info-reports-plugin</artifactId>
-							<version>2.4</version>
-							<configuration>
-								<dependencyDetailsEnabled>false</dependencyDetailsEnabled>
-								<dependencyLocationsEnabled>false</dependencyLocationsEnabled>
-							</configuration>
-							<!-- simpler configuration without reportSets available for usual 
-								cases -->
-							<reports>
-								<report>dependencies</report>
-								<report>scm</report>
-							</reports>
-						</plugin>
-						<plugin>
-							<groupId>org.apache.maven.plugins</groupId>
-							<artifactId>maven-javadoc-plugin</artifactId>
-							<version>2.10.1</version>
-							<configuration>
-								<encoding>UTF-8</encoding>
-                                <additionalparam>-Xdoclint:none</additionalparam> <!-- for java 8 -->
-                                <failOnError>false</failOnError> <!-- javadoc error  should not break the build -->
-							</configuration>
-						</plugin>
-						<plugin>
-							<groupId>org.apache.maven.plugins</groupId>
-							<artifactId>maven-surefire-report-plugin</artifactId>
-							<version>2.4.3</version>
-							<configuration>
-								<encoding>UTF-8</encoding>
-							</configuration>
-						</plugin>
-					</reportPlugins>
+					<port>9500</port>
+					<tempWebappDirectory>${basedir}/target/site/tempdir</tempWebappDirectory>
 				</configuration>
+
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
