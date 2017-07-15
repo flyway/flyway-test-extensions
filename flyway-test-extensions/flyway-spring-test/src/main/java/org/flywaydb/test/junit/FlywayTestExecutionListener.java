@@ -17,12 +17,13 @@ package org.flywaydb.test.junit;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.context.ApplicationContext;
-import org.springframework.core.Ordered;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.test.context.TestContext;
 import org.springframework.test.context.TestExecutionListener;
@@ -160,7 +161,7 @@ public class FlywayTestExecutionListener
 	}
 
 	/**
-	 * no implementation for annotation {@link FlywayTest} needed.
+	 * implementation for annotation {@link FlywayTest} for handling with {@link org.junit.Before} annotation.
 	 *
 	 * @param testContext
 	 *            default test context filled from spring
@@ -168,9 +169,44 @@ public class FlywayTestExecutionListener
 	 * @throws Exception
 	 *             if any error occurred
 	 */
-	public void prepareTestInstance(final TestContext testContext)
-			throws Exception {
-	}
+    public void prepareTestInstance(final TestContext testContext)
+            throws Exception {
+        Class testClass = testContext.getTestClass();
+
+        Class beforeClass = getClass().getClassLoader().loadClass("org.junit.Before");
+
+        // contains first finding of FlywayTest annotation together with a Before annotation
+        Annotation firstFlywayTestAnnotation = null;
+        Method beforeMethod = null;
+
+        Class currentTestClass = testClass;
+
+        // search the first class with Before and FlywayTest annotation
+        while (currentTestClass != Object.class
+                && firstFlywayTestAnnotation == null) {
+            final List<Method> allMethods = new ArrayList<Method>(Arrays.asList(currentTestClass.getDeclaredMethods()));
+            for (final Method method : allMethods) {
+                if (method.isAnnotationPresent(beforeClass)
+                        && method.isAnnotationPresent(FlywayTest.class)) {
+                    firstFlywayTestAnnotation = method.getAnnotation(FlywayTest.class);
+                    beforeMethod = method;
+
+                    // we found what we search so we finished
+                    break;
+                }
+            }
+
+            // move to the upper class in the hierarchy in search for more methods
+            currentTestClass = currentTestClass.getSuperclass();
+        }
+
+        if (firstFlywayTestAnnotation != null) {
+            getLogger().debug("Method " + beforeMethod.getName() + " using flyway annotation " + firstFlywayTestAnnotation);
+
+            dbResetWithAnotation(testContext, (FlywayTest) firstFlywayTestAnnotation);
+        }
+
+    }
 
 	/**
 	 * Called from spring before a test method will be invoked.
