@@ -9,12 +9,12 @@ Test extensions for the Flyway project
 
 For feature of Flyway see [Flyway Db Org Page](http://flywaydb.org/) 
 
-Version 4.0.1 Released 
+Version 4.2.0 Released 
 ------------------------
 
-<b>2016-05-15</b> flyway-test-extensions version <b>4.0.1</b> released.
+<b>2017-07-23</b> flyway-test-extensions version <b>4.2.0</b> released.
 
-Version number 4.0.x are used to show the dependency to Flyway version 4.0.
+Version number 4.2.x are used to show the dependency to Flyway version 4.2.x.
 
 See also [Release Notes](https://github.com/flyway/flyway-test-extensions/wiki/Release-Notes) 
 
@@ -31,9 +31,12 @@ This extension give the possibility to reset and/or fill the database with defin
 * Annotation can be used at
   * each test class (once per test case)
   * each test method  
+  * together with JUnit Before annotation
 * Samples projects to use annotation inside a unit testing environment
+  * Spring 5.x sample (see [complete sample for usage together with Spring 5](https://github.com/flyway/flyway-test-extensions/tree/master/flyway-test-extensions/flyway-test-samples/flyway-test-spring-samples/flyway-test-sample-spring5) )
   * Spring 4.x sample (see [UsageFlywaySpringTest4](https://github.com/flyway/flyway-test-extensions/wiki/Usage-flyway-spring-test) )
   * Spring 2.5.6 (see [UsageFlywaySpringTest256](http://code.google.com/p/flyway-test-extensions/wiki/UsageFlywaySpringTest256) )
+  * SpringBoot test example (see [FlywayTestApplicationTest](https://github.com/flyway/flyway-test-extensions/blob/master/flyway-test-extensions/flyway-test-samples/flyway-test-spring-samples/spring-boot-sample-flyway/src/test/java/org/flywaydb/sample/test/spring/boot/flywaytest/FlywayTestApplicationTest.java) )
 * Additional project supports a DBUnit annotation use together with FlywayTest [DBUnitSupport](https://github.com/flyway/flyway-test-extensions/blob/master/flyway-test-extensions/flyway-dbunit-test/src/main/java/org/flywaydb/test/dbunit/DBUnitSupport.java). A usage example you will find at [UsageFlywayDBUnitTest](https://github.com/flyway/flyway-test-extensions/wiki/Usage-flyway-dbunit-test).
 
 How to use it
@@ -48,7 +51,7 @@ For a detail usage description see the [UsageFlywaySpringTest](https://github.co
     <dependency>
        <groupId>org.flywaydb.flyway-test-extensions</groupId>
        <artifactId>flyway-spring-test</artifactId>
-       <version>4.0.1</version>
+       <version>4.2.0</version>
        <scope>test</scope>
     </dependency>
 ```
@@ -82,13 +85,14 @@ For a detail usage description see the [UsageFlywaySpringTest](https://github.co
 
 Project depend on
 -----------------
-* [Flyway](https://github.com/flyway/) (4.0.1)
-* [Spring Framework](http://www.springsource.org/) test, context, jdbc (4.2, 3.2 or 2.5.6)
+* [Flyway](https://github.com/flyway/) (4.2.0)
+* [Spring Framework](http://www.springsource.org/) test, context, jdbc (5., 4.3.8, 3.2 or 2.5.6)
 
 Notes
 -----
-* The project depends on flyway version 4.0.1
+* The project depends on flyway version 4.2.0
 * The project will be supported until the extension will be integrated into the flyway project.
+* The project depends on Spring version 5.x (see flyway-spring5-test)
 * The project depends on Spring version 4.x (see flyway-spring4-test and flyway-dbunit-spring4-test)
 * The project depends on Spring version 3.2 (see flyways-swpring3-test and flyway-dbunit-spring3-test)
   * All features works with Spring version 3.x
