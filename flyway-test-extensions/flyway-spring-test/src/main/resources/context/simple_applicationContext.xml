@@ -35,6 +35,10 @@
 	<bean id="flyway" class="org.flywaydb.core.Flyway" depends-on="dataSourceRef">
 	    <property name="dataSource" ref="dataSourceRef"/>
 	    <property name="locations" value="${flyway.locations}"/>
+		<property name="ignoreMissingMigrations" value="${flyway.ignoreMissingMigrations:false}"/>
+		<property name="ignoreFutureMigrations"   value="${flyway.ignoreFutureMigrations:true}"/>
+		<property name="validateOnMigrate"   value="${flyway.validateOnMigrate:true}"/>
+		<property name="outOfOrder"   value="${flyway.outOfOrder:false}"/>
 	</bean>
 
     <!-- H2 Setup
