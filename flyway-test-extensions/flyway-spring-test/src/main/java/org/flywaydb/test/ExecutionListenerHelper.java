@@ -43,7 +43,15 @@ public abstract class ExecutionListenerHelper {
 		result = testClass.getName();
 
 		// now check for method
-		Method m = testContext.getTestMethod();
+		Method m = null;
+
+		try {
+			m = testContext.getTestMethod();
+		}
+		catch (IllegalStateException ex) {
+			// Do Nothing
+		}
+
 		if (m != null) {
 			result = result + "." + m.getName();
 		}
