@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (C) 2011-2017 the original author or authors.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+            http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <!--  Needed for system properties replacement  -->
+    <!-- Following will only work with spring 3 	-->
+    <context:property-placeholder location="classpath*:flyway2.properties"
+                                  ignore-resource-not-found="true"
+                                  system-properties-mode="OVERRIDE"/>
+
+    <!-- import the data source bean -->
+    <bean id="dataSourceRef2" name="dataSource2"
+          class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${flyway2.driver}"/>
+        <property name="url" value="${flyway2.url}"/>
+        <property name="username" value="${flyway2.user}"/>
+        <property name="password" value="${flyway2.password}"/>
+        <property name="maxActive" value="-1"/>
+
+    </bean>
+
+    <!-- import the flyway creation bean -->
+    <bean id="flywayFactory2" class="org.flywaydb.test.junit.FlywayHelperFactory" depends-on="dataSourceRef2"/>
+
+    <bean id="flyway2" class="org.flywaydb.core.Flyway" depends-on="dataSourceRef2" factory-bean="flywayFactory2" factory-method="createFlyway">
+        <property name="dataSource" ref="dataSourceRef2"/>
+        <property name="locations" value="${flyway2.locations}"/>
+    </bean>
+
+</beans>
