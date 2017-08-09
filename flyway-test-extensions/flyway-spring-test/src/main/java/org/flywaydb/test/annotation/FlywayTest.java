@@ -15,6 +15,7 @@
  */
 package org.flywaydb.test.annotation;
 
+import java.lang.annotation.Repeatable;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
@@ -36,6 +37,7 @@ import java.lang.annotation.RetentionPolicy;
  * @version 1.7
  */
 @Retention(RetentionPolicy.RUNTIME)
+@Repeatable(FlywayTests.class)
 public @interface FlywayTest {
 
 	/**
