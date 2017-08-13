@@ -20,7 +20,6 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -30,7 +29,7 @@ import org.flywaydb.test.annotation.FlywayTest;
 import org.flywaydb.test.annotation.FlywayTests;
 
 import org.springframework.context.ApplicationContext;
-import org.springframework.core.annotation.AnnotatedElementUtils;
+import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.test.context.TestContext;
 import org.springframework.test.context.TestExecutionListener;
 import org.springframework.test.context.support.AbstractTestExecutionListener;
@@ -157,8 +156,14 @@ public class FlywayTestExecutionListener
 	public void beforeTestClass(final TestContext testContext) throws Exception {
 		// no we check for the DBResetForClass
 		final Class<?> testClass = testContext.getTestClass();
-		Set<FlywayTest> annotations = AnnotatedElementUtils.findMergedRepeatableAnnotations(testClass, FlywayTest.class, FlywayTests.class);
-		for (FlywayTest annotation : annotations) {
+		FlywayTests containerAnnotation = AnnotationUtils.getAnnotation(testClass, FlywayTests.class);
+		if (containerAnnotation != null) {
+			FlywayTest[] annotations = containerAnnotation.value();
+			for (FlywayTest annotation : annotations) {
+				dbResetWithAnnotation(testContext, annotation);
+			}
+		} else {
+			FlywayTest annotation = AnnotationUtils.getAnnotation(testClass, FlywayTest.class);
 			dbResetWithAnnotation(testContext, annotation);
 		}
 	}
@@ -224,8 +229,14 @@ public class FlywayTestExecutionListener
 			throws Exception {
 		final Method testMethod = testContext.getTestMethod();
 
-		Set<FlywayTest> annotations = AnnotatedElementUtils.findMergedRepeatableAnnotations(testMethod, FlywayTest.class, FlywayTests.class);
-		for (FlywayTest annotation : annotations) {
+		FlywayTests containerAnnotation = AnnotationUtils.getAnnotation(testMethod, FlywayTests.class);
+		if (containerAnnotation != null) {
+			FlywayTest[] annotations = containerAnnotation.value();
+			for (FlywayTest annotation : annotations) {
+				dbResetWithAnnotation(testContext, annotation);
+			}
+		} else {
+			FlywayTest annotation = AnnotationUtils.getAnnotation(testMethod, FlywayTest.class);
 			dbResetWithAnnotation(testContext, annotation);
 		}
 	}
