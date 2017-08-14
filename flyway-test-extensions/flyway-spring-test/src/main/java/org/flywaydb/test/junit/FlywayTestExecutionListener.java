@@ -281,15 +281,16 @@ public class FlywayTestExecutionListener
 			final ApplicationContext appContext = testContext
 					.getApplicationContext();
 
-			final String executionInfo = ExecutionListenerHelper
-					.getExecutionInformation(testContext);
-
 			if (appContext != null) {
 				flyWay = getBean(appContext, Flyway.class, annotation.flywayName());
 
 				if (flyWay != null) {
+					String executionInfo = "";
+
 					// we have a fly way configuration no lets try
 					if (logger.isInfoEnabled()) {
+						executionInfo = ExecutionListenerHelper
+								.getExecutionInformation(testContext);
 						logger.info("---> Start reset database for  '"
 								+ executionInfo + "'.");
 					}

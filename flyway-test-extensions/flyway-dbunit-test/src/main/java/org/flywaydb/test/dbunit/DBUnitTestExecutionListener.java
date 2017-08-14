@@ -201,16 +201,16 @@ public class DBUnitTestExecutionListener
 		final Annotation annotation = testMethod
 				.getAnnotation(DBUnitSupport.class);
 
-		String executionInfo = ExecutionListenerHelper
-				.getExecutionInformation(testContext);
-
 		if (annotation != null) {
 			final DBUnitSupport dbUnitAnnotaton = (DBUnitSupport) annotation;
 			final String saveIt = dbUnitAnnotaton.saveFileAfterRun();
 			final String[] tables = dbUnitAnnotaton.saveTableAfterRun();
 
 			if (saveIt != null && saveIt.trim().length() > 0) {
+				String executionInfo = "";
 				if (logger.isDebugEnabled()) {
+					executionInfo = ExecutionListenerHelper
+							.getExecutionInformation(testContext);
 					logger.debug("******** Start save information '"
 							+ executionInfo + "' info file '" + saveIt + "'.");
 				}
@@ -254,12 +254,12 @@ public class DBUnitTestExecutionListener
 
 		if (loadFiles != null && loadFiles.length > 0) {
 			// we have some files to load
-			String executionInfo = ExecutionListenerHelper
-					.getExecutionInformation(testContext);
+			String executionInfo = "";
 
 			if (logger.isDebugEnabled()) {
+				executionInfo = ExecutionListenerHelper
+						.getExecutionInformation(testContext);
 				logger.debug("******** Load files  '" + executionInfo + "'.");
-
 			}
 
 			for (int i = 0; i < loadFiles.length; i += 2) {
