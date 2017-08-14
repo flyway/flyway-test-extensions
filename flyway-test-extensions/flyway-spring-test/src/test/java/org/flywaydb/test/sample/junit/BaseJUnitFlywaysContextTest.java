@@ -29,7 +29,7 @@ import org.junit.runner.RunWith;
 
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
 import static org.junit.Assert.assertEquals;
@@ -41,7 +41,7 @@ import static org.junit.Assert.assertTrue;
  *
  * @author Eddú Meléndez
  */
-@RunWith(SpringRunner.class)
+@RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "/context/flywayContainerContext.xml", "/context/secondFlywayContainerContext.xml" })
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
 		FlywayTestExecutionListener.class })
@@ -49,7 +49,7 @@ import static org.junit.Assert.assertTrue;
 		@FlywayTest(flywayName = "flyway"),
 		@FlywayTest(flywayName = "flyway2")
 })
-public class BaseJUnitFlywayContextTests extends BaseDBHelper {
+public class BaseJUnitFlywaysContextTest extends BaseDBHelper {
 
 	/**
 	 * Normal test method nothing done per startup
