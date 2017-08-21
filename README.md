@@ -28,7 +28,11 @@ This extension give the possibility to reset and/or fill the database with defin
   * <b>clean</b> - execution of flyway task clean
   * <b>init</b> - execution of flyway task init
   * <b>migrate</b> - execution of flyway task migrate
-* Annotation can be used at
+* FlywayTest annotation can be used at
+  * each test class (once per test case)
+  * each test method  
+  * together with JUnit Before annotation
+* Annotation FlywayTests support test if a more than one database should be contrlled dirung test. Annotation can be used at 
   * each test class (once per test case)
   * each test method  
   * together with JUnit Before annotation
@@ -82,11 +86,32 @@ For a detail usage description see the [UsageFlywaySpringTest](https://github.co
     public void testMethod() { 
 ```
 
+* add the @FlywayTests with @FlywaTest annotation on each class or method were you need a clean multible databases. 
+
+```java
+    // usage as once per class
+    @FlywayTests(value = {
+	@FlywayTest(flywayName = "flyway1"),   // Flyway configuration for database 1
+	@FlywayTest(flywayName = "flyway2")    // Flyway configuration for database 2
+    })
+    public class Spring4JUnitTest 
+
+    // another TestClass
+    
+    public class Spring4JUnitTest {
+    
+    // usage as per test method
+    @Test
+    @FlywayTests(value = {
+	@FlywayTest(flywayName = "flyway3"), // Flyway configuration for database 3
+	@FlywayTest(flywayName = "flyway4")  // Flyway configuration for database 4
+    })
+    public void testMethod() { 
 
 Project depend on
 -----------------
 * [Flyway](https://github.com/flyway/) (4.2.0)
-* [Spring Framework](http://www.springsource.org/) test, context, jdbc (5., 4.3.8, 3.2 or 2.5.6)
+* [Spring Framework](http://www.springsource.org/) test, context, jdbc (5., 4.3.10, 3.2 or 2.5.6)
 
 Notes
 -----
