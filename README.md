@@ -9,10 +9,10 @@ Test extensions for the Flyway project
 
 For feature of Flyway see [Flyway Db Org Page](http://flywaydb.org/) 
 
-Version 4.2.0 Released 
+Version 4.2.0.1 Released 
 ------------------------
 
-<b>2017-07-23</b> flyway-test-extensions version <b>4.2.0</b> released.
+<b>2017-08-21</b> flyway-test-extensions version <b>4.2.0.1</b> released.
 
 Version number 4.2.x are used to show the dependency to Flyway version 4.2.x.
 
@@ -32,7 +32,7 @@ This extension give the possibility to reset and/or fill the database with defin
   * each test class (once per test case)
   * each test method  
   * together with JUnit Before annotation
-* Annotation FlywayTests support test if a more than one database should be contrlled dirung test. Annotation can be used at 
+* Annotation FlywayTests support test if a more than one database must be controlled during test. Annotation can be used at 
   * each test class (once per test case)
   * each test method  
   * together with JUnit Before annotation
@@ -55,7 +55,7 @@ For a detail usage description see the [UsageFlywaySpringTest](https://github.co
     <dependency>
        <groupId>org.flywaydb.flyway-test-extensions</groupId>
        <artifactId>flyway-spring-test</artifactId>
-       <version>4.2.0</version>
+       <version>4.2.0.1</version>
        <scope>test</scope>
     </dependency>
 ```
@@ -86,7 +86,7 @@ For a detail usage description see the [UsageFlywaySpringTest](https://github.co
     public void testMethod() { 
 ```
 
-* add the @FlywayTests with @FlywayTest annotation on each class or method were you need a clean multible databases. 
+* add the @FlywayTests with @FlywayTest annotation on each class or method were you need a clean multible database setup. 
 
 ```java
     // usage as once per class
