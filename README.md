@@ -86,7 +86,7 @@ For a detail usage description see the [UsageFlywaySpringTest](https://github.co
     public void testMethod() { 
 ```
 
-* add the @FlywayTests with @FlywaTest annotation on each class or method were you need a clean multible databases. 
+* add the @FlywayTests with @FlywayTest annotation on each class or method were you need a clean multible databases. 
 
 ```java
     // usage as once per class
@@ -107,6 +107,7 @@ For a detail usage description see the [UsageFlywaySpringTest](https://github.co
 	@FlywayTest(flywayName = "flyway4")  // Flyway configuration for database 4
     })
     public void testMethod() { 
+```
 
 Project depend on
 -----------------
