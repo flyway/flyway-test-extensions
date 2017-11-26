@@ -21,20 +21,18 @@ import org.flywaydb.core.Flyway;
 import org.flywaydb.core.api.MigrationInfo;
 import org.flywaydb.core.api.MigrationInfoService;
 import org.flywaydb.test.annotation.FlywayTest;
-import org.flywaydb.test.extenstion.FlywayTestExtension;
 import org.flywaydb.test.junit.FlywayTestExecutionListener;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -60,7 +58,6 @@ public class Spring5JUnitTest extends BaseDBHelper {
     @AfterEach
     public void after(TestInfo testName) {
         Flyway flyway = context.getBean(Flyway.class);
-
 
         testName.getTestMethod() //
          .ifPresent( s -> logger.info( String.format("\t***** AFTER %s **********", s.getName())) );

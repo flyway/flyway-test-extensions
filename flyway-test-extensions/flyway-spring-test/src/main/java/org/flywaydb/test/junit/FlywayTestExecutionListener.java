@@ -181,9 +181,10 @@ public class FlywayTestExecutionListener
             throws Exception {
         Class testClass = testContext.getTestClass();
 
-        Class beforeClass = getClass().getClassLoader().loadClass("org.junit.Before");
+		Class beforeClass = getBeforeClassOrNull();
+		Class beforeEachClass = getBeforeEachClassOrNull();
 
-        // contains first finding of FlywayTest annotation together with a Before annotation
+		// contains first finding of FlywayTest annotation together with a Before annotation
         Annotation firstFlywayTestAnnotation = null;
         Method beforeMethod = null;
 
@@ -194,7 +195,7 @@ public class FlywayTestExecutionListener
                 && firstFlywayTestAnnotation == null) {
             final List<Method> allMethods = new ArrayList<Method>(Arrays.asList(currentTestClass.getDeclaredMethods()));
             for (final Method method : allMethods) {
-                if (method.isAnnotationPresent(beforeClass)
+                if ( isMethodAnnotatedWithBeforeAnnotation(method, beforeClass, beforeEachClass)
                         && method.isAnnotationPresent(FlywayTest.class)) {
                     firstFlywayTestAnnotation = method.getAnnotation(FlywayTest.class);
                     beforeMethod = method;
@@ -215,6 +216,35 @@ public class FlywayTestExecutionListener
         }
 
     }
+
+	private boolean isMethodAnnotatedWithBeforeAnnotation(Method method, Class beforeClass, Class beforeEachClass) {
+		return (beforeClass != null && method.isAnnotationPresent(beforeClass) )
+        || (beforeEachClass != null && method.isAnnotationPresent(beforeEachClass) );
+	}
+
+	private Class getBeforeClassOrNull()  {
+    	Class before = null;
+
+		try {
+			before = getClass().getClassLoader().loadClass("org.junit.Before");
+		} catch (ClassNotFoundException ignored) {
+			getLogger().debug("No class org.junit.Before is present.");
+		}
+
+		return before;
+	}
+
+	private Class getBeforeEachClassOrNull()  {
+		Class before = null;
+
+		try {
+			before = getClass().getClassLoader().loadClass("org.junit.jupiter.api.BeforeEach");
+		} catch (ClassNotFoundException ignored) {
+			getLogger().debug("No class org.junit.jupiter.api.BeforeEach is present.");
+		}
+
+		return before;
+	}
 
 	/**
 	 * Called from spring before a test method will be invoked.
