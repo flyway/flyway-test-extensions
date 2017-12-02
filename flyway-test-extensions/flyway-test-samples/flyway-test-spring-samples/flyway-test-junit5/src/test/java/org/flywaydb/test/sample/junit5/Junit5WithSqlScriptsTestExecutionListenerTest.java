@@ -38,7 +38,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 @ContextConfiguration(locations = {"/context/simple_applicationContext.xml"})
 @TestExecutionListeners({DependencyInjectionTestExecutionListener.class,
         FlywayTestExecutionListener.class, SqlScriptsTestExecutionListener.class})
-public class FlywayTestWithSqlScriptsTestExecutionListenerTest extends BaseDBHelper {
+public class Junit5WithSqlScriptsTestExecutionListenerTest extends BaseDBHelper {
 
     @FlywayTest(locationsForMigrate = "loadmsql")
     @Test

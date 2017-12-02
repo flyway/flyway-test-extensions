@@ -21,13 +21,13 @@
  *
  * <ul>
  * <li>Maven extension see the pom.xml file</li>
- * <li>Usage inside a test see {@link org.flywaydb.test.sample.junit5.Spring5JUnitTest}
+ * <li>Usage inside a test see {@link org.flywaydb.test.sample.junit5.5JUnitSpringTest}
  * <li>Test resources with SQL statements see the directories
  * <b>loadmsql</b> and <b>sampletest5</b></li>
  * </ul>
  *
  * @version 1.0
- * @version 2012-01-04
+ * @version 2017-12-02
  *
  */
 package org.flywaydb.test.sample.junit5;

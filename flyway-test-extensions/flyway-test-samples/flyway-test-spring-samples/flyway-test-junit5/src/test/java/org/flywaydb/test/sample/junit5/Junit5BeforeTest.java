@@ -49,7 +49,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
         FlywayTestExecutionListener.class})
 @FlywayTest
 @PropertySource("classpath:flyway.properties ")
-public class SpringBeforeTest extends BaseDBHelper {
+public class Junit5BeforeTest extends BaseDBHelper {
     private final Log logger = LogFactory.getLog(getClass());
 
 
