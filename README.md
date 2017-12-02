@@ -9,10 +9,10 @@ Test extensions for the Flyway project
 
 For feature of Flyway see [Flyway Db Org Page](http://flywaydb.org/) 
 
-Version 4.2.0.1 Released 
+Version 4.2.0.2 Released 
 ------------------------
 
-<b>2017-08-21</b> flyway-test-extensions version <b>4.2.0.1</b> released.
+<b>2017-12-02</b> flyway-test-extensions version <b>4.2.0.2</b> released.
 
 Version number 4.2.x are used to show the dependency to Flyway version 4.2.x.
 
@@ -31,16 +31,17 @@ This extension give the possibility to reset and/or fill the database with defin
 * FlywayTest annotation can be used at
   * each test class (once per test case)
   * each test method  
-  * together with JUnit Before annotation
+  * together with JUnit Before or BeforeEach annotation
 * Annotation FlywayTests support test if a more than one database must be controlled during test. Annotation can be used at 
   * each test class (once per test case)
   * each test method  
-  * together with JUnit Before annotation
+  * together with JUnit Before or BeforeEach annotation
 * Samples projects to use annotation inside a unit testing environment
   * Spring 5.x sample (see [complete sample for usage together with Spring 5](https://github.com/flyway/flyway-test-extensions/tree/master/flyway-test-extensions/flyway-test-samples/flyway-test-spring-samples/flyway-test-sample-spring5) )
   * Spring 4.x sample (see [UsageFlywaySpringTest4](https://github.com/flyway/flyway-test-extensions/wiki/Usage-flyway-spring-test) )
   * Spring 2.5.6 (see [UsageFlywaySpringTest256](http://code.google.com/p/flyway-test-extensions/wiki/UsageFlywaySpringTest256) )
   * SpringBoot test example (see [FlywayTestApplicationTest](https://github.com/flyway/flyway-test-extensions/blob/master/flyway-test-extensions/flyway-test-samples/flyway-test-spring-samples/spring-boot-sample-flyway/src/test/java/org/flywaydb/sample/test/spring/boot/flywaytest/FlywayTestApplicationTest.java) )
+  * JUnit5 test example (see [Junit5SpringTest](https://github.com/flyway/flyway-test-extensions/blob/master/flyway-test-extensions/flyway-test-samples/flyway-test-spring-samples/flyway-test-junit5/src/test/java/org/flywaydb/sample/test/junit5/Junit5SpringTest.java) )
 * Additional project supports a DBUnit annotation use together with FlywayTest [DBUnitSupport](https://github.com/flyway/flyway-test-extensions/blob/master/flyway-test-extensions/flyway-dbunit-test/src/main/java/org/flywaydb/test/dbunit/DBUnitSupport.java). A usage example you will find at [UsageFlywayDBUnitTest](https://github.com/flyway/flyway-test-extensions/wiki/Usage-flyway-dbunit-test).
 
 How to use it
@@ -49,21 +50,21 @@ The flyway test extension are available at [Maven Central](http://repo1.maven.or
 
 For a detail usage description see the [UsageFlywaySpringTest](https://github.com/flyway/flyway-test-extensions/wiki/Usage-flyway-spring-test) usage page. Attention: this version has a dependency to spring 4. If spring 3 support is needed use flyway-spring3-test instead.
 
-* add dependency to flyway-spring-test to your Mavan pom file
+* add dependency to flyway-spring-test to your Maven pom file
 
 ```xml
     <dependency>
        <groupId>org.flywaydb.flyway-test-extensions</groupId>
        <artifactId>flyway-spring-test</artifactId>
-       <version>4.2.0.1</version>
+       <version>4.2.0.2</version>
        <scope>test</scope>
     </dependency>
 ```
 
-* Extend your test class with the Spring test runner annotation.
+* Extend your test class with the Spring test runner annotation (Junit 4).
 
 ```java
-    @RunWith(SpringJUnit4ClassRunner.class)
+    @RunWith(SpringRunner.class)
     @ContextConfiguration(locations = {"/context/simple_applicationContext.xml" })
     @TestExecutionListeners({DependencyInjectionTestExecutionListener.class, 
                              FlywayTestExecutionListener.class })
@@ -109,10 +110,32 @@ For a detail usage description see the [UsageFlywaySpringTest](https://github.co
     public void testMethod() { 
 ```
 
+* Junit 5 support is only available together with Spring5 and need a different Spring setup.<br/> 
+A step by step setup can be found [here](https://github.com/flyway/flyway-test-extensions/wiki/How-to-use-Flyway-Test-with-Junit5-and-Springframework-5).
+
+```java
+@ExtendWith({SpringExtension.class})
+@ContextConfiguration(locations = { "/context/simple_applicationContext.xml" })
+@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
+		FlywayTestExecutionListener.class })
+@FlywayTest         // as class annotation
+public class Junit5SpringTest ...
+
+    @BeforeEach
+    @FlywayTest(locationsForMigrate = {"loadmsqlbefore"})  // together with BeforeEach
+    public void before() {
+    ...
+
+    @Test
+    @FlywayTest       // as method annotation
+    public void testMethodLoad() {
+
+```
+
 Project depend on
 -----------------
 * [Flyway](https://github.com/flyway/) (4.2.0)
-* [Spring Framework](http://www.springsource.org/) test, context, jdbc (5., 4.3.10, 3.2 or 2.5.6)
+* [Spring Framework](http://www.springsource.org/) test, context, jdbc (5.0.2, 4.3.13, 3.2 or 2.5.6)
 
 Notes
 -----
