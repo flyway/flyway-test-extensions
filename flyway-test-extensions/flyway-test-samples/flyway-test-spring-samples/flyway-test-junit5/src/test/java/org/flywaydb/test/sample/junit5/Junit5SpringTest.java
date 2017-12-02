@@ -52,7 +52,7 @@ import static org.hamcrest.Matchers.greaterThan;
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
 		FlywayTestExecutionListener.class })
 @FlywayTest
-public class Spring5JUnitTest extends BaseDBHelper {
+public class Junit5SpringTest extends BaseDBHelper {
     private final Log logger = LogFactory.getLog(getClass());
 
     @AfterEach
