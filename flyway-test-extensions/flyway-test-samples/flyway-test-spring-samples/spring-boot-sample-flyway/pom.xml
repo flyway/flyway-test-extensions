@@ -17,7 +17,7 @@
 	<description>Spring Boot Flyway Sample</description>
 	<properties>
         <spring.boot.version>1.5.9.RELEASE</spring.boot.version>
-        <spring.version>4.3.13.RELEASE</spring.version>
+        <spring.version>5.0.2.RELEASE</spring.version>
 	</properties>
 	<dependencies>
         <!-- slf4j-bridge for commons-logging -->
