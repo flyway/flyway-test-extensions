@@ -30,9 +30,10 @@
 
     <!--  Needed for system properties replacement -->
     <!-- Following will only work with spring 3 	-->
-    <context:property-placeholder location="classpath*:jdbc.properties,classpath*:flyway.default.properties,classpath*:flyway.properties"
-                                  ignore-resource-not-found="true"
-                                  system-properties-mode="OVERRIDE"/>
+    <context:property-placeholder
+            location="classpath*:jdbc.properties,classpath*:flyway.default.properties,classpath*:flyway.properties"
+            ignore-resource-not-found="true"
+            system-properties-mode="OVERRIDE"/>
 
     <!-- flyway part -->
     <!--
@@ -53,7 +54,8 @@
     -->
     <bean id="flywayFactory" class="org.flywaydb.test.junit.FlywayHelperFactory" depends-on="dataSourceRef"/>
 
-    <bean id="flyway" class="org.flywaydb.core.Flyway" depends-on="dataSourceRef" factory-bean="flywayFactory" factory-method="createFlyway">
+    <bean id="flyway" class="org.flywaydb.core.Flyway" depends-on="dataSourceRef" factory-bean="flywayFactory"
+          factory-method="createFlyway">
         <property name="dataSource" ref="dataSourceRef"/>
     </bean>
 
@@ -72,10 +74,18 @@
     <bean id="dataSourceRef" name="dataSource"
           class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 
-        <property name="driverClassName"><value>${flyway.driver}</value></property>
-        <property name="url"><value>${flyway.url}</value></property>
-        <property name="username"><value>${flyway.user}</value></property>
-        <property name="password"><value>${flyway.password}</value></property>
+        <property name="driverClassName">
+            <value>${flyway.driver}</value>
+        </property>
+        <property name="url">
+            <value>${flyway.url}</value>
+        </property>
+        <property name="username">
+            <value>${flyway.user}</value>
+        </property>
+        <property name="password">
+            <value>${flyway.password}</value>
+        </property>
         <property name="maxActive" value="-1"/>
 
     </bean>

@@ -1,11 +1,13 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
- 	<parent>
-		<groupId>org.flywaydb.flyway-test-extensions</groupId>
-		<artifactId>parent</artifactId>
-		<version>5.0.0-SNAPSHOT</version>
-		<relativePath>../parent/pom.xml</relativePath>
-	</parent>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.flywaydb.flyway-test-extensions</groupId>
+        <artifactId>parent</artifactId>
+        <version>5.0.0-SNAPSHOT</version>
+        <relativePath>../parent/pom.xml</relativePath>
+    </parent>
 
     <artifactId>flyway-spring-test</artifactId>
 
@@ -20,31 +22,31 @@
 
     <packaging>jar</packaging>
 
-	<properties>
+    <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-	</properties>
+    </properties>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>
-			<version>${version.spring}</version>
-			<scope>compile</scope>
-		</dependency>
+    <dependencies>
         <dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-			<version>${version.spring}</version>
-			<scope>compile</scope>
-		</dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${version.spring}</version>
+            <scope>compile</scope>
+        </dependency>
         <dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-jdbc</artifactId>
-			<version>${version.spring}</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${version.spring}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${version.spring}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
         </dependency>
@@ -64,100 +66,102 @@
         </dependency>
     </dependencies>
 
-	<build>
-		<plugins>
-		</plugins>
-	</build>
+    <build>
+        <plugins>
+        </plugins>
+    </build>
 
-	<profiles>
-		<profile>
-			<id>h2-test</id>
-			<activation><activeByDefault>true</activeByDefault></activation>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<configuration>
-							<systemPropertyVariables>
-								<jdbc.driver>org.h2.Driver</jdbc.driver>
-								<jdbc.url>jdbc:h2:nio:${project.build.directory}/db/flywaytest.db</jdbc.url>
-								<jdbc.username>h2_test</jdbc.username>
-								<jdbc.password>h2_test</jdbc.password>
-								<flyway.locations>/basetest</flyway.locations>
+    <profiles>
+        <profile>
+            <id>h2-test</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <systemPropertyVariables>
+                                <jdbc.driver>org.h2.Driver</jdbc.driver>
+                                <jdbc.url>jdbc:h2:nio:${project.build.directory}/db/flywaytest.db</jdbc.url>
+                                <jdbc.username>h2_test</jdbc.username>
+                                <jdbc.password>h2_test</jdbc.password>
+                                <flyway.locations>/basetest</flyway.locations>
                                 <flyway.driver>org.h2.Driver</flyway.driver>
                                 <flyway.url>jdbc:h2:nio:${project.build.directory}/db/flywaytest.db</flyway.url>
                                 <flyway.user>h2_test</flyway.user>
                                 <flyway.password>h2_test</flyway.password>
-								<jdbc2.driver>org.h2.Driver</jdbc2.driver>
-								<jdbc2.url>jdbc:h2:nio:${project.build.directory}/db/flywaytest2.db</jdbc2.url>
-								<jdbc2.username>h2_test</jdbc2.username>
-								<jdbc2.password>h2_test</jdbc2.password>
-								<flyway2.locations>/basetest2</flyway2.locations>
-								<flyway2.driver>org.h2.Driver</flyway2.driver>
-								<flyway2.url>jdbc:h2:nio:${project.build.directory}/db/flywaytest2.db</flyway2.url>
-								<flyway2.user>h2_test</flyway2.user>
-								<flyway2.password>h2_test</flyway2.password>
+                                <jdbc2.driver>org.h2.Driver</jdbc2.driver>
+                                <jdbc2.url>jdbc:h2:nio:${project.build.directory}/db/flywaytest2.db</jdbc2.url>
+                                <jdbc2.username>h2_test</jdbc2.username>
+                                <jdbc2.password>h2_test</jdbc2.password>
+                                <flyway2.locations>/basetest2</flyway2.locations>
+                                <flyway2.driver>org.h2.Driver</flyway2.driver>
+                                <flyway2.url>jdbc:h2:nio:${project.build.directory}/db/flywaytest2.db</flyway2.url>
+                                <flyway2.user>h2_test</flyway2.user>
+                                <flyway2.password>h2_test</flyway2.password>
                             </systemPropertyVariables>
-							<includes>
-								<include>**/*JUnitTest.java</include>
-							</includes>
-							<threadCount>1</threadCount>
-							<runOrder>alphabetical</runOrder>
-							<perCoreThreadCount>false</perCoreThreadCount>
-							<redirectTestOutputToFile>false</redirectTestOutputToFile>
-						</configuration>
-						<goals>
-							<goal>test</goal>
-						</goals>
-						<executions>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-		<profile>
-			<id>oracle-test</id>
-           <dependencies>
-               <dependency>
+                            <includes>
+                                <include>**/*JUnitTest.java</include>
+                            </includes>
+                            <threadCount>1</threadCount>
+                            <runOrder>alphabetical</runOrder>
+                            <perCoreThreadCount>false</perCoreThreadCount>
+                            <redirectTestOutputToFile>false</redirectTestOutputToFile>
+                        </configuration>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <executions>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>oracle-test</id>
+            <dependencies>
+                <dependency>
                     <groupId>com.oracle</groupId>
                     <artifactId>ojdbc5</artifactId>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
-			<build>
- 				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<configuration>
-							<systemPropertyVariables>
-								<jdbc.driver>oracle.jdbc.driver.OracleDriver</jdbc.driver>
-								<jdbc.url>jdbc:oracle:thin:@localhost:1521/XE</jdbc.url>
-								<jdbc.username>OC_TEST</jdbc.username>	
-								<jdbc.password>OC_TEST</jdbc.password>
-								<flyway.locations>basetest</flyway.locations>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <systemPropertyVariables>
+                                <jdbc.driver>oracle.jdbc.driver.OracleDriver</jdbc.driver>
+                                <jdbc.url>jdbc:oracle:thin:@localhost:1521/XE</jdbc.url>
+                                <jdbc.username>OC_TEST</jdbc.username>
+                                <jdbc.password>OC_TEST</jdbc.password>
+                                <flyway.locations>basetest</flyway.locations>
                                 <flyway.driver>oracle.jdbc.driver.OracleDriver</flyway.driver>
                                 <flyway.url>jdbc:oracle:thin:@localhost:1521/XE</flyway.url>
                                 <flyway.user>OC_TEST</flyway.user>
                                 <flyway.password>OC_TEST</flyway.password>
                             </systemPropertyVariables>
-							<includes>
-								<include>**/*JUnitTest.java</include>
-							</includes>
-							<threadCount>1</threadCount>
-							<runOrder>alphabetical</runOrder>
-							<perCoreThreadCount>false</perCoreThreadCount>
-							<redirectTestOutputToFile>false</redirectTestOutputToFile>
-						</configuration>
-						<goals>
-							<goal>test</goal>
-						</goals>
-						<executions>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
+                            <includes>
+                                <include>**/*JUnitTest.java</include>
+                            </includes>
+                            <threadCount>1</threadCount>
+                            <runOrder>alphabetical</runOrder>
+                            <perCoreThreadCount>false</perCoreThreadCount>
+                            <redirectTestOutputToFile>false</redirectTestOutputToFile>
+                        </configuration>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <executions>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

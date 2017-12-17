@@ -1,12 +1,12 @@
 /**
  * Copyright (C) 2011-2017 the original author or authors.
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -43,7 +43,7 @@ public class FlywayHelperFactory {
 
     private Flyway flyway;
 
-    private Properties flywayProperties            ;
+    private Properties flywayProperties;
 
     public FlywayHelperFactory() {
         logger.info("Create flyway helper factory.");
@@ -57,7 +57,7 @@ public class FlywayHelperFactory {
      */
     public synchronized Flyway createFlyway() {
 
-        if ( flyway == null )  {
+        if (flyway == null) {
             logger.info("Create a new flyway instance.");
             Flyway toReturn = new Flyway();
             setFlyway(toReturn);
@@ -65,7 +65,7 @@ public class FlywayHelperFactory {
             // now use the flyway properties
             Properties configuredProperties = getFlywayProperties();
 
-            if ( configuredProperties == null ) {
+            if (configuredProperties == null) {
                 // try to search flyway.properties in classpath
                 configuredProperties = new Properties();
                 setFlywayProperties(configuredProperties);
@@ -79,12 +79,12 @@ public class FlywayHelperFactory {
                     configuredProperties.load(inputStream);
                     inputStream.close();
                 } catch (IOException e) {
-                    logger.error("Can not load flyway.properties.",e);
+                    logger.error("Can not load flyway.properties.", e);
                 }
 
-                logger.info(String.format("Load flyway.properties with %d entries.",configuredProperties.size()));
+                logger.info(String.format("Load flyway.properties with %d entries.", configuredProperties.size()));
             } else {
-                logger.info(String.format("Used preconfigured flyway.properties with %d entries.",configuredProperties.size()));
+                logger.info(String.format("Used preconfigured flyway.properties with %d entries.", configuredProperties.size()));
             }
 
             toReturn.configure(getFlywayProperties());

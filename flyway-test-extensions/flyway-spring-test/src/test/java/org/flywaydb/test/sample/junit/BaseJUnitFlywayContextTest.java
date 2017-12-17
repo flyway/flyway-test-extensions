@@ -37,53 +37,53 @@ import static org.junit.Assert.assertTrue;
  * @version 2013-04-06
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "/context/flywayContainerContext.xml" })
-@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
-		FlywayTestExecutionListener.class })
+@ContextConfiguration(locations = {"/context/flywayContainerContext.xml"})
+@TestExecutionListeners({DependencyInjectionTestExecutionListener.class,
+        FlywayTestExecutionListener.class})
 @FlywayTest
 public class BaseJUnitFlywayContextTest extends BaseDBHelper {
 
-	/**
-	 * Normal test method nothing done per startup
-	 */
-	@Test
-	public void dummyTestNoLoad() throws Exception {
-		int res = countCustomer();
+    /**
+     * Normal test method nothing done per startup
+     */
+    @Test
+    public void dummyTestNoLoad() throws Exception {
+        int res = countCustomer();
 
         assertTrue("This test must runs without an error, because we can not guarantee that this test method run as first. " + res, true);
     }
 
-	/**
-	 * Made a clean init migrate usage before execution of test methods
-	 */
-	@Test
-	@FlywayTest
-	public void dummyTestMethodLoad() throws Exception {
-		int res = countCustomer();
+    /**
+     * Made a clean init migrate usage before execution of test methods
+     */
+    @Test
+    @FlywayTest
+    public void dummyTestMethodLoad() throws Exception {
+        int res = countCustomer();
 
-		assertEquals("Count of customer", 0, res);
-	}
+        assertEquals("Count of customer", 0, res);
+    }
 
-	/**
-	 * Made a clean init migrate usage before execution of test methods
-	 */
-	@Test
-	@FlywayTest(locationsForMigrate = { "basetest", "loadMultibleSQLs" }, overrideLocations=true)
-	public void loadMultibleSQLsOverrideLocations() throws Exception {
-		int res = countCustomer();
+    /**
+     * Made a clean init migrate usage before execution of test methods
+     */
+    @Test
+    @FlywayTest(locationsForMigrate = {"basetest", "loadMultibleSQLs"}, overrideLocations = true)
+    public void loadMultibleSQLsOverrideLocations() throws Exception {
+        int res = countCustomer();
 
-		assertEquals("Count of customer", 2, res);
-	}
+        assertEquals("Count of customer", 2, res);
+    }
 
-	/**
-	 * Made a clean init migrate usage before execution of test methods
-	 */
-	@Test
-	@FlywayTest(locationsForMigrate = {  "loadMultibleSQLs" } )
-	public void loadMultibleSQLsLocations() throws Exception {
-		int res = countCustomer();
+    /**
+     * Made a clean init migrate usage before execution of test methods
+     */
+    @Test
+    @FlywayTest(locationsForMigrate = {"loadMultibleSQLs"})
+    public void loadMultibleSQLsLocations() throws Exception {
+        int res = countCustomer();
 
-		assertEquals("Count of customer", 2, res);
-	}
+        assertEquals("Count of customer", 2, res);
+    }
 
 }

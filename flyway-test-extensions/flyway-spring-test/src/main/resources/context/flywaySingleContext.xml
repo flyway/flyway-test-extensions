@@ -50,7 +50,8 @@
     -->
     <bean id="flywayFactory" class="org.flywaydb.test.junit.FlywayHelperFactory" depends-on="dataSourceRef"/>
 
-    <bean id="flyway" class="org.flywaydb.core.Flyway" depends-on="dataSourceRef" factory-bean="flywayFactory" factory-method="createFlyway">
+    <bean id="flyway" class="org.flywaydb.core.Flyway" depends-on="dataSourceRef" factory-bean="flywayFactory"
+          factory-method="createFlyway">
         <property name="dataSource" ref="dataSourceRef"/>
     </bean>
 

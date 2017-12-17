@@ -21,42 +21,41 @@ import org.springframework.test.context.TestContext;
 
 /**
  * Simple helper for the TestExecutionListener
- * 
+ *
  * @author Florian
  * @version 2011-12-28
  * @version 1.0
  *
  */
 public abstract class ExecutionListenerHelper {
-	/**
-	 * Helper method to build test execution information with test class and
-	 * method
-	 * 
-	 * @param testContext of spring test environment
-	 * 
-	 * @return String like &lt;Class Name&gt;[.&lt;Method Name&gt;]
-	 */
-	public static String getExecutionInformation(TestContext testContext) {
-		String result = "";
-		Class<?> testClass = testContext.getTestClass();
+    /**
+     * Helper method to build test execution information with test class and
+     * method
+     *
+     * @param testContext of spring test environment
+     *
+     * @return String like &lt;Class Name&gt;[.&lt;Method Name&gt;]
+     */
+    public static String getExecutionInformation(TestContext testContext) {
+        String result = "";
+        Class<?> testClass = testContext.getTestClass();
 
-		result = testClass.getName();
+        result = testClass.getName();
 
-		// now check for method
-		Method m = null;
+        // now check for method
+        Method m = null;
 
-		try {
-			m = testContext.getTestMethod();
-		}
-		catch (IllegalStateException ex) {
-			// Do Nothing
-		}
+        try {
+            m = testContext.getTestMethod();
+        } catch (IllegalStateException ex) {
+            // Do Nothing
+        }
 
-		if (m != null) {
-			result = result + "." + m.getName();
-		}
+        if (m != null) {
+            result = result + "." + m.getName();
+        }
 
-		return result;
-	}
+        return result;
+    }
 
 }

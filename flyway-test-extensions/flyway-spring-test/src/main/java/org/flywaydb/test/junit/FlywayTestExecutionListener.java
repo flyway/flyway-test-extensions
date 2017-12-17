@@ -1,12 +1,12 @@
 /**
  * Copyright (C) 2011-2017 the original author or authors.
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -116,75 +116,75 @@ import org.springframework.test.context.support.AbstractTestExecutionListener;
  *
  */
 public class FlywayTestExecutionListener
-	extends AbstractTestExecutionListener
-		implements TestExecutionListener {
+        extends AbstractTestExecutionListener
+        implements TestExecutionListener {
 
-	/**
-	 * Used for logging inside test executions.
-	 */
-	// @@ Construction
-	private final Log logger = LogFactory.getLog(getClass());
+    /**
+     * Used for logging inside test executions.
+     */
+    // @@ Construction
+    private final Log logger = LogFactory.getLog(getClass());
 
-	/** default order 4000 */
-	private int order = 4000;
+    /** default order 4000 */
+    private int order = 4000;
 
-	/**
-	 * Allocates new <code>AbstractDbSpringContextTests</code> instance.
-	 */
-	public FlywayTestExecutionListener() {
-	}
+    /**
+     * Allocates new <code>AbstractDbSpringContextTests</code> instance.
+     */
+    public FlywayTestExecutionListener() {
+    }
 
-	/**
-	 * @return the instance of logger.
-	 */
-	protected Log getLogger() {
-		return logger;
-	}
+    /**
+     * @return the instance of logger.
+     */
+    protected Log getLogger() {
+        return logger;
+    }
 
-	/**
-	 * Invoke this method before test class will be created.</p>
-	 *
-	 * <b>Attention:</b> This will be only invoked if spring version &gt;= 3.x
-	 * are used.
-	 *
-	 * @param testContext
-	 *            default test context filled from spring
-	 *
-	 * @throws Exception
-	 *             if any error occurred
-	 */
-	public void beforeTestClass(final TestContext testContext) throws Exception {
-		// no we check for the DBResetForClass
-		final Class<?> testClass = testContext.getTestClass();
-		FlywayTests containerAnnotation = AnnotationUtils.getAnnotation(testClass, FlywayTests.class);
-		if (containerAnnotation != null) {
-			FlywayTest[] annotations = containerAnnotation.value();
-			for (FlywayTest annotation : annotations) {
-				dbResetWithAnnotation(testContext, annotation);
-			}
-		} else {
-			FlywayTest annotation = AnnotationUtils.getAnnotation(testClass, FlywayTest.class);
-			dbResetWithAnnotation(testContext, annotation);
-		}
-	}
+    /**
+     * Invoke this method before test class will be created.</p>
+     *
+     * <b>Attention:</b> This will be only invoked if spring version &gt;= 3.x
+     * are used.
+     *
+     * @param testContext
+     *            default test context filled from spring
+     *
+     * @throws Exception
+     *             if any error occurred
+     */
+    public void beforeTestClass(final TestContext testContext) throws Exception {
+        // no we check for the DBResetForClass
+        final Class<?> testClass = testContext.getTestClass();
+        FlywayTests containerAnnotation = AnnotationUtils.getAnnotation(testClass, FlywayTests.class);
+        if (containerAnnotation != null) {
+            FlywayTest[] annotations = containerAnnotation.value();
+            for (FlywayTest annotation : annotations) {
+                dbResetWithAnnotation(testContext, annotation);
+            }
+        } else {
+            FlywayTest annotation = AnnotationUtils.getAnnotation(testClass, FlywayTest.class);
+            dbResetWithAnnotation(testContext, annotation);
+        }
+    }
 
-	/**
-	 * implementation for annotation {@link FlywayTest} for handling with {@link org.junit.Before} annotation.
-	 *
-	 * @param testContext
-	 *            default test context filled from spring
-	 *
-	 * @throws Exception
-	 *             if any error occurred
-	 */
+    /**
+     * implementation for annotation {@link FlywayTest} for handling with {@link org.junit.Before} annotation.
+     *
+     * @param testContext
+     *            default test context filled from spring
+     *
+     * @throws Exception
+     *             if any error occurred
+     */
     public void prepareTestInstance(final TestContext testContext)
             throws Exception {
         Class testClass = testContext.getTestClass();
 
-		Class beforeClass = getBeforeClassOrNull();
-		Class beforeEachClass = getBeforeEachClassOrNull();
+        Class beforeClass = getBeforeClassOrNull();
+        Class beforeEachClass = getBeforeEachClassOrNull();
 
-		// contains first finding of FlywayTest annotation together with a Before annotation
+        // contains first finding of FlywayTest annotation together with a Before annotation
         Annotation firstFlywayTestAnnotation = null;
         Method beforeMethod = null;
 
@@ -195,7 +195,7 @@ public class FlywayTestExecutionListener
                 && firstFlywayTestAnnotation == null) {
             final List<Method> allMethods = new ArrayList<Method>(Arrays.asList(currentTestClass.getDeclaredMethods()));
             for (final Method method : allMethods) {
-                if ( isMethodAnnotatedWithBeforeAnnotation(method, beforeClass, beforeEachClass)
+                if (isMethodAnnotatedWithBeforeAnnotation(method, beforeClass, beforeEachClass)
                         && method.isAnnotationPresent(FlywayTest.class)) {
                     firstFlywayTestAnnotation = method.getAnnotation(FlywayTest.class);
                     beforeMethod = method;
@@ -217,129 +217,129 @@ public class FlywayTestExecutionListener
 
     }
 
-	private boolean isMethodAnnotatedWithBeforeAnnotation(Method method, Class beforeClass, Class beforeEachClass) {
-		return (beforeClass != null && method.isAnnotationPresent(beforeClass) )
-        || (beforeEachClass != null && method.isAnnotationPresent(beforeEachClass) );
-	}
+    private boolean isMethodAnnotatedWithBeforeAnnotation(Method method, Class beforeClass, Class beforeEachClass) {
+        return (beforeClass != null && method.isAnnotationPresent(beforeClass))
+                || (beforeEachClass != null && method.isAnnotationPresent(beforeEachClass));
+    }
 
-	private Class getBeforeClassOrNull()  {
-    	Class before = null;
+    private Class getBeforeClassOrNull() {
+        Class before = null;
 
-		try {
-			before = getClass().getClassLoader().loadClass("org.junit.Before");
-		} catch (ClassNotFoundException ignored) {
-			getLogger().debug("No class org.junit.Before is present.");
-		}
+        try {
+            before = getClass().getClassLoader().loadClass("org.junit.Before");
+        } catch (ClassNotFoundException ignored) {
+            getLogger().debug("No class org.junit.Before is present.");
+        }
 
-		return before;
-	}
+        return before;
+    }
 
-	private Class getBeforeEachClassOrNull()  {
-		Class before = null;
+    private Class getBeforeEachClassOrNull() {
+        Class before = null;
 
-		try {
-			before = getClass().getClassLoader().loadClass("org.junit.jupiter.api.BeforeEach");
-		} catch (ClassNotFoundException ignored) {
-			getLogger().debug("No class org.junit.jupiter.api.BeforeEach is present.");
-		}
+        try {
+            before = getClass().getClassLoader().loadClass("org.junit.jupiter.api.BeforeEach");
+        } catch (ClassNotFoundException ignored) {
+            getLogger().debug("No class org.junit.jupiter.api.BeforeEach is present.");
+        }
 
-		return before;
-	}
+        return before;
+    }
 
-	/**
-	 * Called from spring before a test method will be invoked.
-	 *
-	 * @param testContext
-	 *            default test context filled from spring
-	 *
-	 * @throws Exception
-	 *             if any error occurred
-	 */
-	public void beforeTestMethod(final TestContext testContext)
-			throws Exception {
-		final Method testMethod = testContext.getTestMethod();
+    /**
+     * Called from spring before a test method will be invoked.
+     *
+     * @param testContext
+     *            default test context filled from spring
+     *
+     * @throws Exception
+     *             if any error occurred
+     */
+    public void beforeTestMethod(final TestContext testContext)
+            throws Exception {
+        final Method testMethod = testContext.getTestMethod();
 
-		FlywayTests containerAnnotation = AnnotationUtils.getAnnotation(testMethod, FlywayTests.class);
-		if (containerAnnotation != null) {
-			FlywayTest[] annotations = containerAnnotation.value();
-			for (FlywayTest annotation : annotations) {
-				dbResetWithAnnotation(testContext, annotation);
-			}
-		} else {
-			FlywayTest annotation = AnnotationUtils.getAnnotation(testMethod, FlywayTest.class);
-			dbResetWithAnnotation(testContext, annotation);
-		}
-	}
+        FlywayTests containerAnnotation = AnnotationUtils.getAnnotation(testMethod, FlywayTests.class);
+        if (containerAnnotation != null) {
+            FlywayTest[] annotations = containerAnnotation.value();
+            for (FlywayTest annotation : annotations) {
+                dbResetWithAnnotation(testContext, annotation);
+            }
+        } else {
+            FlywayTest annotation = AnnotationUtils.getAnnotation(testMethod, FlywayTest.class);
+            dbResetWithAnnotation(testContext, annotation);
+        }
+    }
 
-	/**
-	 * no implementation for annotation {@link FlywayTest} needed.
-	 *
-	 * @param testContext
-	 *            default test context filled from spring
-	 *
-	 * @throws Exception
-	 *             if any error occurred
-	 */
-	public void afterTestMethod(final TestContext testContext) throws Exception {
-	}
+    /**
+     * no implementation for annotation {@link FlywayTest} needed.
+     *
+     * @param testContext
+     *            default test context filled from spring
+     *
+     * @throws Exception
+     *             if any error occurred
+     */
+    public void afterTestMethod(final TestContext testContext) throws Exception {
+    }
 
-	/**
-	 * no implementation for annotation {@link FlywayTest} needed.
-	 *
-	 * @param testContext
-	 *            default test context filled from spring
-	 *
-	 * @throws Exception
-	 *             if any error occurred
-	 */
-	public void afterTestClass(final TestContext testContext) throws Exception {
-	}
+    /**
+     * no implementation for annotation {@link FlywayTest} needed.
+     *
+     * @param testContext
+     *            default test context filled from spring
+     *
+     * @throws Exception
+     *             if any error occurred
+     */
+    public void afterTestClass(final TestContext testContext) throws Exception {
+    }
 
-	/**
-	 * Test the annotation an reset the database.
-	 *
-	 * @param testContext
-	 *            default test context filled from spring
-	 * @param annotation
-	 *            founded
-	 */
-	private void dbResetWithAnnotation(final TestContext testContext,
-			final FlywayTest annotation) {
-		if (annotation != null) {
-			Flyway flyWay = null;
+    /**
+     * Test the annotation an reset the database.
+     *
+     * @param testContext
+     *            default test context filled from spring
+     * @param annotation
+     *            founded
+     */
+    private void dbResetWithAnnotation(final TestContext testContext,
+                                       final FlywayTest annotation) {
+        if (annotation != null) {
+            Flyway flyWay = null;
 
-			final ApplicationContext appContext = testContext
-					.getApplicationContext();
+            final ApplicationContext appContext = testContext
+                    .getApplicationContext();
 
-			if (appContext != null) {
-				flyWay = getBean(appContext, Flyway.class, annotation.flywayName());
+            if (appContext != null) {
+                flyWay = getBean(appContext, Flyway.class, annotation.flywayName());
 
-				if (flyWay != null) {
-					String executionInfo = "";
+                if (flyWay != null) {
+                    String executionInfo = "";
 
-					// we have a fly way configuration no lets try
-					if (logger.isInfoEnabled()) {
-						executionInfo = ExecutionListenerHelper
-								.getExecutionInformation(testContext);
-						logger.info("---> Start reset database for  '"
-								+ executionInfo + "'.");
-					}
-					if (annotation.invokeCleanDB()) {
-						if (logger.isDebugEnabled()) {
-							logger.debug("******** Clean database for  '"
-									+ executionInfo + "'.");
-						}
-						flyWay.clean();
-					}
-					if (annotation.invokeBaselineDB()) {
-						if (logger.isDebugEnabled()) {
-							logger.debug("******** Baseline database  for  '"
-									+ executionInfo + "'.");
-						}
-						flyWay.baseline();
-					}
-					if (annotation.invokeMigrateDB()) {
-						String[] locations = annotation.locationsForMigrate();
+                    // we have a fly way configuration no lets try
+                    if (logger.isInfoEnabled()) {
+                        executionInfo = ExecutionListenerHelper
+                                .getExecutionInformation(testContext);
+                        logger.info("---> Start reset database for  '"
+                                + executionInfo + "'.");
+                    }
+                    if (annotation.invokeCleanDB()) {
+                        if (logger.isDebugEnabled()) {
+                            logger.debug("******** Clean database for  '"
+                                    + executionInfo + "'.");
+                        }
+                        flyWay.clean();
+                    }
+                    if (annotation.invokeBaselineDB()) {
+                        if (logger.isDebugEnabled()) {
+                            logger.debug("******** Baseline database  for  '"
+                                    + executionInfo + "'.");
+                        }
+                        flyWay.baseline();
+                    }
+                    if (annotation.invokeMigrateDB()) {
+                        String[] locations = annotation.locationsForMigrate();
 
                         if ((locations == null || locations.length == 0)) {
 
@@ -353,122 +353,122 @@ public class FlywayTestExecutionListener
                             locationsMigrationHandling(annotation, flyWay,
                                     executionInfo);
                         }
-					}
-					if (logger.isInfoEnabled()) {
-						logger.info("<--- Finished reset database  for  '"
-								+ executionInfo + "'.");
-					}
+                    }
+                    if (logger.isInfoEnabled()) {
+                        logger.info("<--- Finished reset database  for  '"
+                                + executionInfo + "'.");
+                    }
 
-					return;
-				}
-				// in this case we have not the possibility to reset the
-				// database
+                    return;
+                }
+                // in this case we have not the possibility to reset the
+                // database
 
-				throw new IllegalArgumentException("Annotation "
-						+ annotation.getClass()
-						+ " was set, but no Flyway configuration was given.");
-			}
-			// in this case we have not the possibility to reset the database
+                throw new IllegalArgumentException("Annotation "
+                        + annotation.getClass()
+                        + " was set, but no Flyway configuration was given.");
+            }
+            // in this case we have not the possibility to reset the database
 
-			throw new IllegalArgumentException("Annotation "
-					+ annotation.getClass()
-					+ " was set, but no configuration was given.");
-		}
-	}
+            throw new IllegalArgumentException("Annotation "
+                    + annotation.getClass()
+                    + " was set, but no configuration was given.");
+        }
+    }
 
-	/**
-	 * Handling of the change of locations configuration of a flyway.
-	 *
-	 * @param annotation
-	 *            current annotation
-	 * @param flyWay
-	 *            bean
-	 * @param executionInfo
-	 *            current test context.
-	 */
-	private void locationsMigrationHandling(final FlywayTest annotation,
-			final Flyway flyWay, final String executionInfo) {
-		final String[] locations = annotation.locationsForMigrate();
+    /**
+     * Handling of the change of locations configuration of a flyway.
+     *
+     * @param annotation
+     *            current annotation
+     * @param flyWay
+     *            bean
+     * @param executionInfo
+     *            current test context.
+     */
+    private void locationsMigrationHandling(final FlywayTest annotation,
+                                            final Flyway flyWay, final String executionInfo) {
+        final String[] locations = annotation.locationsForMigrate();
 
-		// now migration handling for locations support
-		String[] oldLocations = flyWay.getLocations();
-		boolean override = annotation.overrideLocations();
-		try {
-			String[] useLocations = null;
-			if (override) {
-				useLocations = locations;
-			} else {
-				// Fill the locations
-				useLocations = Arrays.copyOf(oldLocations, oldLocations.length
-						+ locations.length);
+        // now migration handling for locations support
+        String[] oldLocations = flyWay.getLocations();
+        boolean override = annotation.overrideLocations();
+        try {
+            String[] useLocations = null;
+            if (override) {
+                useLocations = locations;
+            } else {
+                // Fill the locations
+                useLocations = Arrays.copyOf(oldLocations, oldLocations.length
+                        + locations.length);
 
                 System.arraycopy(locations, 0, useLocations, oldLocations.length, locations.length);
-			}
-			if (logger.isDebugEnabled()) {
-				logger.debug(String
-						.format("******** Start migration from locations directories '%s'  for  '%s'.",
-								Arrays.asList(useLocations), executionInfo));
+            }
+            if (logger.isDebugEnabled()) {
+                logger.debug(String
+                        .format("******** Start migration from locations directories '%s'  for  '%s'.",
+                                Arrays.asList(useLocations), executionInfo));
 
-			}
+            }
 
-			flyWay.setLocations(useLocations);
+            flyWay.setLocations(useLocations);
 
-			flyWay.migrate();
-		} finally {
-			// reset the flyway bean to original configuration.
-			flyWay.setLocations(oldLocations);
-		}
-	}
+            flyWay.migrate();
+        } finally {
+            // reset the flyway bean to original configuration.
+            flyWay.setLocations(oldLocations);
+        }
+    }
 
-	/**
-	 * Wrapper to get a method
-	 * <code>ApplicationContext.getBean(Class _class)</code> like in spring 3.0.
-	 * It will returns always the first instance of the founded class.
-	 *
-	 * @param context
-	 *            from which the bean should be retrieved
-	 * @param classType
-	 *            class type that should be retrieved from the configuration
-	 *            file.
-	 *
-	 * @return a object of the type or <code>null</code>
-	 */
-	private Flyway getBean(final ApplicationContext context,
-			final Class<?> classType, String idName) {
-		Flyway result = null;
+    /**
+     * Wrapper to get a method
+     * <code>ApplicationContext.getBean(Class _class)</code> like in spring 3.0.
+     * It will returns always the first instance of the founded class.
+     *
+     * @param context
+     *            from which the bean should be retrieved
+     * @param classType
+     *            class type that should be retrieved from the configuration
+     *            file.
+     *
+     * @return a object of the type or <code>null</code>
+     */
+    private Flyway getBean(final ApplicationContext context,
+                           final Class<?> classType, String idName) {
+        Flyway result = null;
 
-		String[] names = context.getBeanNamesForType(classType);
+        String[] names = context.getBeanNamesForType(classType);
 
-		if (names != null && names.length > 0) {
-			if ( idName == null || idName.trim().isEmpty() ) {
-				// old behaviour
-				// we always return the bean with the first name
+        if (names != null && names.length > 0) {
+            if (idName == null || idName.trim().isEmpty()) {
+                // old behaviour
+                // we always return the bean with the first name
 
-				result = (Flyway) context.getBean(names[0]);
-			} else {
-				result = (Flyway) context.getBean(idName);
-			}
-		}
+                result = (Flyway) context.getBean(names[0]);
+            } else {
+                result = (Flyway) context.getBean(idName);
+            }
+        }
 
-		return result;
-	}
+        return result;
+    }
 
-	/**
-	 * change the default order value;
-	 * @since 3.2.1.1
-	 *
-	 */
-	public void setOrder(int order) {
-		this.order = order;
-	}
+    /**
+     * change the default order value;
+     * @since 3.2.1.1
+     *
+     */
+    public void setOrder(int order) {
+        this.order = order;
+    }
 
-	/**
-	 *
-	 * @return order default 4500
-	 * @since 3.2.1.1
-	 *
-	 */
-	public int getOrder() {
-		return order;
-	}
+    /**
+     *
+     * @return order default 4500
+     * @since 3.2.1.1
+     *
+     */
+    public int getOrder() {
+        return order;
+    }
 }

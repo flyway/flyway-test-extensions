@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2011-2017 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -33,20 +33,20 @@ import java.lang.annotation.RetentionPolicy;
  * For usage together with JUnit see {@link org.flywaydb.test.junit.FlywayTestExecutionListener}.</p>
  *
  * @author Florian
- * @version  2011-12-10
+ * @version 2011-12-10
  * @version 1.7
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Repeatable(FlywayTests.class)
 public @interface FlywayTest {
 
-	/**
-	 * invoke flyway command clean before a init/migrate call.</p>
+    /**
+     * invoke flyway command clean before a init/migrate call.</p>
      * If set to true it will invoke {@link org.flywaydb.core.Flyway#clean()}.
      *
-	 *  Default: true
-	 */
-	public boolean invokeCleanDB() default true;
+     *  Default: true
+     */
+    public boolean invokeCleanDB() default true;
 
     /**
      * invoke flyway command baseline before a migrate call</p>
@@ -61,40 +61,40 @@ public @interface FlywayTest {
     public boolean invokeBaselineDB() default false;
 
     /**
-	 * invoke flyway command migrate </p>
+     * invoke flyway command migrate </p>
      * If set to true it will invoke {@link org.flywaydb.core.Flyway#migrate()}.
      *
-	 *  Default: true
-	 */
-	public boolean invokeMigrateDB() default true;
-
-	/**
-	 * Support to add locations to the default location settings. <p/>
-	 *
-	 * if {link #overrideLocations()} returns true the complete locations will
-	 * be changed.<p/>
-	 *
-	 * Default: empty list  <p/>
-	 */
-	public String[] locationsForMigrate() default {};
-
-	/**
-	 * With this attribute the handling of the locationsForMigrate can be changed. <p/>
-	 *
-	 * Default: false
-	 */
-	public boolean overrideLocations() default false;
-
-	/**
-	 * Reference the flyway bean name.<p/>
-	 *
-	 * If no name are specified the first Flyway instance {@link org.flywaydb.core.Flyway} of the
-	 * application context are used.<p/>
-	 *
-	 * If the name of the {@link org.flywaydb.core.Flyway} instance are not part of the application
-	 * context, the test will fail with {@link org.springframework.beans.factory.NoSuchBeanDefinitionException}.<p/>
-	 *
-	 * Default: empty string<p/>
+     *  Default: true
      */
-	public String flywayName() default "";
+    public boolean invokeMigrateDB() default true;
+
+    /**
+     * Support to add locations to the default location settings. <p/>
+     *
+     * if {@link #overrideLocations()} returns true the complete locations will
+     * be changed.
+     *
+     * Default: empty list  <p/>
+     */
+    public String[] locationsForMigrate() default {};
+
+    /**
+     * With this attribute the handling of the locationsForMigrate can be changed. <p/>
+     *
+     * Default: false
+     */
+    public boolean overrideLocations() default false;
+
+    /**
+     * Reference the flyway bean name.<p/>
+     *
+     * If no name are specified the first Flyway instance {@link org.flywaydb.core.Flyway} of the
+     * application context are used.<p/>
+     *
+     * If the name of the {@link org.flywaydb.core.Flyway} instance are not part of the application
+     * context, the test will fail with {@link org.springframework.beans.factory.NoSuchBeanDefinitionException}.<p/>
+     *
+     * Default: empty string<p/>
+     */
+    public String flywayName() default "";
 }

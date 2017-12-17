@@ -28,58 +28,58 @@ import org.springframework.context.ApplicationContext;
 
 /**
  * Simple base class for test make no duplicate code for sql executions.
- * 
+ *
  * <b>Important:</b></p> This is only used for simple test execution and the
  * implementation is not really safe.
- * 
+ *
  * @author Florian
  * @version 2011-12-20
  * @version 1.0
  */
 public abstract class BaseDBHelper {
 
-	@Autowired
-	protected ApplicationContext context;
+    @Autowired
+    protected ApplicationContext context;
 
-	protected Connection con;
+    protected Connection con;
 
-	/**
-	 * Open a connection to database for test execution statements
-	 * 
-	 * @throws Exception
-	 */
-	@Before
-	public void setup() throws Exception {
+    /**
+     * Open a connection to database for test execution statements
+     *
+     * @throws Exception
+     */
+    @Before
+    public void setup() throws Exception {
 
-		DataSource ds = (DataSource) context.getBean("dataSourceRef");
+        DataSource ds = (DataSource) context.getBean("dataSourceRef");
 
-		con = ds.getConnection();
-	}
+        con = ds.getConnection();
+    }
 
-	/**
-	 * Close the connection
-	 * 
-	 * @throws Exception
-	 */
-	@After
-	public void tearDown() throws Exception {
-		if (con != null) {
-			if (!con.isClosed()) {
-				con.rollback();
-				con.close();
-			}
-		}
-		con = null;
-	}
+    /**
+     * Close the connection
+     *
+     * @throws Exception
+     */
+    @After
+    public void tearDown() throws Exception {
+        if (con != null) {
+            if (!con.isClosed()) {
+                con.rollback();
+                con.close();
+            }
+        }
+        con = null;
+    }
 
-	/**
-	 * Simple counter query to have simple test inside test methods.
-	 * 
-	 * @return number of customer in database
-	 * @throws Exception
-	 */
-	public int countCustomer() throws Exception {
-		int result = -1;
+    /**
+     * Simple counter query to have simple test inside test methods.
+     *
+     * @return number of customer in database
+     * @throws Exception
+     */
+    public int countCustomer() throws Exception {
+        int result = -1;
 
         Statement stmt = con.createStatement();
         String query = "select count(*) from Customer";
@@ -95,8 +95,8 @@ public abstract class BaseDBHelper {
         return result;
     }
 
-	protected BaseDBHelper() {
-		super();
-	}
+    protected BaseDBHelper() {
+        super();
+    }
 
 }

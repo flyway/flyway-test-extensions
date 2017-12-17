@@ -42,91 +42,91 @@ import static org.junit.Assert.assertTrue;
  * @author Eddú Meléndez
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "/context/flywayContainerContext.xml", "/context/secondFlywayContainerContext.xml" })
-@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
-		FlywayTestExecutionListener.class })
+@ContextConfiguration(locations = {"/context/flywayContainerContext.xml", "/context/secondFlywayContainerContext.xml"})
+@TestExecutionListeners({DependencyInjectionTestExecutionListener.class,
+        FlywayTestExecutionListener.class})
 @FlywayTests(value = {
-		@FlywayTest(flywayName = "flyway"),
-		@FlywayTest(flywayName = "flyway2")
+        @FlywayTest(flywayName = "flyway"),
+        @FlywayTest(flywayName = "flyway2")
 })
 public class BaseJUnitFlywaysContextTest extends BaseDBHelper {
 
-	/**
-	 * Normal test method nothing done per startup
-	 */
-	@Test
-	public void dummyTestNoLoad() throws Exception {
-		int res = countCustomer();
-		int res2 = countCustomer2();
+    /**
+     * Normal test method nothing done per startup
+     */
+    @Test
+    public void dummyTestNoLoad() throws Exception {
+        int res = countCustomer();
+        int res2 = countCustomer2();
 
         assertTrue("This test must runs without an error, because we can not guarantee that this test method run as first. " + res, true);
         assertTrue("This test must runs without an error, because we can not guarantee that this test method run as first. " + res2, true);
     }
 
-	/**
-	 * Made a clean init migrate usage before execution of test methods
-	 */
-	@Test
-	@FlywayTests(value = {
-			@FlywayTest(flywayName = "flyway"),
-			@FlywayTest(flywayName = "flyway2")
-	})
-	public void dummyTestMethodLoad() throws Exception {
-		int res = countCustomer();
-		int res2 = countCustomer2();
+    /**
+     * Made a clean init migrate usage before execution of test methods
+     */
+    @Test
+    @FlywayTests(value = {
+            @FlywayTest(flywayName = "flyway"),
+            @FlywayTest(flywayName = "flyway2")
+    })
+    public void dummyTestMethodLoad() throws Exception {
+        int res = countCustomer();
+        int res2 = countCustomer2();
 
-		assertEquals("Count of customer", 0, res);
-		assertEquals("Count of customer2", 0, res2);
-	}
+        assertEquals("Count of customer", 0, res);
+        assertEquals("Count of customer2", 0, res2);
+    }
 
-	/**
-	 * Made a clean init migrate usage before execution of test methods
-	 */
-	@Test
-	@FlywayTests(value = {
-			@FlywayTest(locationsForMigrate = {"basetest", "loadMultibleSQLs"}, overrideLocations = true, flywayName = "flyway"),
-			@FlywayTest(locationsForMigrate = {"basetest2", "loadMultipleSQLs2"}, overrideLocations = true, flywayName = "flyway2")
-	})
-	public void loadMultipleSQLsOverrideLocations() throws Exception {
-		int res = countCustomer();
-		int res2 = countCustomer2();
+    /**
+     * Made a clean init migrate usage before execution of test methods
+     */
+    @Test
+    @FlywayTests(value = {
+            @FlywayTest(locationsForMigrate = {"basetest", "loadMultibleSQLs"}, overrideLocations = true, flywayName = "flyway"),
+            @FlywayTest(locationsForMigrate = {"basetest2", "loadMultipleSQLs2"}, overrideLocations = true, flywayName = "flyway2")
+    })
+    public void loadMultipleSQLsOverrideLocations() throws Exception {
+        int res = countCustomer();
+        int res2 = countCustomer2();
 
-		assertEquals("Count of customer", 2, res);
-		assertEquals("Count of customer2", 2, res2);
-	}
+        assertEquals("Count of customer", 2, res);
+        assertEquals("Count of customer2", 2, res2);
+    }
 
-	/**
-	 * Made a clean init migrate usage before execution of test methods
-	 */
-	@Test
-	@FlywayTests(value = {
-			@FlywayTest(locationsForMigrate = { "loadMultibleSQLs" }, flywayName = "flyway"),
-			@FlywayTest(locationsForMigrate = { "loadMultipleSQLs2" }, flywayName = "flyway2")
-	})
-	public void loadMultipleSQLsLocations() throws Exception {
-		int res = countCustomer();
-		int res2 = countCustomer2();
+    /**
+     * Made a clean init migrate usage before execution of test methods
+     */
+    @Test
+    @FlywayTests(value = {
+            @FlywayTest(locationsForMigrate = {"loadMultibleSQLs"}, flywayName = "flyway"),
+            @FlywayTest(locationsForMigrate = {"loadMultipleSQLs2"}, flywayName = "flyway2")
+    })
+    public void loadMultipleSQLsLocations() throws Exception {
+        int res = countCustomer();
+        int res2 = countCustomer2();
 
-		assertEquals("Count of customer", 2, res);
-		assertEquals("Count of customer2", 2, res2);
-	}
+        assertEquals("Count of customer", 2, res);
+        assertEquals("Count of customer2", 2, res2);
+    }
 
-	private int countCustomer2() throws Exception {
-		DataSource ds = (DataSource) context.getBean("dataSourceRef2");
-		int result = -1;
+    private int countCustomer2() throws Exception {
+        DataSource ds = (DataSource) context.getBean("dataSourceRef2");
+        int result = -1;
 
-		Statement stmt = ds.getConnection().createStatement();
-		String query = "select count(*) from Customer2";
+        Statement stmt = ds.getConnection().createStatement();
+        String query = "select count(*) from Customer2";
 
-		ResultSet rs = stmt.executeQuery(query);
-		rs.next();
-		Long cnt = rs.getLong(1);
-		result = cnt.intValue();
+        ResultSet rs = stmt.executeQuery(query);
+        rs.next();
+        Long cnt = rs.getLong(1);
+        result = cnt.intValue();
 
-		rs.close();
-		stmt.close();
+        rs.close();
+        stmt.close();
 
-		return result;
-	}
+        return result;
+    }
 
 }

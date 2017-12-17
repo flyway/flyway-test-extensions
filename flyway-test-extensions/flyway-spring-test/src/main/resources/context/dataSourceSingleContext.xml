@@ -45,10 +45,18 @@
     <bean id="dataSourceRef" name="dataSource"
           class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 
-        <property name="driverClassName"><value>${flyway.driver}</value></property>
-        <property name="url"><value>${flyway.url}</value></property>
-        <property name="username"><value>${flyway.user}</value></property>
-        <property name="password"><value>${flyway.password}</value></property>
+        <property name="driverClassName">
+            <value>${flyway.driver}</value>
+        </property>
+        <property name="url">
+            <value>${flyway.url}</value>
+        </property>
+        <property name="username">
+            <value>${flyway.user}</value>
+        </property>
+        <property name="password">
+            <value>${flyway.password}</value>
+        </property>
         <property name="maxActive" value="-1"/>
 
     </bean>
