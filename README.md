@@ -7,7 +7,7 @@ flyway-test-extensions
 Test extensions for the Flyway project
 --------------------------------------
 
-For feature of Flyway see [Flyway Db Org Page](http://flywaydb.org/) 
+For Flyway's features, see the [Flyway Db Org Page](http://flywaydb.org/) 
 
 Version 4.2.0.2 Released 
 ------------------------
@@ -18,25 +18,26 @@ Version number 4.2.x are used to show the dependency to Flyway version 4.2.x.
 
 See also [Release Notes](https://github.com/flyway/flyway-test-extensions/wiki/Release-Notes) 
 
-Central maven repository under http://search.maven.org/#search|ga|1|flyway-test-extensions contains all projects jar.
+Central maven repository under http://search.maven.org/#search|ga|1|flyway-test-extensions contains all project jars.
 
 Project
 -------
-This extension give the possibility to reset and/or fill the database with defined content.<br>With this precondition each test had reproducible database start point. 
+This extension gives the ability to reset and/or fill the database with defined content.
+With this precondition, each test provides a reproducible database start point. 
 
-* Annotation support FlywayTest for database unit testing. Use [Flyway](https://github.com/flyway/)  feature.
+* Annotation `FlywayTest` for database unit testing. Use [Flyway](https://github.com/flyway/) feature.
   * <b>clean</b> - execution of flyway task clean
   * <b>init</b> - execution of flyway task init
   * <b>migrate</b> - execution of flyway task migrate
-* FlywayTest annotation can be used at
+* `FlywayTest` annotation can be used at
   * each test class (once per test case)
   * each test method  
   * together with JUnit Before or BeforeEach annotation
-* Annotation FlywayTests support test if a more than one database must be controlled during test. Annotation can be used at 
+* Annotation `FlywayTests` if more than one database must be controlled during a test. Annotation can be used at 
   * each test class (once per test case)
   * each test method  
-  * together with JUnit Before or BeforeEach annotation
-* Samples projects to use annotation inside a unit testing environment
+  * together with JUnit `Before` or `BeforeEach` annotation
+* Sample projects on how to use the annotations inside a unit testing environment
   * Spring 5.x sample (see [complete sample for usage together with Spring 5](https://github.com/flyway/flyway-test-extensions/tree/master/flyway-test-extensions/flyway-test-samples/flyway-test-spring-samples/flyway-test-sample-spring5) )
   * Spring 4.x sample (see [UsageFlywaySpringTest4](https://github.com/flyway/flyway-test-extensions/wiki/Usage-flyway-spring-test) )
   * Spring 2.5.6 (see [UsageFlywaySpringTest256](http://code.google.com/p/flyway-test-extensions/wiki/UsageFlywaySpringTest256) )
@@ -46,11 +47,11 @@ This extension give the possibility to reset and/or fill the database with defin
 
 How to use it
 -------------
-The flyway test extension are available at [Maven Central](http://repo1.maven.org/maven2/org/flywaydb/flyway-test-extensions).
+The flyway test extensions are available at [Maven Central](http://repo1.maven.org/maven2/org/flywaydb/flyway-test-extensions).
 
-For a detail usage description see the [UsageFlywaySpringTest](https://github.com/flyway/flyway-test-extensions/wiki/Usage-flyway-spring-test) usage page. Attention: this version has a dependency to spring 4. If spring 3 support is needed use flyway-spring3-test instead.
+For a detail usage description see the [UsageFlywaySpringTest](https://github.com/flyway/flyway-test-extensions/wiki/Usage-flyway-spring-test) usage page. Attention: this version has a dependency on Spring 4. If Spring 3 support is needed, use flyway-spring3-test instead.
 
-* add dependency to flyway-spring-test to your Maven pom file
+* Add dependency to flyway-spring-test to your Maven pom file
 
 ```xml
     <dependency>
@@ -70,7 +71,7 @@ For a detail usage description see the [UsageFlywaySpringTest](https://github.co
                              FlywayTestExecutionListener.class })
 ```
     
-* add the @[FlywayTest](https://github.com/flyway/flyway-test-extensions/wiki/Usage-of-Annotation-FlywayTest) annotation on each class or method were you need a clean database. You can also use the anntotation on class basis and every test method in the class where a clean database is also needed.
+* Add the @[FlywayTest](https://github.com/flyway/flyway-test-extensions/wiki/Usage-of-Annotation-FlywayTest) annotation on each class or method were you need a clean database. You can also use the anntotation on class basis and every test method in the class where a clean database is also needed.
 
 ```java
     // usage as once per class
@@ -87,7 +88,7 @@ For a detail usage description see the [UsageFlywaySpringTest](https://github.co
     public void testMethod() { 
 ```
 
-* add the @FlywayTests with @FlywayTest annotation on each class or method were you need a clean multible database setup. 
+* Add the @FlywayTests with @FlywayTest annotation on each class or method were you need a clean multible database setup. 
 
 ```java
     // usage as once per class
