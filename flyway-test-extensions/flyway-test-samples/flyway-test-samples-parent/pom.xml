@@ -71,8 +71,8 @@
 		<version.commons.dbcp>1.4</version.commons.dbcp>
         <version.h2>1.2.137</version.h2>
         <version.oracle>11.2.0.2.0</version.oracle>
-        <maven.compiler.source>1.7</maven.compiler.source>
-        <maven.compiler.target>1.7</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
 	<reporting>
