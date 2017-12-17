@@ -156,6 +156,7 @@ public class FlywayTestExecutionListener
     public void beforeTestClass(final TestContext testContext) throws Exception {
         // no we check for the DBResetForClass
         final Class<?> testClass = testContext.getTestClass();
+
         FlywayTests containerAnnotation = AnnotationUtils.getAnnotation(testClass, FlywayTests.class);
         if (containerAnnotation != null) {
             FlywayTest[] annotations = containerAnnotation.value();
@@ -164,7 +165,9 @@ public class FlywayTestExecutionListener
             }
         } else {
             FlywayTest annotation = AnnotationUtils.getAnnotation(testClass, FlywayTest.class);
-            dbResetWithAnnotation(testContext, annotation);
+            if (annotation != null) {
+                dbResetWithAnnotation(testContext, annotation);
+            }
         }
     }
 
@@ -186,41 +189,31 @@ public class FlywayTestExecutionListener
         Class beforeEachMethodClass = getClassWithBeforeEachAnnotationOrNull();
 
         // contains first finding of FlywayTest annotation together with a Before annotation
-        Annotation firstFlywayTestAnnotation = null;
-        Method beforeMethod = null;
-
         Class currentTestClass = testClass;
 
         // search the first class with Before and FlywayTest annotation
-        while (currentTestClass != Object.class
-                && firstFlywayTestAnnotation == null) {
+        while (currentTestClass != Object.class) {
             final List<Method> allMethods = new ArrayList<Method>(Arrays.asList(currentTestClass.getDeclaredMethods()));
             for (final Method method : allMethods) {
-                if (isMethodAnnotatedWithBeforeAnnotation(method, beforeMethodClass, beforeEachMethodClass)
-                        && method.isAnnotationPresent(FlywayTest.class)) {
-                    firstFlywayTestAnnotation = method.getAnnotation(FlywayTest.class);
-                    beforeMethod = method;
-
-                    // we found what we search so we finished
-                    break;
+                if (isMethodAnnotatedWithAtLeastOne(method, beforeMethodClass, beforeEachMethodClass)
+                        && isMethodAnnotatedWithAtLeastOne(method, FlywayTest.class, FlywayTests.class)) {
+                    // we have a method here that have both annotations
+                    getLogger().debug("Method " + method.getName() + " using flyway annotation.");
+                    if (handleFlywayTestAnnotationForMethod(testContext, method)) {
+                        // finished handling
+                        return;
+                    }
                 }
             }
 
             // move to the upper class in the hierarchy in search for more methods
             currentTestClass = currentTestClass.getSuperclass();
         }
-
-        if (firstFlywayTestAnnotation != null) {
-            getLogger().debug("Method " + beforeMethod.getName() + " using flyway annotation " + firstFlywayTestAnnotation);
-
-            dbResetWithAnnotation(testContext, (FlywayTest) firstFlywayTestAnnotation);
-        }
-
     }
 
-    private boolean isMethodAnnotatedWithBeforeAnnotation(Method method, Class beforeMethodClass, Class beforeEachMethodClass) {
-        return (beforeMethodClass != null && method.isAnnotationPresent(beforeMethodClass))
-                || (beforeEachMethodClass != null && method.isAnnotationPresent(beforeEachMethodClass));
+    private boolean isMethodAnnotatedWithAtLeastOne(Method method, Class firtsAnnotationToCheck, Class secondAnnotationToCheck) {
+        return (firtsAnnotationToCheck != null && method.isAnnotationPresent(firtsAnnotationToCheck))
+                || (secondAnnotationToCheck != null && method.isAnnotationPresent(secondAnnotationToCheck));
     }
 
     private Class getClassWithBeforeMethodAnnotationOrNull() {
@@ -260,16 +253,36 @@ public class FlywayTestExecutionListener
             throws Exception {
         final Method testMethod = testContext.getTestMethod();
 
-        FlywayTests containerAnnotation = AnnotationUtils.getAnnotation(testMethod, FlywayTests.class);
+        handleFlywayTestAnnotationForMethod(testContext, testMethod);
+    }
+
+    /**
+     * Test if the annoration {@link FlywayTest} or {@link FlywayTests} is present and innvoke the annotation support.
+     *
+     * @param testContext current spring context
+     * @param method method to test.
+     *
+     * @return true if a annotation was present.
+     */
+    private boolean handleFlywayTestAnnotationForMethod(TestContext testContext, Method method) {
+        boolean result = false;
+
+        FlywayTests containerAnnotation = AnnotationUtils.getAnnotation(method, FlywayTests.class);
         if (containerAnnotation != null) {
             FlywayTest[] annotations = containerAnnotation.value();
             for (FlywayTest annotation : annotations) {
                 dbResetWithAnnotation(testContext, annotation);
+                result = true;
             }
         } else {
-            FlywayTest annotation = AnnotationUtils.getAnnotation(testMethod, FlywayTest.class);
-            dbResetWithAnnotation(testContext, annotation);
+            FlywayTest annotation = AnnotationUtils.getAnnotation(method, FlywayTest.class);
+            if (annotation != null) {
+                dbResetWithAnnotation(testContext, annotation);
+                result = true;
+            }
         }
+
+        return result;
     }
 
     /**
@@ -374,6 +387,10 @@ public class FlywayTestExecutionListener
             throw new IllegalArgumentException("Annotation "
                     + annotation.getClass()
                     + " was set, but no configuration was given.");
+        } else {
+            if (logger.isDebugEnabled()) {
+                logger.debug("dbResetWithAnnotation is called without a flyway test annotation.");
+            }
         }
     }
 
