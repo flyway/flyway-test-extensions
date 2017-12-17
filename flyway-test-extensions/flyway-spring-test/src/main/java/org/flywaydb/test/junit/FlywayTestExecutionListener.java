@@ -169,7 +169,8 @@ public class FlywayTestExecutionListener
     }
 
     /**
-     * implementation for annotation {@link FlywayTest} for handling with {@link org.junit.Before} annotation.
+     * implementation for annotation {@link FlywayTest} for handling with {@link org.junit.Before} or
+     * {@link org.junit.jupiter.api.BeforeEach} annotation.
      *
      * @param testContext
      *            default test context filled from spring
@@ -181,8 +182,8 @@ public class FlywayTestExecutionListener
             throws Exception {
         Class testClass = testContext.getTestClass();
 
-        Class beforeClass = getBeforeClassOrNull();
-        Class beforeEachClass = getBeforeEachClassOrNull();
+        Class beforeMethodClass = getClassWithBeforeMethodAnnotationOrNull();
+        Class beforeEachMethodClass = getClassWithBeforeEachAnnotationOrNull();
 
         // contains first finding of FlywayTest annotation together with a Before annotation
         Annotation firstFlywayTestAnnotation = null;
@@ -195,7 +196,7 @@ public class FlywayTestExecutionListener
                 && firstFlywayTestAnnotation == null) {
             final List<Method> allMethods = new ArrayList<Method>(Arrays.asList(currentTestClass.getDeclaredMethods()));
             for (final Method method : allMethods) {
-                if (isMethodAnnotatedWithBeforeAnnotation(method, beforeClass, beforeEachClass)
+                if (isMethodAnnotatedWithBeforeAnnotation(method, beforeMethodClass, beforeEachMethodClass)
                         && method.isAnnotationPresent(FlywayTest.class)) {
                     firstFlywayTestAnnotation = method.getAnnotation(FlywayTest.class);
                     beforeMethod = method;
@@ -217,12 +218,12 @@ public class FlywayTestExecutionListener
 
     }
 
-    private boolean isMethodAnnotatedWithBeforeAnnotation(Method method, Class beforeClass, Class beforeEachClass) {
-        return (beforeClass != null && method.isAnnotationPresent(beforeClass))
-                || (beforeEachClass != null && method.isAnnotationPresent(beforeEachClass));
+    private boolean isMethodAnnotatedWithBeforeAnnotation(Method method, Class beforeMethodClass, Class beforeEachMethodClass) {
+        return (beforeMethodClass != null && method.isAnnotationPresent(beforeMethodClass))
+                || (beforeEachMethodClass != null && method.isAnnotationPresent(beforeEachMethodClass));
     }
 
-    private Class getBeforeClassOrNull() {
+    private Class getClassWithBeforeMethodAnnotationOrNull() {
         Class before = null;
 
         try {
@@ -234,7 +235,7 @@ public class FlywayTestExecutionListener
         return before;
     }
 
-    private Class getBeforeEachClassOrNull() {
+    private Class getClassWithBeforeEachAnnotationOrNull() {
         Class before = null;
 
         try {
