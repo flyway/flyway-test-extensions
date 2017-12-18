@@ -15,7 +15,6 @@
  */
 package org.flywaydb.test.junit;
 
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -157,6 +156,17 @@ public class FlywayTestExecutionListener
         // no we check for the DBResetForClass
         final Class<?> testClass = testContext.getTestClass();
 
+        handleFlywayTestAnnotationForClass(testContext, testClass);
+
+        // now detect if current class has a beforeClass or BeforeAllAnnotation
+        Class beforeClassClass = getClassOrNullForName( "org.junit.BeforeClass");
+        Class beforeAllClass = getClassOrNullForName("org.junit.jupiter.api.BeforeAll");
+
+        // contains first finding of FlywayTest annotation together with a Before annotation
+        handleFlywayTestWithTestAnnotation(testContext, testClass, beforeClassClass, beforeAllClass);
+    }
+
+    private void handleFlywayTestAnnotationForClass(TestContext testContext, Class<?> testClass) {
         FlywayTests containerAnnotation = AnnotationUtils.getAnnotation(testClass, FlywayTests.class);
         if (containerAnnotation != null) {
             FlywayTest[] annotations = containerAnnotation.value();
@@ -185,17 +195,30 @@ public class FlywayTestExecutionListener
             throws Exception {
         Class testClass = testContext.getTestClass();
 
-        Class beforeMethodClass = getClassWithBeforeMethodAnnotationOrNull();
-        Class beforeEachMethodClass = getClassWithBeforeEachAnnotationOrNull();
+        Class beforeMethodClass = getClassOrNullForName( "org.junit.Before");
+        Class beforeEachMethodClass = getClassOrNullForName("org.junit.jupiter.api.BeforeEach");
 
         // contains first finding of FlywayTest annotation together with a Before annotation
+        handleFlywayTestWithTestAnnotation(testContext, testClass, beforeMethodClass, beforeEachMethodClass);
+    }
+
+    /**
+     * Search the class hierachie if a {@link FlywayTest} or {@link FlywayTests} annotation is used
+     * together with a one of the Test annotations.
+     *
+     * @param testContext  current test spring context
+     * @param testClass  current test class
+     * @param junit4TestAnnotationClass  junit4 test annotation class
+     * @param junit5TestAnnotationClass junit5 test annotation class
+     */
+    private void handleFlywayTestWithTestAnnotation(TestContext testContext, Class testClass, Class junit4TestAnnotationClass, Class junit5TestAnnotationClass) {
         Class currentTestClass = testClass;
 
         // search the first class with Before and FlywayTest annotation
         while (currentTestClass != Object.class) {
             final List<Method> allMethods = new ArrayList<Method>(Arrays.asList(currentTestClass.getDeclaredMethods()));
             for (final Method method : allMethods) {
-                if (isMethodAnnotatedWithAtLeastOne(method, beforeMethodClass, beforeEachMethodClass)
+                if (isMethodAnnotatedWithAtLeastOne(method, junit4TestAnnotationClass, junit5TestAnnotationClass)
                         && isMethodAnnotatedWithAtLeastOne(method, FlywayTest.class, FlywayTests.class)) {
                     // we have a method here that have both annotations
                     getLogger().debug("Method " + method.getName() + " using flyway annotation.");
@@ -216,29 +239,18 @@ public class FlywayTestExecutionListener
                 || (secondAnnotationToCheck != null && method.isAnnotationPresent(secondAnnotationToCheck));
     }
 
-    private Class getClassWithBeforeMethodAnnotationOrNull() {
+    private Class getClassOrNullForName(String classname) {
         Class before = null;
 
         try {
-            before = getClass().getClassLoader().loadClass("org.junit.Before");
+            before = getClass().getClassLoader().loadClass(classname);
         } catch (ClassNotFoundException ignored) {
-            getLogger().debug("No class org.junit.Before is present.");
+            getLogger().debug(String.format("No class %s is present.", classname));
         }
 
         return before;
     }
 
-    private Class getClassWithBeforeEachAnnotationOrNull() {
-        Class before = null;
-
-        try {
-            before = getClass().getClassLoader().loadClass("org.junit.jupiter.api.BeforeEach");
-        } catch (ClassNotFoundException ignored) {
-            getLogger().debug("No class org.junit.jupiter.api.BeforeEach is present.");
-        }
-
-        return before;
-    }
 
     /**
      * Called from spring before a test method will be invoked.
