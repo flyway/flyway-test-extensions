@@ -161,9 +161,10 @@ public class FlywayTestExecutionListener
         // now detect if current class has a beforeClass or BeforeAllAnnotation
         Class beforeClassClass = getClassOrNullForName( "org.junit.BeforeClass");
         Class beforeAllClass = getClassOrNullForName("org.junit.jupiter.api.BeforeAll");
+        Class beforeClassTestNgClass = getClassOrNullForName( "org.testng.annotations.BeforeClass");
 
         // contains first finding of FlywayTest annotation together with a Before annotation
-        handleFlywayTestWithTestAnnotation(testContext, testClass, beforeClassClass, beforeAllClass);
+        handleFlywayTestWithTestAnnotation(testContext, testClass, beforeClassClass, beforeAllClass, beforeClassTestNgClass);
     }
 
     private void handleFlywayTestAnnotationForClass(TestContext testContext, Class<?> testClass) {
@@ -191,15 +192,16 @@ public class FlywayTestExecutionListener
      * @throws Exception
      *             if any error occurred
      */
-    public void prepareTestInstance(final TestContext testContext)
+    public void beforeTestExecution(final TestContext testContext)
             throws Exception {
         Class testClass = testContext.getTestClass();
 
         Class beforeMethodClass = getClassOrNullForName( "org.junit.Before");
         Class beforeEachMethodClass = getClassOrNullForName("org.junit.jupiter.api.BeforeEach");
+        Class beforeMethodTestNgClass = getClassOrNullForName( "org.testng.annotations.BeforeMethod");
 
         // contains first finding of FlywayTest annotation together with a Before annotation
-        handleFlywayTestWithTestAnnotation(testContext, testClass, beforeMethodClass, beforeEachMethodClass);
+        handleFlywayTestWithTestAnnotation(testContext, testClass, beforeMethodClass, beforeEachMethodClass, beforeMethodTestNgClass);
     }
 
     /**
@@ -211,15 +213,15 @@ public class FlywayTestExecutionListener
      * @param junit4TestAnnotationClass  junit4 test annotation class
      * @param junit5TestAnnotationClass junit5 test annotation class
      */
-    private void handleFlywayTestWithTestAnnotation(TestContext testContext, Class testClass, Class junit4TestAnnotationClass, Class junit5TestAnnotationClass) {
+    private void handleFlywayTestWithTestAnnotation(TestContext testContext, Class testClass, Class junit4TestAnnotationClass, Class junit5TestAnnotationClass, Class testNgAnnotationClass) {
         Class currentTestClass = testClass;
 
         // search the first class with Before and FlywayTest annotation
         while (currentTestClass != Object.class) {
             final List<Method> allMethods = new ArrayList<Method>(Arrays.asList(currentTestClass.getDeclaredMethods()));
             for (final Method method : allMethods) {
-                if (isMethodAnnotatedWithAtLeastOne(method, junit4TestAnnotationClass, junit5TestAnnotationClass)
-                        && isMethodAnnotatedWithAtLeastOne(method, FlywayTest.class, FlywayTests.class)) {
+                if (isMethodAnnotatedWithAtLeastOne(method, junit4TestAnnotationClass, junit5TestAnnotationClass, testNgAnnotationClass)
+                        && isMethodAnnotatedWithAtLeastOne(method, FlywayTest.class, FlywayTests.class, null)) {
                     // we have a method here that have both annotations
                     getLogger().debug("Method " + method.getName() + " using flyway annotation.");
                     if (handleFlywayTestAnnotationForMethod(testContext, method)) {
@@ -234,9 +236,11 @@ public class FlywayTestExecutionListener
         }
     }
 
-    private boolean isMethodAnnotatedWithAtLeastOne(Method method, Class firtsAnnotationToCheck, Class secondAnnotationToCheck) {
+    private boolean isMethodAnnotatedWithAtLeastOne(Method method, Class firtsAnnotationToCheck, Class secondAnnotationToCheck,
+                                                    Class testNgAnnotationToCheck) {
         return (firtsAnnotationToCheck != null && method.isAnnotationPresent(firtsAnnotationToCheck))
-                || (secondAnnotationToCheck != null && method.isAnnotationPresent(secondAnnotationToCheck));
+                || (secondAnnotationToCheck != null && method.isAnnotationPresent(secondAnnotationToCheck)
+                || (testNgAnnotationToCheck != null && method.isAnnotationPresent(testNgAnnotationToCheck)) );
     }
 
     private Class getClassOrNullForName(String classname) {
