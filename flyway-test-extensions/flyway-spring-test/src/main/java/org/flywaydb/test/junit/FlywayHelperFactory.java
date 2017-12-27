@@ -15,9 +15,9 @@
  */
 package org.flywaydb.test.junit;
 
-import org.flywaydb.core.Flyway;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.flywaydb.core.Flyway;
 import org.springframework.core.io.ClassPathResource;
 
 import java.io.IOException;
@@ -26,14 +26,16 @@ import java.util.Properties;
 
 /**
  * Helper factory for Flyway creation and support for setting the flyway.properties and configure
- * flyway with {@link Flyway#configure(java.util.Properties)}.
+ * flyway with {@link Flyway#configure(Properties)}.
  *
  * @author Florian
  *
  * @version 2013-04-01
  * @version 2.1
+ *
+ * @deprecated use {@link org.flywaydb.test.FlywayHelperFactory} instead
  */
-public class FlywayHelperFactory {
+public class FlywayHelperFactory extends org.flywaydb.test.FlywayHelperFactory {
 
     /**
      * Used for logging inside test executions.
@@ -41,72 +43,8 @@ public class FlywayHelperFactory {
     // @@ Construction
     private final Log logger = LogFactory.getLog(getClass());
 
-    private Flyway flyway;
-
-    private Properties flywayProperties;
 
     public FlywayHelperFactory() {
         logger.info("Create flyway helper factory.");
-    }
-
-    /**
-     * Create a new flyway instance and call {@link Flyway#configure(java.util.Properties)}  with
-     * content of file <i>flyway.properties</i>.
-     *
-     * @return the flyway instance
-     */
-    public synchronized Flyway createFlyway() {
-
-        if (flyway == null) {
-            logger.info("Create a new flyway instance.");
-            Flyway toReturn = new Flyway();
-            setFlyway(toReturn);
-
-            // now use the flyway properties
-            Properties configuredProperties = getFlywayProperties();
-
-            if (configuredProperties == null) {
-                // try to search flyway.properties in classpath
-                configuredProperties = new Properties();
-                setFlywayProperties(configuredProperties);
-
-                ClassPathResource classPathResource = new ClassPathResource("flyway.properties");
-
-                InputStream inputStream = null;
-
-                try {
-                    inputStream = classPathResource.getInputStream();
-                    configuredProperties.load(inputStream);
-                    inputStream.close();
-                } catch (IOException e) {
-                    logger.error("Can not load flyway.properties.", e);
-                }
-
-                logger.info(String.format("Load flyway.properties with %d entries.", configuredProperties.size()));
-            } else {
-                logger.info(String.format("Used preconfigured flyway.properties with %d entries.", configuredProperties.size()));
-            }
-
-            toReturn.configure(getFlywayProperties());
-        }
-
-        return flyway;
-    }
-
-    public Properties getFlywayProperties() {
-        return flywayProperties;
-    }
-
-    public void setFlywayProperties(Properties flywayProperties) {
-        this.flywayProperties = flywayProperties;
-    }
-
-    @SuppressWarnings("unused")
-    public Flyway getFlyway() {
-        return flyway;
-    }
-
-    private void setFlyway(Flyway flyway) {
-        this.flyway = flyway;
     }
 }

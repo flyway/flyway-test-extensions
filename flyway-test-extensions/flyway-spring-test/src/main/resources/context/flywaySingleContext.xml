@@ -38,7 +38,7 @@
 
     <util:properties id="flyway.prop" location="/flyway.properties"/>
 
-    <bean id="flywayFactory" class="org.flywaydb.test.junit.FlywayHelperFactory" depends-on="dataSourceRef">
+    <bean id="flywayFactory" class="org.flywaydb.test.FlywayHelperFactory" depends-on="dataSourceRef">
         <property name="flywayProperties" ref="flyway.prop"/>
 
     </bean>
@@ -48,7 +48,7 @@
 
         load flyway.properties with the factory class.
     -->
-    <bean id="flywayFactory" class="org.flywaydb.test.junit.FlywayHelperFactory" depends-on="dataSourceRef"/>
+    <bean id="flywayFactory" class="org.flywaydb.test.FlywayHelperFactory" depends-on="dataSourceRef"/>
 
     <bean id="flyway" class="org.flywaydb.core.Flyway" depends-on="dataSourceRef" factory-bean="flywayFactory"
           factory-method="createFlyway">

@@ -42,7 +42,7 @@
     </bean>
 
     <!-- import the flyway creation bean -->
-    <bean id="flywayFactory2" class="org.flywaydb.test.junit.FlywayHelperFactory" depends-on="dataSourceRef2"/>
+    <bean id="flywayFactory2" class="org.flywaydb.test.FlywayHelperFactory" depends-on="dataSourceRef2"/>
 
     <bean id="flyway2" class="org.flywaydb.core.Flyway" depends-on="dataSourceRef2" factory-bean="flywayFactory2"
           factory-method="createFlyway">
