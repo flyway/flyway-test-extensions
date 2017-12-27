@@ -43,7 +43,7 @@ public abstract class BaseDBHelper {
 
     protected Connection con;
 
-    private int index = -1000;
+    private static int index = -1000;
 
 
     /**
