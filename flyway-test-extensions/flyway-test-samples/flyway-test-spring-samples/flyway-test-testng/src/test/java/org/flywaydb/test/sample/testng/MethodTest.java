@@ -16,15 +16,12 @@ import java.sql.SQLException;
 
 import static org.testng.AssertJUnit.assertEquals;
 
-/**
- * Simple Test to show {@link FlywayTest} annotation together with {@link #org.testng.annotations.BeforeMethod}
- * annotation.
- */
+
 @ContextConfiguration(locations = {"/context/simple_applicationContext.xml"})
 @TestExecutionListeners({DependencyInjectionTestExecutionListener.class,
         FlywayTestExecutionListener.class})
 @Test
-public class BeforeMethodTest extends AbstractTestNGSpringContextTests {
+public class MethodTest extends AbstractTestNGSpringContextTests {
 
     @Autowired
     protected ApplicationContext context;
@@ -37,7 +34,6 @@ public class BeforeMethodTest extends AbstractTestNGSpringContextTests {
      * @throws Exception
      */
     @BeforeMethod
-    @FlywayTest(locationsForMigrate = {"loadmsql"})
     public void beforeMethod() throws Exception {
         baseDbHelper = new BaseDbHelper(context);
         baseDbHelper.beforeMethod();
@@ -54,6 +50,7 @@ public class BeforeMethodTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test
+    @FlywayTest(locationsForMigrate = {"loadmsql"})
     public void simpleCountWithoutAny() throws Exception {
         int res = countCustomer();
 
@@ -67,16 +64,17 @@ public class BeforeMethodTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test
+    @FlywayTest(locationsForMigrate = {"loadmsql", "loadmsqlbefore"})
     public void additionalCountWithoutAny() throws Exception {
         int res = countCustomer();
 
-        assertEquals("Customer count musst be ", 2, res);
+        assertEquals("Customer count musst be ", 5, res);
 
         addCustomer("additionalCountWithoutAny");
 
         res = countCustomer();
 
-        assertEquals("Customer count musst be ", 3, res);
+        assertEquals("Customer count musst be ", 6, res);
     }
 
     /**

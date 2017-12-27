@@ -24,7 +24,7 @@ public class BaseDbHelper {
 
     protected Connection con;
 
-    private static int index = -1000;
+    private static int index = -10000;
 
     public BaseDbHelper(ApplicationContext context) {
         this.context = context;
