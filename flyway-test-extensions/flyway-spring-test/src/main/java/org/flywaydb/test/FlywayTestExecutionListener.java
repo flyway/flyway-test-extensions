@@ -181,8 +181,7 @@ public class FlywayTestExecutionListener
     }
 
     /**
-     * implementation for annotation {@link FlywayTest} for handling with {@link org.junit.Before} or
-     * {@link org.junit.jupiter.api.BeforeEach}  or {@link org.testng.annotations.BeforeMethod}  annotation.
+     * implementation for annotation {@link FlywayTest} for handling with {@link org.testng.annotations.BeforeMethod}  annotation.
      *
      * @param testContext
      *            default test context filled from spring
@@ -194,17 +193,15 @@ public class FlywayTestExecutionListener
             throws Exception {
         Class testClass = testContext.getTestClass();
 
-        Class beforeMethodClass = null;
-        Class beforeEachMethodClass = null;
         Class beforeMethodTestNgClass = getClassOrNullForName( "org.testng.annotations.BeforeMethod");
 
         // contains first finding of FlywayTest annotation together with a Before annotation
-        handleFlywayTestWithTestAnnotation(testContext, testClass, beforeMethodClass, beforeEachMethodClass, beforeMethodTestNgClass);
+        handleFlywayTestWithTestAnnotation(testContext, testClass, null, null, beforeMethodTestNgClass);
     }
 
     /**
      * implementation for annotation {@link FlywayTest} for handling with {@link org.junit.Before} or
-     * {@link org.junit.jupiter.api.BeforeEach} or {@link org.testng.annotations.BeforeMethod}  annotation.
+     * {@link org.junit.jupiter.api.BeforeEach}  annotation.
      *
      * @param testContext
      *            default test context filled from spring
@@ -218,10 +215,9 @@ public class FlywayTestExecutionListener
 
         Class beforeMethodClass = getClassOrNullForName( "org.junit.Before");
         Class beforeEachMethodClass = getClassOrNullForName("org.junit.jupiter.api.BeforeEach");
-        Class beforeMethodTestNgClass = null;
 
         // contains first finding of FlywayTest annotation together with a Before annotation
-        handleFlywayTestWithTestAnnotation(testContext, testClass, beforeMethodClass, beforeEachMethodClass, beforeMethodTestNgClass);
+        handleFlywayTestWithTestAnnotation(testContext, testClass, beforeMethodClass, beforeEachMethodClass, null);
     }
 
     /**

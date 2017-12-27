@@ -3,7 +3,7 @@ package org.flywaydb.test.sample.testng;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.flywaydb.test.annotation.FlywayTest;
-import org.flywaydb.test.junit.FlywayTestExecutionListener;
+import org.flywaydb.test.FlywayTestExecutionListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.PropertySource;
@@ -21,15 +21,14 @@ import java.sql.SQLException;
 import static org.testng.AssertJUnit.assertEquals;
 
 /**
- * Simple Test to show {@link FlywayTest} annotation together with {@link #org.testng.annotations.BeforeClass}
- * annotation.
+ * Simple Test to show {@link FlywayTest} usage as class level.
  */
 @ContextConfiguration(locations = {"/context/simple_applicationContext.xml"})
 @TestExecutionListeners({DependencyInjectionTestExecutionListener.class,
         FlywayTestExecutionListener.class})
 @PropertySource("classpath:flyway.properties ")
-
-public class BeforeClassTest extends AbstractTestNGSpringContextTests {
+@FlywayTest(locationsForMigrate = {"loadmsql"})
+public class ClassTest extends AbstractTestNGSpringContextTests {
     @Autowired
     private ApplicationContext context;
 
@@ -41,7 +40,6 @@ public class BeforeClassTest extends AbstractTestNGSpringContextTests {
 
 
     @BeforeClass
-    @FlywayTest(locationsForMigrate = {"loadmsql"})
     public static void beforeClass() {
     }
 
