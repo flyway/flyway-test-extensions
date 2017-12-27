@@ -1,14 +1,18 @@
 package org.flywaydb.test.sample.testng;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.flywaydb.test.annotation.FlywayTest;
 import org.flywaydb.test.junit.FlywayTestExecutionListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -16,17 +20,30 @@ import java.sql.SQLException;
 
 import static org.testng.AssertJUnit.assertEquals;
 
-
+/**
+ * Simple Test to show {@link FlywayTest} annotation together with {@link #org.testng.annotations.BeforeClass}
+ * annotation.
+ */
 @ContextConfiguration(locations = {"/context/simple_applicationContext.xml"})
 @TestExecutionListeners({DependencyInjectionTestExecutionListener.class,
         FlywayTestExecutionListener.class})
-@Test
-public class BeforeMethodTest extends AbstractTestNGSpringContextTests {
+@PropertySource("classpath:flyway.properties ")
 
+public class BeforeClassTest extends AbstractTestNGSpringContextTests {
     @Autowired
-    protected ApplicationContext context;
+    private ApplicationContext context;
+
+    private final Log logger = LogFactory.getLog(getClass());
+
+    private static int customerCount = 2;
 
     private BaseDbHelper baseDbHelper;
+
+
+    @BeforeClass
+    @FlywayTest(locationsForMigrate = {"loadmsql"})
+    public static void beforeClass() {
+    }
 
     /**
      * Open a connection to database for test execution statements
@@ -48,7 +65,10 @@ public class BeforeMethodTest extends AbstractTestNGSpringContextTests {
     @AfterMethod
     public void afterMethod() throws Exception {
         baseDbHelper.afterMethod();
+        customerCount++;
+        logger.info(String.format("After test the customer count must be %d.", customerCount));
     }
+
 
     @Test
     public void simpleCountWithoutAny() throws Exception {
@@ -76,12 +96,6 @@ public class BeforeMethodTest extends AbstractTestNGSpringContextTests {
         assertEquals("Customer count musst be ", 3, res);
     }
 
-    /**
-     * Simple counter query to have simple test inside test methods.
-     *
-     * @return number of customer in database
-     * @throws Exception
-     */
     private int countCustomer() throws Exception {
         return baseDbHelper.countCustomer();
     }
