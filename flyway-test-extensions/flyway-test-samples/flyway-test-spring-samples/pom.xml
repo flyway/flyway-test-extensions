@@ -46,6 +46,7 @@
         <module>spring-boot-sample-flyway</module>
 		<module>flyway-test-sample-spring5</module>
 		<module>flyway-test-junit5</module>
+		<module>flyway-test-testng</module>
     </modules>
 
 	<distributionManagement>
