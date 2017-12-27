@@ -23,6 +23,7 @@ import org.springframework.context.ApplicationContext;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
@@ -42,12 +43,15 @@ public abstract class BaseDBHelper {
 
     protected Connection con;
 
+    private int index = -1000;
+
+
     /**
      * Open a connection to database for test execution statements
      * @throws Exception
      */
     @BeforeEach
-    public void setup() throws Exception {
+    public void baseBeforeEach() throws Exception {
 
         DataSource ds = (DataSource) context.getBean("dataSourceRef");
 
@@ -60,7 +64,7 @@ public abstract class BaseDBHelper {
      * @throws Exception
      */
     @AfterEach
-    public void tearDown() throws Exception {
+    public void baseAfterEach() throws Exception {
         if (con != null) {
             if (!con.isClosed()) {
                 con.rollback();
@@ -90,6 +94,31 @@ public abstract class BaseDBHelper {
         }
 
         return result;
+    }
+
+    /**
+     * Add customer with the given name to the database.
+     *
+     * @param name of the customer to add.
+     *
+     * @return update count of the insert statement
+     *
+     * @throws SQLException
+     */
+    protected int addCustomer(String name) throws SQLException {
+
+        int newIndex = --index;
+
+        try (Statement stmt = con.createStatement()) {
+            String statement = String.format("insert into Customer (CUS_ID,CUS_NAME) VALUES (%d, '%s')",
+                    newIndex, name);
+
+            int updateCount = stmt.executeUpdate(statement);
+
+            con.commit();
+
+            return updateCount;
+        }
     }
 
     protected BaseDBHelper() {
