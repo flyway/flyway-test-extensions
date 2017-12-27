@@ -16,8 +16,8 @@
 package org.flywaydb.test.sample.spring5;
 
 
+import org.flywaydb.test.FlywayTestExecutionListener;
 import org.flywaydb.test.annotation.FlywayTest;
-import org.flywaydb.test.junit.FlywayTestExecutionListener;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -54,7 +54,7 @@ public class FlywayTestWithSqlScriptsTestExecutionListenerTest extends BaseDBHel
     public void loadSqlScriptExecutionsWithoutFlywayTestInsertTest() throws Exception {
         int countCustomer = countCustomer();
 
-        assertThat("Only Sql script customer should be loaded.", countCustomer, is (1));
+        assertThat("Only Sql script customer should be loaded.", countCustomer, is(1));
     }
 
     @FlywayTest(locationsForMigrate = "loadmsql")

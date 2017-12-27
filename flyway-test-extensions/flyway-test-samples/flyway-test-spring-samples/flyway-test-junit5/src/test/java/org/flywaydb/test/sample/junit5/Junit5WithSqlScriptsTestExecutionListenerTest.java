@@ -17,7 +17,7 @@ package org.flywaydb.test.sample.junit5;
 
 
 import org.flywaydb.test.annotation.FlywayTest;
-import org.flywaydb.test.junit.FlywayTestExecutionListener;
+import org.flywaydb.test.FlywayTestExecutionListener;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.ContextConfiguration;

@@ -22,7 +22,7 @@ import javax.sql.DataSource;
 
 import org.flywaydb.test.annotation.FlywayTest;
 import org.flywaydb.test.annotation.FlywayTests;
-import org.flywaydb.test.junit.FlywayTestExecutionListener;
+import org.flywaydb.test.FlywayTestExecutionListener;
 import org.flywaydb.test.sample.helper.BaseDBHelper;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -16,7 +16,7 @@
 package org.flywaydb.test.sample.spring5;
 
 import org.flywaydb.test.annotation.FlywayTest;
-import org.flywaydb.test.junit.FlywayTestExecutionListener;
+import org.flywaydb.test.FlywayTestExecutionListener;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;

@@ -20,8 +20,8 @@ import org.apache.commons.logging.LogFactory;
 import org.flywaydb.core.Flyway;
 import org.flywaydb.core.api.MigrationInfo;
 import org.flywaydb.core.api.MigrationInfoService;
+import org.flywaydb.test.FlywayTestExecutionListener;
 import org.flywaydb.test.annotation.FlywayTest;
-import org.flywaydb.test.junit.FlywayTestExecutionListener;
 import org.junit.After;
 import org.junit.Rule;
 import org.junit.Test;
@@ -49,9 +49,9 @@ import static org.hamcrest.Matchers.greaterThan;
  *
  */
 @RunWith(SpringRunner.class)
-@ContextConfiguration(locations = { "/context/simple_applicationContext.xml" })
-@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
-		FlywayTestExecutionListener.class })
+@ContextConfiguration(locations = {"/context/simple_applicationContext.xml"})
+@TestExecutionListeners({DependencyInjectionTestExecutionListener.class,
+        FlywayTestExecutionListener.class})
 @FlywayTest
 public class Spring5JUnitTest extends BaseDBHelper {
     private final Log logger = LogFactory.getLog(getClass());
@@ -64,58 +64,58 @@ public class Spring5JUnitTest extends BaseDBHelper {
         Flyway flyway = context.getBean(Flyway.class);
         logger.info(String.format("\t***** AFTER %s **********", testName.getMethodName()));
 
-       MigrationInfoService
-               info = flyway.info();
+        MigrationInfoService
+                info = flyway.info();
         System.out.println(info);
         MigrationInfo[] mig = info.all();
-        for ( MigrationInfo mi : mig ) {
+        for (MigrationInfo mi : mig) {
             logger.info(String.format("\t%s\t%s\t%s", mi.getVersion(), mi.getScript(), mi.getType()));
         }
         List list = Arrays.asList(info.all());
         logger.info("\t***** AFTER **********");
     }
 
-	/**
-	 * Normal test method nothing done per startup.
-	 * All startup code is be done during class setup.
-	 */
-	@Test
-	public void dummyTestNoLoad() throws Exception {
-		int res = countCustomer();
+    /**
+     * Normal test method nothing done per startup.
+     * All startup code is be done during class setup.
+     */
+    @Test
+    public void dummyTestNoLoad() throws Exception {
+        int res = countCustomer();
 
-        assertThat("This test must runs without an error, because we can not guarantee that this test method run as first. " + res, res , greaterThan(0)  );
+        assertThat("This test must runs without an error, because we can not guarantee that this test method run as first. " + res, res, greaterThan(0));
     }
-
-	/**
-	 * Made a clean init migrate usage before execution of test method.
-	 * SQL statements will be loaded from the default location.
-	 */
-	@Test
-	@FlywayTest
-	public void dummyTestMethodLoad() throws Exception {
-		int res = countCustomer();
-
-		assertThat("Count of customer", res, is(0));
-	}
-
-	/**
-	 * Made a clean init migrate usage before execution of test method and
-	 * load SQL statements from two directories.
-	 */
-	@Test
-	@FlywayTest(locationsForMigrate = {"loadmsql"})
-	public void loadMultibleSQLs() throws Exception {
-		int res = countCustomer();
-
-		assertThat("Count of customer", res, is(2));
-	}
 
     /**
      * Made a clean init migrate usage before execution of test method.
      * SQL statements will be loaded from the default location.
      */
     @Test
-    @FlywayTest(invokeBaselineDB=true)
+    @FlywayTest
+    public void dummyTestMethodLoad() throws Exception {
+        int res = countCustomer();
+
+        assertThat("Count of customer", res, is(0));
+    }
+
+    /**
+     * Made a clean init migrate usage before execution of test method and
+     * load SQL statements from two directories.
+     */
+    @Test
+    @FlywayTest(locationsForMigrate = {"loadmsql"})
+    public void loadMultibleSQLs() throws Exception {
+        int res = countCustomer();
+
+        assertThat("Count of customer", res, is(2));
+    }
+
+    /**
+     * Made a clean init migrate usage before execution of test method.
+     * SQL statements will be loaded from the default location.
+     */
+    @Test
+    @FlywayTest(invokeBaselineDB = true)
     public void testMethodLoadWithBaseline() throws Exception {
         int res = countCustomer();
 

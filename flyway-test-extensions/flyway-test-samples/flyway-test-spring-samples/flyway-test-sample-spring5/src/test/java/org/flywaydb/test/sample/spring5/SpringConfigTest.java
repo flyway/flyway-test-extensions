@@ -18,7 +18,7 @@ package org.flywaydb.test.sample.spring5;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.flywaydb.core.Flyway;
 import org.flywaydb.test.annotation.FlywayTest;
-import org.flywaydb.test.junit.FlywayTestExecutionListener;
+import org.flywaydb.test.FlywayTestExecutionListener;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;

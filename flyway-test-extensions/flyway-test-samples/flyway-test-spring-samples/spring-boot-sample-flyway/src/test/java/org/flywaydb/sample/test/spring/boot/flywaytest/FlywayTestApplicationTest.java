@@ -16,8 +16,8 @@
 package org.flywaydb.sample.test.spring.boot.flywaytest;
 
 import org.flywaydb.sample.test.spring.boot.SampleFlywayApplication;
+import org.flywaydb.test.FlywayTestExecutionListener;
 import org.flywaydb.test.annotation.FlywayTest;
-import org.flywaydb.test.junit.FlywayTestExecutionListener;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
