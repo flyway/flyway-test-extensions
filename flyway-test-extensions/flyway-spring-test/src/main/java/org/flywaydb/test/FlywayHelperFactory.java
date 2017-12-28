@@ -15,9 +15,9 @@
  */
 package org.flywaydb.test;
 
-import org.flywaydb.core.Flyway;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.flywaydb.core.Flyway;
 import org.springframework.core.io.ClassPathResource;
 
 import java.io.IOException;

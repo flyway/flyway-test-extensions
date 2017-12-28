@@ -1,237 +1,238 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
     <groupId>org.flywaydb.flyway-test-extensions.samples</groupId>
     <artifactId>flyway-test-samples-parent</artifactId>
-	<version>5.0.0-SNAPSHOT</version>
-	<packaging>pom</packaging>
-	<name>${project.artifactId}</name>
-	<description>
+    <version>5.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>${project.artifactId}</name>
+    <description>
         Parent pom for flyway-test-samples
     </description>
-	<url>https://github.com/flyway/flyway-test-extensions/</url>
-	<licenses>
-		<license>
-			<name>Apache 2</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-			<distribution>repo</distribution>
-			<comments>A business-friendly OSS license</comments>
-		</license>
-	</licenses>
-	<scm>
+    <url>https://github.com/flyway/flyway-test-extensions/</url>
+    <licenses>
+        <license>
+            <name>Apache 2</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
+    <scm>
         <url>https://github.com/flyway/flyway-test-extensions/</url>
         <connection>scm:git:https://github.com/flyway/flyway-test-extensions.git</connection>
         <developerConnection>scm:git:https://github.com/flyway/flyway-test-extensions.git</developerConnection>
 
         <tag>HEAD</tag>
     </scm>
-	
-	<issueManagement>
-		<system>GITHUB</system>
-		<url>https://github.com/flyway/flyway-test-extensions/issues</url>
-	</issueManagement>
 
-	<developers>
-		<developer>
-			<id>Florian</id>
-			<name>florian.g.w.e4</name>
-		</developer>
-	</developers>
+    <issueManagement>
+        <system>GITHUB</system>
+        <url>https://github.com/flyway/flyway-test-extensions/issues</url>
+    </issueManagement>
 
-	<distributionManagement>
-		<snapshotRepository>
-			<id>sonatype-nexus-snapshots</id>
-			<name>Sonatype Nexus Snapshots</name>
-			<url>http://oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
-		<repository>
-			<id>sonatype-nexus-staging</id>
-			<name>Nexus Release Repository</name>
-			<url>http://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-		</repository>
+    <developers>
+        <developer>
+            <id>Florian</id>
+            <name>florian.g.w.e4</name>
+        </developer>
+    </developers>
 
-		<site>
-			<id>flyway-test-extensions-dummy-site</id>
-			<url>https://github.com/flyway/flyway-test-extensions/site/${project.version}</url>
-		</site>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>sonatype-nexus-snapshots</id>
+            <name>Sonatype Nexus Snapshots</name>
+            <url>http://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>sonatype-nexus-staging</id>
+            <name>Nexus Release Repository</name>
+            <url>http://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
 
-	</distributionManagement>
+        <site>
+            <id>flyway-test-extensions-dummy-site</id>
+            <url>https://github.com/flyway/flyway-test-extensions/site/${project.version}</url>
+        </site>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </distributionManagement>
 
-		<version.flyway>5.0.2</version.flyway>
-		<version.spring5>5.0.2.RELEASE</version.spring5>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <version.flyway>5.0.2</version.flyway>
+        <version.spring5>5.0.2.RELEASE</version.spring5>
         <version.spring2>2.5.6.SEC03</version.spring2>
         <version.spring3>3.2.16.RELEASE</version.spring3>
         <version.spring4>4.3.13.RELEASE</version.spring4>
-		<version.spring>${version.sprinig5}</version.spring>
-		<version.maven>3.0.3</version.maven>
-		<version.slf4j>1.5.6</version.slf4j>
-		<version.log4j>1.2.16</version.log4j>
-		<version.junit>4.12</version.junit>
-		<version.commons.dbcp>1.4</version.commons.dbcp>
+        <version.spring>${version.sprinig5}</version.spring>
+        <version.maven>3.0.3</version.maven>
+        <version.slf4j>1.5.6</version.slf4j>
+        <version.log4j>1.2.16</version.log4j>
+        <version.junit>4.12</version.junit>
+        <version.commons.dbcp>1.4</version.commons.dbcp>
         <version.h2>1.2.137</version.h2>
         <version.oracle>11.2.0.2.0</version.oracle>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
-	<reporting>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-project-info-reports-plugin</artifactId>
-				<version>2.9</version>
-				<reportSets>
-					<reportSet>
-						<configuration>
-							<dependencyDetailsEnabled>false</dependencyDetailsEnabled>
-							<dependencyLocationsEnabled>false</dependencyLocationsEnabled>
-						</configuration>
-						<!-- simpler configuration without reportSets available for usual
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>2.9</version>
+                <reportSets>
+                    <reportSet>
+                        <configuration>
+                            <dependencyDetailsEnabled>false</dependencyDetailsEnabled>
+                            <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+                        </configuration>
+                        <!-- simpler configuration without reportSets available for usual
                             cases -->
-						<reports>
-							<report>index</report>
-							<report>dependencies</report>
-							<report>scm</report>
-							<report>license</report>
-							<report>modules</report>
-							<report>summary</report>
-						</reports>
-					</reportSet>
-				</reportSets>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.10.4</version>
-				<configuration>
-					<encoding>UTF-8</encoding>
-					<additionalparam>-Xdoclint:none</additionalparam> <!-- for java 8  -->
-					<failOnError>false</failOnError> <!-- javadoc error  should not break the build -->
-				</configuration>
+                        <reports>
+                            <report>index</report>
+                            <report>dependencies</report>
+                            <report>scm</report>
+                            <report>license</report>
+                            <report>modules</report>
+                            <report>summary</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.10.4</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                    <additionalparam>-Xdoclint:none</additionalparam> <!-- for java 8  -->
+                    <failOnError>false</failOnError> <!-- javadoc error  should not break the build -->
+                </configuration>
 
-				<reportSets>
-					<reportSet>
-						<id>aggregate</id>
-						<inherited>false</inherited>
-						<configuration>
-							<!-- Specific configuration for the aggregate report -->
-							<sourcepath>${project.build.sourceDirectory}/../generated</sourcepath>
-						</configuration>
-						<reports>
-							<report>aggregate</report>
-						</reports>
-					</reportSet>
-					<reportSet>
-						<id>default</id>
-						<reports>
-							<report>javadoc</report>
-							<report>test-javadoc</report>
-						</reports>
-					</reportSet>
-				</reportSets>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-report-plugin</artifactId>
-				<version>2.20</version>
-				<configuration>
-					<encoding>UTF-8</encoding>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jxr-plugin</artifactId>
-				<version>2.5</version>
-				<reportSets>
-					<reportSet>
-						<id>aggregate</id>
-						<inherited>false</inherited>
-						<reports>
-							<report>aggregate</report>
-						</reports>
-					</reportSet>
-				</reportSets>
+                <reportSets>
+                    <reportSet>
+                        <id>aggregate</id>
+                        <inherited>false</inherited>
+                        <configuration>
+                            <!-- Specific configuration for the aggregate report -->
+                            <sourcepath>${project.build.sourceDirectory}/../generated</sourcepath>
+                        </configuration>
+                        <reports>
+                            <report>aggregate</report>
+                        </reports>
+                    </reportSet>
+                    <reportSet>
+                        <id>default</id>
+                        <reports>
+                            <report>javadoc</report>
+                            <report>test-javadoc</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>2.20</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jxr-plugin</artifactId>
+                <version>2.5</version>
+                <reportSets>
+                    <reportSet>
+                        <id>aggregate</id>
+                        <inherited>false</inherited>
+                        <reports>
+                            <report>aggregate</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
 
-			</plugin>
-		</plugins>
+            </plugin>
+        </plugins>
 
-	</reporting>
+    </reporting>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.flywaydb</groupId>
-				<artifactId>flyway-core</artifactId>
-				<version>${version.flyway}</version>
-			</dependency>
-			<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
-				<version>${version.junit}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>log4j</groupId>
-				<artifactId>log4j</artifactId>
-				<version>${version.log4j}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-log4j12</artifactId>
-				<version>${version.slf4j}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>jcl-over-slf4j</artifactId>
-				<version>${version.slf4j}</version>
-			</dependency>
-			<dependency>
-				<groupId>commons-dbcp</groupId>
-				<artifactId>commons-dbcp</artifactId>
-				<version>${version.commons.dbcp}</version>
-			</dependency>
-			<!-- Database SQL Driver Section -->
-			<dependency>
-				<groupId>com.h2database</groupId>
-				<artifactId>h2</artifactId>
-				<version>${version.h2}</version>
-				<optional>true</optional>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>com.oracle</groupId>
-				<artifactId>ojdbc5</artifactId>
-				<version>${version.oracle}</version>
-				<optional>true</optional>
-				<scope>test</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
-	<build>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-assembly-plugin</artifactId>
-					<version>2.2.2</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-jar-plugin</artifactId>
-					<version>2.3.2</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-surefire-plugin</artifactId>
-					<version>2.9</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-dependency-plugin</artifactId>
-					<version>2.8</version>
-				</plugin>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-core</artifactId>
+                <version>${version.flyway}</version>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${version.junit}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version>${version.log4j}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+                <version>${version.slf4j}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>jcl-over-slf4j</artifactId>
+                <version>${version.slf4j}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-dbcp</groupId>
+                <artifactId>commons-dbcp</artifactId>
+                <version>${version.commons.dbcp}</version>
+            </dependency>
+            <!-- Database SQL Driver Section -->
+            <dependency>
+                <groupId>com.h2database</groupId>
+                <artifactId>h2</artifactId>
+                <version>${version.h2}</version>
+                <optional>true</optional>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.oracle</groupId>
+                <artifactId>ojdbc5</artifactId>
+                <version>${version.oracle}</version>
+                <optional>true</optional>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>2.2.2</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>2.3.2</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.9</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>2.8</version>
+                </plugin>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>build-helper-maven-plugin</artifactId>
@@ -243,8 +244,8 @@
                     <version>2.10.1</version>
                 </plugin>
             </plugins>
-		</pluginManagement>
-		<plugins>
+        </pluginManagement>
+        <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
@@ -256,13 +257,13 @@
                 </configuration>
             </plugin>
             <plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.2</version>
-				<configuration>
-					<encoding>UTF-8</encoding>
-				</configuration>
-			</plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -281,52 +282,52 @@
                 </configuration>
             </plugin>
             <plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-site-plugin</artifactId>
-				<version>3.6</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.6</version>
 
-				<configuration>
-					<port>9500</port>
-					<tempWebappDirectory>${basedir}/target/site/tempdir</tempWebappDirectory>
-				</configuration>
+                <configuration>
+                    <port>9500</port>
+                    <tempWebappDirectory>${basedir}/target/site/tempdir</tempWebappDirectory>
+                </configuration>
 
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>2.5</version>
-				<configuration>
-					<encoding>UTF-8</encoding>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-source-plugin</artifactId>
-				<version>2.1.2</version>
-				<executions>
-					<execution>
-						<id>attach-sources</id>
-						<phase>verify</phase>
-						<goals>
-							<goal>test-jar</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.5</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.1.2</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>test-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>versions-maven-plugin</artifactId>
                 <version>2.1</version>
             </plugin>
             <plugin>
-				<artifactId>maven-release-plugin</artifactId>
-				<version>2.2.2</version>
-				<configuration>
-					<autoVersionSubmodules>true</autoVersionSubmodules>
-					<mavenExecutorId>forked-path</mavenExecutorId>
-					<preparationGoals>clean install</preparationGoals>
-				</configuration>
-			</plugin>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.2.2</version>
+                <configuration>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <mavenExecutorId>forked-path</mavenExecutorId>
+                    <preparationGoals>clean install</preparationGoals>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>com.mycila.maven-license-plugin</groupId>
                 <artifactId>maven-license-plugin</artifactId>
@@ -359,18 +360,18 @@
             </plugin>
 
         </plugins>
-	</build>
-	<profiles>
-		<profile>
-			<id>release-sign-artifacts</id>
-			<activation>
-				<property>
-					<name>performRelease</name>
-					<value>true</value>
-				</property>
-			</activation>
-			<build>
-				<plugins>
+    </build>
+    <profiles>
+        <profile>
+            <id>release-sign-artifacts</id>
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
                     <plugin>
                         <artifactId>maven-scm-plugin</artifactId>
                         <version>1.8.1</version>
@@ -379,62 +380,62 @@
                         </configuration>
                     </plugin>
                     <plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-gpg-plugin</artifactId>
-						<version>1.4</version>
-						<executions>
-							<execution>
-								<id>sign-artifacts</id>
-								<phase>verify</phase>
-								<goals>
-									<!--suppress MavenModelInspection -->
-									<goal>sign</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-		<profile>
-			<id>license-check</id>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.4</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <!--suppress MavenModelInspection -->
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>license-check</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>com.mycila.maven-license-plugin</groupId>
-						<artifactId>maven-license-plugin</artifactId>
-						<version>1.9.0</version>
-						<inherited>false</inherited>
-						<configuration>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.mycila.maven-license-plugin</groupId>
+                        <artifactId>maven-license-plugin</artifactId>
+                        <version>1.9.0</version>
+                        <inherited>false</inherited>
+                        <configuration>
                             <header>${project.basedir}/../../license.txt</header>
                             <aggregate>true</aggregate>
-							<failIfMissing>true</failIfMissing>
-							<encoding>UTF-8</encoding>
-							<excludes>
+                            <failIfMissing>true</failIfMissing>
+                            <encoding>UTF-8</encoding>
+                            <excludes>
                                 <exclude>.idea/**</exclude>
                                 <exclude>.hg*</exclude>
-								<exclude>**/*.sh</exclude>
-								<exclude>**/*.txt</exclude>
-								<exclude>**/*.cnf</exclude>
-								<exclude>**/*.releaseBackup</exclude>
-							</excludes>
-							<strictCheck>true</strictCheck>
-						</configuration>
-						<executions>
-							<execution>
-								<phase>package</phase>
-								<goals>
-									<goal>format</goal>
-									<goal>check</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
+                                <exclude>**/*.sh</exclude>
+                                <exclude>**/*.txt</exclude>
+                                <exclude>**/*.cnf</exclude>
+                                <exclude>**/*.releaseBackup</exclude>
+                            </excludes>
+                            <strictCheck>true</strictCheck>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>format</goal>
+                                    <goal>check</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
 </project>

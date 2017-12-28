@@ -157,9 +157,9 @@ public class FlywayTestExecutionListener
         handleFlywayTestAnnotationForClass(testContext, testClass);
 
         // now detect if current class has a beforeClass or BeforeAllAnnotation
-        Class beforeClassClass = getClassOrNullForName( "org.junit.BeforeClass");
+        Class beforeClassClass = getClassOrNullForName("org.junit.BeforeClass");
         Class beforeAllClass = getClassOrNullForName("org.junit.jupiter.api.BeforeAll");
-        Class beforeClassTestNgClass = getClassOrNullForName( "org.testng.annotations.BeforeClass");
+        Class beforeClassTestNgClass = getClassOrNullForName("org.testng.annotations.BeforeClass");
 
         // contains first finding of FlywayTest annotation together with a Before annotation
         handleFlywayTestWithTestAnnotation(testContext, testClass, beforeClassClass, beforeAllClass, beforeClassTestNgClass);
@@ -193,7 +193,7 @@ public class FlywayTestExecutionListener
             throws Exception {
         Class testClass = testContext.getTestClass();
 
-        Class beforeMethodTestNgClass = getClassOrNullForName( "org.testng.annotations.BeforeMethod");
+        Class beforeMethodTestNgClass = getClassOrNullForName("org.testng.annotations.BeforeMethod");
 
         // contains first finding of FlywayTest annotation together with a Before annotation
         handleFlywayTestWithTestAnnotation(testContext, testClass, null, null, beforeMethodTestNgClass);
@@ -209,11 +209,11 @@ public class FlywayTestExecutionListener
      * @throws Exception
      *             if any error occurred
      */
-    public void prepareTestInstance (final TestContext testContext)
+    public void prepareTestInstance(final TestContext testContext)
             throws Exception {
         Class testClass = testContext.getTestClass();
 
-        Class beforeMethodClass = getClassOrNullForName( "org.junit.Before");
+        Class beforeMethodClass = getClassOrNullForName("org.junit.Before");
         Class beforeEachMethodClass = getClassOrNullForName("org.junit.jupiter.api.BeforeEach");
 
         // contains first finding of FlywayTest annotation together with a Before annotation
@@ -256,7 +256,7 @@ public class FlywayTestExecutionListener
                                                     Class testNgAnnotationToCheck) {
         return (firtsAnnotationToCheck != null && method.isAnnotationPresent(firtsAnnotationToCheck))
                 || (secondAnnotationToCheck != null && method.isAnnotationPresent(secondAnnotationToCheck)
-                || (testNgAnnotationToCheck != null && method.isAnnotationPresent(testNgAnnotationToCheck)) );
+                || (testNgAnnotationToCheck != null && method.isAnnotationPresent(testNgAnnotationToCheck)));
     }
 
     private Class getClassOrNullForName(String classname) {

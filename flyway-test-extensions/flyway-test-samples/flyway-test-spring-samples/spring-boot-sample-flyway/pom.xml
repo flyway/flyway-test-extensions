@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>org.flywaydb.flyway-test-extensions.samples</groupId>
@@ -13,13 +13,13 @@
 
     <groupId>org.flywaydb.flyway-test-extensions.samples.spring</groupId>
     <artifactId>spring-boot-sample-flyway</artifactId>
-	<name>Spring Boot Flyway Sample</name>
-	<description>Spring Boot Flyway Sample</description>
-	<properties>
+    <name>Spring Boot Flyway Sample</name>
+    <description>Spring Boot Flyway Sample</description>
+    <properties>
         <spring.boot.version>1.5.9.RELEASE</spring.boot.version>
         <spring.version>5.0.2.RELEASE</spring.version>
-	</properties>
-	<dependencies>
+    </properties>
+    <dependencies>
         <!-- slf4j-bridge for commons-logging -->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -60,34 +60,34 @@
             <version>${spring.version}</version>
         </dependency>
         <dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
             <version>${spring.boot.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.springframework</groupId>
                     <artifactId>spring-aspects</artifactId>
                 </exclusion>
-                  <exclusion>
-                      <groupId>ch.qos.logback</groupId>
-                      <artifactId>logback-classic</artifactId>
-                  </exclusion>
-              </exclusions>
+                <exclusion>
+                    <groupId>ch.qos.logback</groupId>
+                    <artifactId>logback-classic</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
-		<dependency>
-			<groupId>org.flywaydb</groupId>
-			<artifactId>flyway-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.hsqldb</groupId>
-			<artifactId>hsqldb</artifactId>
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
             <version>2.3.2</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
             <version>${spring.boot.version}</version>
             <scope>test</scope>
             <exclusions>
@@ -96,7 +96,7 @@
                     <artifactId>spring-test</artifactId>
                 </exclusion>
             </exclusions>
-		</dependency>
+        </dependency>
         <dependency>
             <groupId>org.flywaydb.flyway-test-extensions</groupId>
             <artifactId>flyway-spring-test</artifactId>
@@ -109,14 +109,14 @@
                 </exclusion>
             </exclusions>
         </dependency>
-	</dependencies>
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring.boot.version}</version>
-			</plugin>
+            </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -134,8 +134,8 @@
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
-		</plugins>
-	</build>
+        </plugins>
+    </build>
 
     <profiles>
         <profile>

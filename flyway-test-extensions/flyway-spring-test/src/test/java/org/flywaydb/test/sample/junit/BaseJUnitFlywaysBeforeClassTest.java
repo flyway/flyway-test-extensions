@@ -15,9 +15,9 @@
  */
 package org.flywaydb.test.sample.junit;
 
+import org.flywaydb.test.FlywayTestExecutionListener;
 import org.flywaydb.test.annotation.FlywayTest;
 import org.flywaydb.test.annotation.FlywayTests;
-import org.flywaydb.test.FlywayTestExecutionListener;
 import org.flywaydb.test.sample.helper.BaseDBHelper;
 import org.junit.BeforeClass;
 import org.junit.Test;

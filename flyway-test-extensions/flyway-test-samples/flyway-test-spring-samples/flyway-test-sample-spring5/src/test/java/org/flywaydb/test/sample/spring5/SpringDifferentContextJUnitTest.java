@@ -15,8 +15,8 @@
  */
 package org.flywaydb.test.sample.spring5;
 
-import org.flywaydb.test.annotation.FlywayTest;
 import org.flywaydb.test.FlywayTestExecutionListener;
+import org.flywaydb.test.annotation.FlywayTest;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
@@ -33,9 +33,9 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
  *
  */
 @RunWith(SpringRunner.class)
-@ContextConfiguration(locations = { "/context/flywayContainerContext.xml" })
-@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
-        FlywayTestExecutionListener.class })
+@ContextConfiguration(locations = {"/context/flywayContainerContext.xml"})
+@TestExecutionListeners({DependencyInjectionTestExecutionListener.class,
+        FlywayTestExecutionListener.class})
 @FlywayTest
 public class SpringDifferentContextJUnitTest extends Spring5JUnitTest {
 }

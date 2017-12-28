@@ -17,8 +17,8 @@ package org.flywaydb.test.sample.spring5;
 
 import org.apache.commons.dbcp.BasicDataSource;
 import org.flywaydb.core.Flyway;
-import org.flywaydb.test.annotation.FlywayTest;
 import org.flywaydb.test.FlywayTestExecutionListener;
+import org.flywaydb.test.annotation.FlywayTest;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
@@ -139,7 +139,7 @@ public class SpringConfigTest extends BaseDBHelper {
         assertThat("Count of customer", res, is(4));
     }
 
-     // Spring 5 Java Configuration Example
+    // Spring 5 Java Configuration Example
 
 
     @Configuration
@@ -210,8 +210,8 @@ public class SpringConfigTest extends BaseDBHelper {
         }
 
         /*
-        * Needed to get properties correct loaded.
-        */
+         * Needed to get properties correct loaded.
+         */
         @Bean
         public static PropertySourcesPlaceholderConfigurer propertyConfigIn() {
             return new PropertySourcesPlaceholderConfigurer();

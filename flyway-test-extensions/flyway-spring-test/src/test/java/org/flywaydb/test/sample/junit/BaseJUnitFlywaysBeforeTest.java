@@ -15,9 +15,9 @@
  */
 package org.flywaydb.test.sample.junit;
 
+import org.flywaydb.test.FlywayTestExecutionListener;
 import org.flywaydb.test.annotation.FlywayTest;
 import org.flywaydb.test.annotation.FlywayTests;
-import org.flywaydb.test.FlywayTestExecutionListener;
 import org.flywaydb.test.sample.helper.BaseDBHelper;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,7 +32,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 /**
  * Simple Test to show how the annotation can be used inside test execution and use a

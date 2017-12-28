@@ -1,7 +1,8 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<parent>
+    <parent>
         <groupId>org.flywaydb.flyway-test-extensions.samples</groupId>
         <artifactId>flyway-test-samples-parent</artifactId>
         <version>5.0.0-SNAPSHOT</version>
@@ -10,190 +11,189 @@
 
     <groupId>org.flywaydb.flyway-test-extensions.samples.spring</groupId>
     <artifactId>flyway-test-sample-spring5</artifactId>
-	<name>${project.artifactId}</name>
-	<description>
+    <name>${project.artifactId}</name>
+    <description>
         Example how to use flyway-spring-test with spring 4.0.
     </description>
-	<packaging>jar</packaging>
+    <packaging>jar</packaging>
 
-	<licenses>
-		<license>
-			<name>Apache 2</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-			<distribution>repo</distribution>
-			<comments>A business-friendly OSS license</comments>
-		</license>
-	</licenses>
-	<scm>
+    <licenses>
+        <license>
+            <name>Apache 2</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
+    <scm>
         <url>https://github.com/flyway/flyway-test-extensions/</url>
         <connection>scm:git:git@github.com:${github.user}/flyway/flyway-test-extensions</connection>
         <developerConnection>scm:git:git@github.com:${github.user}/flyway/flyway-test-extensions</developerConnection>
         <tag>HEAD</tag>
     </scm>
-	<developers>
-		<developer>
-			<id>Florian</id>
-			<name>florian.g.w.e4</name>
-		</developer>
-	</developers>
-	<distributionManagement>
-		<snapshotRepository>
-			<id>sonatype-nexus-snapshots</id>
-			<name>Sonatype Nexus Snapshots</name>
-			<url>http://oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
-		<repository>
-			<id>sonatype-nexus-staging</id>
-			<name>Nexus Release Repository</name>
-			<url>http://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-		</repository>
-	</distributionManagement>
+    <developers>
+        <developer>
+            <id>Florian</id>
+            <name>florian.g.w.e4</name>
+        </developer>
+    </developers>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>sonatype-nexus-snapshots</id>
+            <name>Sonatype Nexus Snapshots</name>
+            <url>http://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>sonatype-nexus-staging</id>
+            <name>Nexus Release Repository</name>
+            <url>http://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 
 
-
-	<properties>
+    <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.hamcrest</groupId>
-			<artifactId>hamcrest-all</artifactId>
-			<version>1.3</version>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
-			<scope>test</scope>
-		</dependency>
+    <dependencies>
         <dependency>
-			<groupId>org.flywaydb.flyway-test-extensions</groupId>
-			<artifactId>flyway-spring5-test</artifactId>
-			<version>${project.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<version>${version.h2}</version>
-			<scope>provided</scope>
-		</dependency>
-	</dependencies>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-all</artifactId>
+            <version>1.3</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.flywaydb.flyway-test-extensions</groupId>
+            <artifactId>flyway-spring5-test</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${version.h2}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 
 
-	<profiles>
-		<profile>
-			<id>h2-test</id>
-           	<activation>
+    <profiles>
+        <profile>
+            <id>h2-test</id>
+            <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<configuration>
-							<systemPropertyVariables>
-								<jdbc.driver>org.h2.Driver</jdbc.driver>
-								<jdbc.url>jdbc:h2:nio:${project.build.directory}/db/flywaytest.db</jdbc.url>
-								<jdbc.username>h2_test</jdbc.username>
-								<jdbc.password>h2_test</jdbc.password>
-								<flyway.locations>sampletest5</flyway.locations>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <systemPropertyVariables>
+                                <jdbc.driver>org.h2.Driver</jdbc.driver>
+                                <jdbc.url>jdbc:h2:nio:${project.build.directory}/db/flywaytest.db</jdbc.url>
+                                <jdbc.username>h2_test</jdbc.username>
+                                <jdbc.password>h2_test</jdbc.password>
+                                <flyway.locations>sampletest5</flyway.locations>
                                 <flyway.driver>org.h2.Driver</flyway.driver>
                                 <flyway.url>jdbc:h2:nio:${project.build.directory}/db/flywaytest.db</flyway.url>
                                 <flyway.user>h2_test</flyway.user>
                                 <flyway.password>h2_test</flyway.password>
                             </systemPropertyVariables>
-							<includes>
-								<include>**/*Test.java</include>
-							</includes>
-							<threadCount>1</threadCount>
-							<runOrder>alphabetical</runOrder>
-							<perCoreThreadCount>false</perCoreThreadCount>
-							<redirectTestOutputToFile>false</redirectTestOutputToFile>
-						</configuration>
-						<goals>
-							<goal>test</goal>
-						</goals>
-						<executions>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-		<profile>
-			<id>oracle-test</id>
-           <dependencies>
-               <dependency>
+                            <includes>
+                                <include>**/*Test.java</include>
+                            </includes>
+                            <threadCount>1</threadCount>
+                            <runOrder>alphabetical</runOrder>
+                            <perCoreThreadCount>false</perCoreThreadCount>
+                            <redirectTestOutputToFile>false</redirectTestOutputToFile>
+                        </configuration>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <executions>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>oracle-test</id>
+            <dependencies>
+                <dependency>
                     <groupId>com.oracle</groupId>
                     <artifactId>ojdbc5</artifactId>
                     <version>${version.oracle}</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
-			<build>
- 				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<configuration>
-							<systemPropertyVariables>
-								<jdbc.driver>oracle.jdbc.driver.OracleDriver</jdbc.driver>
-								<jdbc.url>jdbc:oracle:thin:@localhost:1521/XE</jdbc.url>
-								<jdbc.username>OC_TEST</jdbc.username>	
-								<jdbc.password>OC_TEST</jdbc.password>
-								<flyway.locations>sampletest5</flyway.locations>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <systemPropertyVariables>
+                                <jdbc.driver>oracle.jdbc.driver.OracleDriver</jdbc.driver>
+                                <jdbc.url>jdbc:oracle:thin:@localhost:1521/XE</jdbc.url>
+                                <jdbc.username>OC_TEST</jdbc.username>
+                                <jdbc.password>OC_TEST</jdbc.password>
+                                <flyway.locations>sampletest5</flyway.locations>
                                 <flyway.driver>oracle.jdbc.driver.OracleDriver</flyway.driver>
                                 <flyway.url>jdbc:oracle:thin:@localhost:1521/XE</flyway.url>
                                 <flyway.user>OC_TEST</flyway.user>
                                 <flyway.password>OC_TEST</flyway.password>
                             </systemPropertyVariables>
-							<includes>
-								<include>**/*JUnitTest.java</include>
-							</includes>
-							<threadCount>1</threadCount>
-							<runOrder>alphabetical</runOrder>
-							<perCoreThreadCount>false</perCoreThreadCount>
-							<redirectTestOutputToFile>false</redirectTestOutputToFile>
-						</configuration>
-						<goals>
-							<goal>test</goal>
-						</goals>
-						<executions>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-		<profile>
-			<id>release-sign-artifacts</id>
-			<activation>
-				<property>
-					<name>performRelease</name>
-					<value>true</value>
-				</property>
-			</activation>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-gpg-plugin</artifactId>
-						<version>1.4</version>
-						<executions>
-							<execution>
-								<id>sign-artifacts</id>
-								<phase>verify</phase>
-								<goals>
-									<!--suppress MavenModelInspection -->
-									<goal>sign</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
+                            <includes>
+                                <include>**/*JUnitTest.java</include>
+                            </includes>
+                            <threadCount>1</threadCount>
+                            <runOrder>alphabetical</runOrder>
+                            <perCoreThreadCount>false</perCoreThreadCount>
+                            <redirectTestOutputToFile>false</redirectTestOutputToFile>
+                        </configuration>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <executions>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>release-sign-artifacts</id>
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.4</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <!--suppress MavenModelInspection -->
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

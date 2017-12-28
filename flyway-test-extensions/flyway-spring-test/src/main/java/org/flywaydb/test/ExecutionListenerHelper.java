@@ -15,9 +15,9 @@
  */
 package org.flywaydb.test;
 
-import java.lang.reflect.Method;
-
 import org.springframework.test.context.TestContext;
+
+import java.lang.reflect.Method;
 
 /**
  * Simple helper for the TestExecutionListener

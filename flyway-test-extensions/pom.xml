@@ -1,5 +1,6 @@
-    <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>org.flywaydb.flyway-test-extensions</groupId>
@@ -7,100 +8,100 @@
         <version>5.0.0-SNAPSHOT</version>
         <relativePath>parent/pom.xml</relativePath>
     </parent>
-	<artifactId>flyway-test-extensions</artifactId>
-	<packaging>pom</packaging>
-	<name>${project.artifactId}</name>
-	<description>
+    <artifactId>flyway-test-extensions</artifactId>
+    <packaging>pom</packaging>
+    <name>${project.artifactId}</name>
+    <description>
         Test extensions for project Flyway: The agile database migration framework for Java.
     </description>
-	<url>http://code.google.com/p/flyway-test-extensions/</url>
-	<licenses>
-		<license>
-			<name>Apache 2</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-			<distribution>repo</distribution>
-			<comments>A business-friendly OSS license</comments>
-		</license>
-	</licenses>
-	<scm>
+    <url>http://code.google.com/p/flyway-test-extensions/</url>
+    <licenses>
+        <license>
+            <name>Apache 2</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
+    <scm>
         <!-- TODO SCM must be corrected for github -->
-		<url>https://github.com/flyway/flyway-test-extensions</url>
-		<connection>scm:git:https://github.com/flyway/flyway-test-extensions.git</connection>
+        <url>https://github.com/flyway/flyway-test-extensions</url>
+        <connection>scm:git:https://github.com/flyway/flyway-test-extensions.git</connection>
         <developerConnection>scm:git:https://github.com/flyway/flyway-test-extensions.git</developerConnection>
 
         <tag>HEAD</tag>
-	</scm>
-	<developers>
-		<developer>
-			<id>Florian</id>
-			<name>florian.g.w.e4</name>
-		</developer>
-	</developers>
+    </scm>
+    <developers>
+        <developer>
+            <id>Florian</id>
+            <name>florian.g.w.e4</name>
+        </developer>
+    </developers>
 
-	<modules>
-		<module>parent</module>
-		<module>flyway-spring-test</module>
+    <modules>
+        <module>parent</module>
+        <module>flyway-spring-test</module>
         <module>flyway-spring3-test</module>
         <module>flyway-spring4-test</module>
         <module>flyway-spring5-test</module>
-		<module>flyway-dbunit-test</module>
+        <module>flyway-dbunit-test</module>
         <module>flyway-dbunit-spring3-test</module>
         <module>flyway-dbunit-spring4-test</module>
         <module>flyway-test-samples</module>
     </modules>
 
-	<distributionManagement>
-		<snapshotRepository>
-			<id>sonatype-nexus-snapshots</id>
-			<name>Sonatype Nexus Snapshots</name>
-			<url>http://oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
-		<repository>
-			<id>sonatype-nexus-staging</id>
-			<name>Nexus Release Repository</name>
-			<url>http://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-		</repository>
-	</distributionManagement>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>sonatype-nexus-snapshots</id>
+            <name>Sonatype Nexus Snapshots</name>
+            <url>http://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>sonatype-nexus-staging</id>
+            <name>Nexus Release Repository</name>
+            <url>http://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 
-	<properties>
+    <properties>
     </properties>
-	<profiles>
-		<profile>
-			<id>license-check</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>com.mycila.maven-license-plugin</groupId>
-						<artifactId>maven-license-plugin</artifactId>
-						<version>1.9.0</version>
-						<inherited>false</inherited>
-						<configuration>
-							<header>${basedir}/license.txt</header>
-							<aggregate>true</aggregate>
-							<failIfMissing>true</failIfMissing>
-							<encoding>UTF-8</encoding>
-							<excludes>
+    <profiles>
+        <profile>
+            <id>license-check</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.mycila.maven-license-plugin</groupId>
+                        <artifactId>maven-license-plugin</artifactId>
+                        <version>1.9.0</version>
+                        <inherited>false</inherited>
+                        <configuration>
+                            <header>${basedir}/license.txt</header>
+                            <aggregate>true</aggregate>
+                            <failIfMissing>true</failIfMissing>
+                            <encoding>UTF-8</encoding>
+                            <excludes>
                                 <exclude>.idea/**</exclude>
                                 <exclude>.hg*</exclude>
-								<exclude>**/*.sh</exclude>
-								<exclude>**/*.txt</exclude>
-								<exclude>**/*.cnf</exclude>
-								<exclude>**/*.releaseBackup</exclude>
-							</excludes>
-							<strictCheck>true</strictCheck>
-						</configuration>
-						<executions>
-							<execution>
-								<phase>package</phase>
-								<goals>
-									<goal>format</goal>
-									<goal>check</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
+                                <exclude>**/*.sh</exclude>
+                                <exclude>**/*.txt</exclude>
+                                <exclude>**/*.cnf</exclude>
+                                <exclude>**/*.releaseBackup</exclude>
+                            </excludes>
+                            <strictCheck>true</strictCheck>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>format</goal>
+                                    <goal>check</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
