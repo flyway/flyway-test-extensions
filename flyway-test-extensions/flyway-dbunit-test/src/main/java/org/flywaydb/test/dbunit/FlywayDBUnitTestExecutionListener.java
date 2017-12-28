@@ -17,12 +17,11 @@ package org.flywaydb.test.dbunit;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.flywaydb.test.FlywayTestExecutionListener;
+import org.flywaydb.test.annotation.FlywayTest;
 import org.springframework.test.context.TestContext;
 import org.springframework.test.context.TestExecutionListener;
 import org.springframework.test.context.TestExecutionListeners;
-
-import org.flywaydb.test.annotation.FlywayTest;
-import org.flywaydb.test.junit.FlywayTestExecutionListener;
 import org.springframework.test.context.support.AbstractTestExecutionListener;
 
 
@@ -102,73 +101,66 @@ import org.springframework.test.context.support.AbstractTestExecutionListener;
  *
  */
 public class FlywayDBUnitTestExecutionListener
-	extends AbstractTestExecutionListener
-	implements TestExecutionListener
-{
-	// @@ Construction
-	protected final Log logger = LogFactory.getLog(getClass());
+        extends AbstractTestExecutionListener
+        implements TestExecutionListener {
+    // @@ Construction
+    protected final Log logger = LogFactory.getLog(getClass());
 
-	protected final DBUnitTestExecutionListener dbUnit = new DBUnitTestExecutionListener();
+    protected final DBUnitTestExecutionListener dbUnit = new DBUnitTestExecutionListener();
 
-	protected final FlywayTestExecutionListener dbReset = new FlywayTestExecutionListener();
+    protected final FlywayTestExecutionListener dbReset = new FlywayTestExecutionListener();
 
-	/** default order 4000 */
-	private int order = 4000;
+    /** default order 4000 */
+    private int order = 4000;
 
-	/**
-	 * Allocates new <code>AbstractDbSpringContextTests</code> instance.
-	 */
-	public FlywayDBUnitTestExecutionListener()
-	{
-	}
+    /**
+     * Allocates new <code>AbstractDbSpringContextTests</code> instance.
+     */
+    public FlywayDBUnitTestExecutionListener() {
+    }
 
-	public void beforeTestClass(final TestContext testContext) throws Exception
-	{
-		dbReset.beforeTestClass(testContext);
-		dbUnit.beforeTestClass(testContext);
-	}
+    public void beforeTestClass(final TestContext testContext) throws Exception {
+        dbReset.beforeTestClass(testContext);
+        dbUnit.beforeTestClass(testContext);
+    }
 
-	public void prepareTestInstance(final TestContext testContext) throws Exception
-	{
-		dbReset.prepareTestInstance(testContext);
-		dbUnit.prepareTestInstance(testContext);
-	}
+    public void prepareTestInstance(final TestContext testContext) throws Exception {
+        dbReset.prepareTestInstance(testContext);
+        dbUnit.prepareTestInstance(testContext);
+    }
 
-	public void beforeTestMethod(final TestContext testContext) throws Exception
-	{
-		dbReset.beforeTestMethod(testContext);
-		dbUnit.beforeTestMethod(testContext);
-	}
+    public void beforeTestMethod(final TestContext testContext) throws Exception {
+        dbReset.beforeTestMethod(testContext);
+        dbUnit.beforeTestMethod(testContext);
+    }
 
-	public void afterTestMethod(final TestContext testContext) throws Exception
-	{
-		dbUnit.afterTestMethod(testContext);
-		dbReset.afterTestMethod(testContext);
-	}
+    public void afterTestMethod(final TestContext testContext) throws Exception {
+        dbUnit.afterTestMethod(testContext);
+        dbReset.afterTestMethod(testContext);
+    }
 
-	public void afterTestClass(final TestContext testContext) throws Exception
-	{
-		dbUnit.afterTestClass(testContext);
-		dbReset.afterTestClass(testContext);
-	}
+    public void afterTestClass(final TestContext testContext) throws Exception {
+        dbUnit.afterTestClass(testContext);
+        dbReset.afterTestClass(testContext);
+    }
 
 
-	/**
-	 * change the default order value;
-	 * @since 3.2.1.1
-	 *
-	 */
-	public void setOrder(int order) {
-		this.order = order;
-	}
+    /**
+     * change the default order value;
+     * @since 3.2.1.1
+     *
+     */
+    public void setOrder(int order) {
+        this.order = order;
+    }
 
-	/**
-	 *
-	 * @return order default 4000
-	 * @since 3.2.1.1
-	 *
-	 */
-	public int getOrder() {
-		return order;
-	}
+    /**
+     *
+     * @return order default 4000
+     * @since 3.2.1.1
+     *
+     */
+    public int getOrder() {
+        return order;
+    }
 }
