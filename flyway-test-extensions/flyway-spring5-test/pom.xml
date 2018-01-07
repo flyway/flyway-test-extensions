@@ -10,6 +10,10 @@
     <artifactId>flyway-spring5-test</artifactId>
 
     <name>${project.artifactId}</name>
+    <description>
+    Test slupport for Flyway based on springframework 5.
+    </description>
+    
 	<packaging>jar</packaging>
 
     <repositories>
