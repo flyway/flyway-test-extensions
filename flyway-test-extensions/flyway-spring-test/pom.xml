@@ -14,10 +14,10 @@
     <name>${project.artifactId}</name>
 
     <description>
-        Implementation for test support for spring 4.
-        If spring 3 support needed please use flyway-spring3-test.
-        If spring 4 support needed please use flyway-spring4-test.
-    </description>
+        Implementation test support for Flyway based on springframework.
+        
+        Work together with Junit4, Junit5 or TestNG. 
+   </description>
 
 
     <packaging>jar</packaging>
