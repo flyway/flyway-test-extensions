@@ -11,9 +11,10 @@
 
     <name>${project.artifactId}</name>
     <description>
-        Implementation for dbunit support and spring 4.
-        If spring 3 support needed please use flyway-dbunit-spring3-test.
-        If spring 4 support needed please use flyway-dbunit-spring4-test.
+        Implementation for dbunit support based on springfraemwork.
+        
+        If springframework 3 support needed please use flyway-dbunit-spring3-test.
+        If springframework 4 support needed please use flyway-dbunit-spring4-test.
     </description>
 
 
