@@ -29,7 +29,7 @@ With this precondition, each test provides a reproducible database start point.
   * <b>clean</b> - execution of flyway task clean
   * <b>init</b> - execution of flyway task init
   * <b>migrate</b> - execution of flyway task migrate
-* Annotation `FlywayTest` for a single database contoll.<br>
+* Annotation `FlywayTest` for a single database control.<br>
   Annotation `FlywayTests` if more than one database must be controlled during a test. <br>
   Annotations can be used
   
@@ -98,7 +98,7 @@ For a detail usage description see the [UsageFlywaySpringTest](https://github.co
     public void testMethod() { 
 ```
 
-* Add the @FlywayTests with @FlywayTest annotation on each class or method were you need a clean multible database setup. 
+* Add the @FlywayTests with @FlywayTest annotation on each class or method were you need a clean multiple database setup. 
 
 ```java
     // usage as once per class
