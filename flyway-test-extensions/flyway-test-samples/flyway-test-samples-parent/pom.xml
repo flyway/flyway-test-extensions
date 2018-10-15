@@ -60,7 +60,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <version.flyway>5.0.3</version.flyway>
+        <version.flyway>5.1.4</version.flyway>
         <version.spring5>5.0.2.RELEASE</version.spring5>
         <version.spring2>2.5.6.SEC03</version.spring2>
         <version.spring3>3.2.16.RELEASE</version.spring3>
@@ -71,7 +71,7 @@
         <version.log4j>1.2.16</version.log4j>
         <version.junit>4.12</version.junit>
         <version.commons.dbcp>1.4</version.commons.dbcp>
-        <version.h2>1.2.137</version.h2>
+        <version.h2>1.4.197</version.h2>
         <version.oracle>11.2.0.2.0</version.oracle>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>

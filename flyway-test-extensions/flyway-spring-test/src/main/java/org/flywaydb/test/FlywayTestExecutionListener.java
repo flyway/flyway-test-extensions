@@ -18,6 +18,8 @@ package org.flywaydb.test;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.flywaydb.core.Flyway;
+import org.flywaydb.core.api.Location;
+import org.flywaydb.core.internal.util.Locations;
 import org.flywaydb.test.annotation.FlywayTest;
 import org.flywaydb.test.annotation.FlywayTests;
 import org.springframework.context.ApplicationContext;
@@ -441,11 +443,12 @@ public class FlywayTestExecutionListener
         final String[] locations = annotation.locationsForMigrate();
 
         // now migration handling for locations support
-        String[] oldLocations = flyWay.getLocations();
+        String[] oldLocations = convertLocationToString(flyWay);
         boolean override = annotation.overrideLocations();
         try {
             String[] useLocations = null;
             if (override) {
+
                 useLocations = locations;
             } else {
                 // Fill the locations
@@ -468,6 +471,17 @@ public class FlywayTestExecutionListener
             // reset the flyway bean to original configuration.
             flyWay.setLocations(oldLocations);
         }
+    }
+
+    private String[] convertLocationToString(Flyway flyWay) {
+        Location[] locations = flyWay.getLocations();
+        String [] stringLocations = new String[locations.length];
+
+        for (int i = 0; i < locations.length; i++) {
+            stringLocations[i] = locations[i].getDescriptor();
+        }
+
+        return stringLocations;
     }
 
     /**
