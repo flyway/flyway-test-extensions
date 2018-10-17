@@ -8,13 +8,12 @@
         <groupId>org.flywaydb.flyway-test-extensions.samples</groupId>
         <artifactId>flyway-test-samples-parent</artifactId>
         <version>5.1.0-SNAPSHOT</version>
-        <relativePath>../../flyway-test-samples-parent/pom.xml</relativePath>
+        <relativePath>../../../flyway-test-samples-parent/pom.xml</relativePath>
     </parent>
 
-    <groupId>org.flywaydb.flyway-test-extensions.samples.spring</groupId>
-    <artifactId>spring-boot-sample-flyway</artifactId>
-    <name>Spring Boot Flyway Sample</name>
-    <description>Spring Boot Flyway Sample</description>
+    <artifactId>flyway-test-sample-spring-boot-1</artifactId>
+    <name>Sample Flyway-Test-Extension Spring Boot 1</name>
+    <description>Sample Flyway-Test-Extension with Spring Boot 1.x</description>
     <properties>
         <spring.boot.version>1.5.9.RELEASE</spring.boot.version>
         <spring.version>5.0.2.RELEASE</spring.version>
