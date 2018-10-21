@@ -9,12 +9,12 @@ Test extensions for the Flyway project
 
 For Flyway's features, see the [Flyway Db Org Page](http://flywaydb.org/) 
 
-Version 5.0.0 Released 
+Version 5.1.0 Released 
 ----------------------
 
-<b>2017-12-28</b> flyway-test-extensions version <b>5.0.0</b> released.
+<b>2018-10-21</b> flyway-test-extensions version <b>5.1.0</b> released.
 
-Version number 5.0.x are used to show the dependency to Flyway version 5.0.x.
+Version number 5.1.x are used to show the dependency to Flyway version 5.1.x.
 
 See also [Release Notes](https://github.com/flyway/flyway-test-extensions/wiki/Release-Notes) 
 
@@ -44,8 +44,8 @@ With this precondition, each test provides a reproducible database start point.
   * Spring 5.x sample (see [complete sample for usage together with Spring 5](https://github.com/flyway/flyway-test-extensions/tree/master/flyway-test-extensions/flyway-test-samples/flyway-test-spring-samples/flyway-test-sample-spring5) )
   * Spring 4.x sample (see [UsageFlywaySpringTest4](https://github.com/flyway/flyway-test-extensions/wiki/Usage-flyway-spring-test) )
   * Spring 3.x sample 
-  * Spring 2.5.6 (see [UsageFlywaySpringTest256](http://code.google.com/p/flyway-test-extensions/wiki/UsageFlywaySpringTest256) )
-  * SpringBoot test example (see [FlywayTestApplicationTest](https://github.com/flyway/flyway-test-extensions/blob/master/flyway-test-extensions/flyway-test-samples/flyway-test-spring-samples/spring-boot-sample-flyway/src/test/java/org/flywaydb/sample/test/spring/boot/flywaytest/FlywayTestApplicationTest.java) )
+  * SpringBoot 1 test example (see [FlywayTestApplicationTest](https://github.com/flyway/flyway-test-extensions/blob/master/flyway-test-extensions/flyway-test-samples/flyway-test-spring-samples/flyway-test-sample-spring-boot/sample-spring-boot-1/src/test/java/org/flywaydb/sample/test/spring/boot/flywaytest/FlywayTestApplicationTest.java) )
+ * SpringBoot 2 test example (see [FlywayTestApplicationTest](https://github.com/flyway/flyway-test-extensions/blob/master/flyway-test-extensions/flyway-test-samples/flyway-test-spring-samples/flyway-test-sample-spring-boot/sample-spring-boot-2/src/test/java/org/flywaydb/sample/test/spring/boot2/flywaytest/FlywayTestApplicationTest.java) )
   * JUnit5 test example (see [Junit5SpringTest](https://github.com/flyway/flyway-test-extensions/blob/master/flyway-test-extensions/flyway-test-samples/flyway-test-spring-samples/flyway-test-junit5/src/test/java/org/flywaydb/sample/test/junit5/Junit5SpringTest.java) )
   * TestNG test example (see [BeforeMethodTest](https://github.com/flyway/flyway-test-extensions/blob/master/flyway-test-extensions/flyway-test-samples/flyway-test-spring-samples/flyway-test-testng/src/test/java/org/flywaydb/sample/test/testng/BeforeMethodTest.java) )
 * Additional project supports a DBUnit annotation use together with FlywayTest [DBUnitSupport](https://github.com/flyway/flyway-test-extensions/blob/master/flyway-test-extensions/flyway-dbunit-test/src/main/java/org/flywaydb/test/dbunit/DBUnitSupport.java). A usage example you will find at [UsageFlywayDBUnitTest](https://github.com/flyway/flyway-test-extensions/wiki/Usage-flyway-dbunit-test).
@@ -67,7 +67,7 @@ For a detail usage description see the [UsageFlywaySpringTest](https://github.co
     <dependency>
        <groupId>org.flywaydb.flyway-test-extensions</groupId>
        <artifactId>flyway-spring-test</artifactId>
-       <version>5.0.0</version>
+       <version>5.1.0</version>
        <scope>test</scope>
     </dependency>
 ```
@@ -170,16 +170,14 @@ public class MethodTest extends AbstractTestNGSpringContextTests {
 
 Project depend on
 -----------------
-* [Flyway](https://github.com/flyway/) (5.0.2)
-* [Spring Framework](http://www.springsource.org/) test, context, jdbc (5.0.2, 4.3.13, 3.2 or 2.5.6)
+* [Flyway](https://github.com/flyway/) (5.1.4)
+* [Spring Framework](http://www.springsource.org/) test, context, jdbc (5.1.1, 4.3.20, 3.2)
 
 Notes
 -----
-* The project depends on flyway version 5.0.2
+* The project depends on flyway version 5.1.4
 * The project will be supported until the extension will be integrated into the flyway project.
 * The project depends on Spring version 5.x (see flyway-spring5-test)
 * The project depends on Spring version 4.x (see flyway-spring4-test and flyway-dbunit-spring4-test)
 * The project depends on Spring version 3.2 (see flyways-swpring3-test and flyway-dbunit-spring3-test)
-  * All features works with Spring version 3.x
-  * It works also with Spring version 2.5.6, but you can not use all features. A example project show how to use it with Spring 2.5.6
 * At the moment the code is tested with database H2 and Oracle.<br>Only the DBunit part contains database specific code. 
