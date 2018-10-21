@@ -62,7 +62,6 @@
 
         <version.flyway>5.2.0</version.flyway>
         <version.spring5>5.1.1.RELEASE</version.spring5>
-        <version.spring2>2.5.6.SEC03</version.spring2>
         <version.spring3>3.2.18.RELEASE</version.spring3>
         <version.spring4>4.3.20.RELEASE</version.spring4>
         <version.spring>${version.spring5}</version.spring>

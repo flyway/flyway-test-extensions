@@ -44,9 +44,6 @@
         <module>flyway-test-sample-spring5</module>
         <module>flyway-test-sample-spring4</module>
         <module>flyway-test-sample-spring3</module>
-     <!--
-        <module>flyway-test-sample-spring256</module>
-        -->
         <module>flyway-test-sample-spring-boot/sample-spring-boot-1</module>
         <module>flyway-test-sample-spring-boot/sample-spring-boot-2</module>
         <module>flyway-test-junit5</module>
