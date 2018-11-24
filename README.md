@@ -9,12 +9,12 @@ Test extensions for the Flyway project
 
 For Flyway's features, see the [Flyway Db Org Page](http://flywaydb.org/) 
 
-Version 5.1.0 Released 
+Version 5.2.0 Released 
 ----------------------
 
-<b>2018-10-21</b> flyway-test-extensions version <b>5.1.0</b> released.
+<b>2018-11-24</b> flyway-test-extensions version <b>5.2.0</b> released.
 
-Version number 5.1.x are used to show the dependency to Flyway version 5.1.x.
+Version number 5.2.x are used to show the dependency to Flyway version 5.2.x.
 
 See also [Release Notes](https://github.com/flyway/flyway-test-extensions/wiki/Release-Notes) 
 
@@ -67,7 +67,7 @@ For a detail usage description see the [UsageFlywaySpringTest](https://github.co
     <dependency>
        <groupId>org.flywaydb.flyway-test-extensions</groupId>
        <artifactId>flyway-spring-test</artifactId>
-       <version>5.1.0</version>
+       <version>5.2.0</version>
        <scope>test</scope>
     </dependency>
 ```
@@ -170,12 +170,12 @@ public class MethodTest extends AbstractTestNGSpringContextTests {
 
 Project depend on
 -----------------
-* [Flyway](https://github.com/flyway/) (5.1.4)
+* [Flyway](https://github.com/flyway/) (5.2.1)
 * [Spring Framework](http://www.springsource.org/) test, context, jdbc (5.1.1, 4.3.20, 3.2)
 
 Notes
 -----
-* The project depends on flyway version 5.1.4
+* The project depends on flyway version 5.2.1
 * The project will be supported until the extension will be integrated into the flyway project.
 * The project depends on Spring version 5.x (see flyway-spring5-test)
 * The project depends on Spring version 4.x (see flyway-spring4-test and flyway-dbunit-spring4-test)
