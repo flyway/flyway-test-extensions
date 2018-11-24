@@ -59,8 +59,6 @@ public class FlywayHelperFactory {
 
         if (flyway == null) {
             logger.info("Create a new flyway instance.");
-            Flyway toReturn = new Flyway();
-            setFlyway(toReturn);
 
             // now use the flyway properties
             Properties configuredProperties = getFlywayProperties();
@@ -87,7 +85,11 @@ public class FlywayHelperFactory {
                 logger.info(String.format("Used preconfigured flyway.properties with %d entries.", configuredProperties.size()));
             }
 
-            toReturn.configure(getFlywayProperties());
+            Flyway toReturn = Flyway.configure()
+              .configuration(getFlywayProperties())
+                    .load();
+
+            setFlyway(toReturn);
         }
 
         return flyway;
