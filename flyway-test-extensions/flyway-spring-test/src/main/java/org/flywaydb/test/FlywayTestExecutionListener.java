@@ -19,6 +19,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.flywaydb.core.Flyway;
 import org.flywaydb.core.api.Location;
+import org.flywaydb.core.api.configuration.FluentConfiguration;
 import org.flywaydb.core.internal.util.Locations;
 import org.flywaydb.test.annotation.FlywayTest;
 import org.flywaydb.test.annotation.FlywayTests;
@@ -464,17 +465,19 @@ public class FlywayTestExecutionListener
 
             }
 
-            flyWay.setLocations(useLocations);
-
-            flyWay.migrate();
+            FluentConfiguration fluentConfiguration = new FluentConfiguration();
+            fluentConfiguration.configuration(flyWay.getConfiguration())
+            .locations(useLocations)
+            .load()
+            .migrate();
         } finally {
             // reset the flyway bean to original configuration.
-            flyWay.setLocations(oldLocations);
+            //flyWay.setLocations(oldLocations);
         }
     }
 
     private String[] convertLocationToString(Flyway flyWay) {
-        Location[] locations = flyWay.getLocations();
+        Location[] locations = flyWay.getConfiguration().getLocations();
         String [] stringLocations = new String[locations.length];
 
         for (int i = 0; i < locations.length; i++) {
