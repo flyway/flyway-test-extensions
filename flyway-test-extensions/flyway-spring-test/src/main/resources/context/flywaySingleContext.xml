@@ -48,10 +48,16 @@
 
         load flyway.properties with the factory class.
     -->
-    <bean id="flywayFactory" class="org.flywaydb.test.FlywayHelperFactory" depends-on="dataSourceRef"/>
+    <bean id="flywayFactory" class="org.flywaydb.test.FlywayHelperFactory" depends-on="flywayConfiguration">
+        <property name="flywayConfiguration" ref="flywayConfiguration"/>
 
-    <bean id="flyway" class="org.flywaydb.core.Flyway" depends-on="dataSourceRef" factory-bean="flywayFactory"
+    </bean>
+
+    <bean id="flyway" class="org.flywaydb.core.Flyway" depends-on="flywayFactory" factory-bean="flywayFactory"
           factory-method="createFlyway">
+    </bean>
+
+    <bean id="flywayConfiguration" class="org.flywaydb.core.api.configuration.ClassicConfiguration" depends-on="dataSourceRef">
         <property name="dataSource" ref="dataSourceRef"/>
     </bean>
 

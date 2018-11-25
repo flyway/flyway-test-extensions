@@ -18,6 +18,8 @@ package org.flywaydb.test;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.flywaydb.core.Flyway;
+import org.flywaydb.core.api.configuration.ClassicConfiguration;
+import org.flywaydb.core.api.configuration.Configuration;
 import org.springframework.core.io.ClassPathResource;
 
 import java.io.IOException;
@@ -44,6 +46,8 @@ public class FlywayHelperFactory {
     private Flyway flyway;
 
     private Properties flywayProperties;
+
+    private ClassicConfiguration flywayConfiguration;
 
     public FlywayHelperFactory() {
         logger.info("Create flyway helper factory.");
@@ -80,13 +84,27 @@ public class FlywayHelperFactory {
                     logger.error("Can not load flyway.properties.", e);
                 }
 
+                setFlywayProperties(configuredProperties);
                 logger.info(String.format("Load flyway.properties with %d entries.", configuredProperties.size()));
             } else {
                 logger.info(String.format("Used preconfigured flyway.properties with %d entries.", configuredProperties.size()));
             }
 
+            if ( flywayConfiguration == null) {
+                ClassicConfiguration classicConfiguration = new ClassicConfiguration();
+
+                classicConfiguration.configure(getFlywayProperties());
+                setFlywayConfiguration(classicConfiguration);
+
+            } else {
+                ClassicConfiguration classicConfiguration = getFlywayConfiguration();
+
+                classicConfiguration.configure(getFlywayProperties());
+                setFlywayConfiguration(classicConfiguration);
+            }
+
             Flyway toReturn = Flyway.configure()
-              .configuration(getFlywayProperties())
+              .configuration(getFlywayConfiguration())
                     .load();
 
             setFlyway(toReturn);
@@ -110,5 +128,13 @@ public class FlywayHelperFactory {
 
     private void setFlyway(Flyway flyway) {
         this.flyway = flyway;
+    }
+
+    public ClassicConfiguration getFlywayConfiguration() {
+        return flywayConfiguration;
+    }
+
+    public void setFlywayConfiguration(ClassicConfiguration flywayConfiguration) {
+        this.flywayConfiguration = flywayConfiguration;
     }
 }
