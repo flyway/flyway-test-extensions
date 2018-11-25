@@ -167,12 +167,11 @@ public class SpringConfigTest extends BaseDBHelper {
          */
         @Bean(name = "flywayOne")
         public Flyway flywayOne(DataSource dataSource) {
-            Flyway flyway = new Flyway();
+            return Flyway.configure()
+                    .dataSource(dataSource)
+                    .locations(flywayLocations)
+                    .load();
 
-            flyway.setDataSource(dataSource);
-            flyway.setLocations(flywayLocations);
-
-            return flyway;
         }
 
         /**
@@ -180,12 +179,10 @@ public class SpringConfigTest extends BaseDBHelper {
          */
         @Bean(name = "flywaySecond")
         public Flyway flywaySecond(DataSource dataSource) {
-            Flyway flyway = new Flyway();
-
-            flyway.setDataSource(dataSource);
-            flyway.setLocations(flywaySecondLocation);
-
-            return flyway;
+            return Flyway.configure()
+                    .dataSource(dataSource)
+                    .locations(flywaySecondLocation)
+                    .load();
         }
 
 
