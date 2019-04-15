@@ -56,7 +56,8 @@
     </developers>
 
     <modules>
-	    <module>parent</module>
+        <module>parent</module>
+        <module>flyway-test</module>
         <module>flyway-spring-test</module>
         <module>flyway-spring3-test</module>
         <module>flyway-spring4-test</module>
