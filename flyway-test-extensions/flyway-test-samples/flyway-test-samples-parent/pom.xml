@@ -77,7 +77,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <version.flyway>5.2.4</version.flyway>
+        <version.flyway>6.0.0-beta</version.flyway>
         <version.spring5>5.1.2.RELEASE</version.spring5>
         <version.spring3>3.2.18.RELEASE</version.spring3>
         <version.spring4>4.3.20.RELEASE</version.spring4>
