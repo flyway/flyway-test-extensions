@@ -33,7 +33,7 @@
     <description>Sample Flyway-Test-Extension with Spring Boot 1.x</description>
     <properties>
         <spring.boot.version>1.5.17.RELEASE</spring.boot.version>
-        <spring.version>5.1.2.RELEASE</spring.version>
+        <spring.version>5.1.6.RELEASE</spring.version>
     </properties>
     <dependencies>
         <!-- slf4j-bridge for commons-logging -->
