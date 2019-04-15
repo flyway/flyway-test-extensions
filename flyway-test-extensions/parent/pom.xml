@@ -20,7 +20,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.flywaydb.flyway-test-extensions</groupId>
     <artifactId>parent</artifactId>
-    <version>5.2.4-SNAPSHOT</version>
+    <version>6.0.0-beta-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Flyway-test-extensions ${project.artifactId}</name>
     <description>
