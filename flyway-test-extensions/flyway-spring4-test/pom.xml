@@ -97,6 +97,7 @@
                                     <outputDirectory>${project.build.directory}/generated-sources</outputDirectory>
                                 </artifactItem>
                             </artifactItems>
+                            <excludes>**/junit5/**</excludes>
                         </configuration>
                     </execution>
                     <execution>
@@ -113,6 +114,7 @@
                                     <outputDirectory>${project.build.directory}/generated-test-sources</outputDirectory>
                                 </artifactItem>
                             </artifactItems>
+                            <excludes>**/junit5/**</excludes>
                         </configuration>
                     </execution>
                 </executions>
