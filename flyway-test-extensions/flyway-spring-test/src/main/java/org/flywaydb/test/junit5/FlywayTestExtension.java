@@ -1,12 +1,12 @@
 /**
  * Copyright (C) 2011-2018 the original author or authors.
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -31,6 +31,26 @@ import org.springframework.util.Assert;
 
 /**
  * FlywayTest extension for JUnit5.
+ *
+ * The extension only work together with <a href="https://spring.io/"}>Spring Framework</a> and need a implementation of
+ * {@link SpringExtension}.
+ *
+ * It support all features that are described with {@link org.flywaydb.test.annotation.FlywayTest} and
+ * {@link org.flywaydb.test.annotation.FlywayTests}.
+ *
+ * Usage:
+ * <pre>
+ * {@code
+ * @ExtendWith(SpringExtension.class)
+ * @ExtendWith(FlywayTestExtension.class)
+ * class TestClass {
+ *
+ * }
+ * }
+ * </pre>
+ *
+ * @author florian
+ * @since 5.2.2
  */
 public class FlywayTestExtension implements BeforeAllCallback, AfterAllCallback, BeforeEachCallback, AfterEachCallback,
         BeforeTestExecutionCallback, AfterTestExecutionCallback {
@@ -40,44 +60,41 @@ public class FlywayTestExtension implements BeforeAllCallback, AfterAllCallback,
     public void afterAll(ExtensionContext extensionContext) throws Exception {
         logger.debug("afterAll " + extensionContext);
 
-        getTestExecutionListener(extensionContext).afterTestClass(getTestContextManager(extensionContext).getTestContext());
+        getTestExecutionListener().afterTestClass(getTestContextManager(extensionContext).getTestContext());
     }
 
     @Override
     public void afterEach(ExtensionContext extensionContext) throws Exception {
         logger.debug("afterEach " + extensionContext);
-        getTestExecutionListener(extensionContext).afterTestMethod(getTestContextManager(extensionContext).getTestContext());
+        getTestExecutionListener().afterTestMethod(getTestContextManager(extensionContext).getTestContext());
     }
 
     @Override
     public void afterTestExecution(ExtensionContext extensionContext) throws Exception {
         logger.debug("afterTestExecution " + extensionContext);
-        getTestExecutionListener(extensionContext).afterTestExecution(getTestContextManager(extensionContext).getTestContext());
+        getTestExecutionListener().afterTestExecution(getTestContextManager(extensionContext).getTestContext());
     }
 
     @Override
     public void beforeAll(ExtensionContext extensionContext) throws Exception {
         logger.debug("beforeAll " + extensionContext);
-        getTestExecutionListener(extensionContext).beforeTestClass(getTestContextManager(extensionContext).getTestContext());
+        getTestExecutionListener().beforeTestClass(getTestContextManager(extensionContext).getTestContext());
     }
 
     @Override
     public void beforeEach(ExtensionContext extensionContext) throws Exception {
         logger.debug("beforeEach " + extensionContext);
-        getTestExecutionListener(extensionContext).beforeTestMethod(getTestContextManager(extensionContext).getTestContext());
+        getTestExecutionListener().beforeTestMethod(getTestContextManager(extensionContext).getTestContext());
     }
 
     @Override
     public void beforeTestExecution(ExtensionContext extensionContext) throws Exception {
         logger.debug("beforeTestExecution " + extensionContext);
-        getTestExecutionListener(extensionContext).beforeTestExecution(getTestContextManager(extensionContext).getTestContext());
+        getTestExecutionListener().beforeTestExecution(getTestContextManager(extensionContext).getTestContext());
     }
 
-    private FlywayTestExecutionListener getTestExecutionListener(ExtensionContext extensionContext) {
-
-        FlywayTestExecutionListener flywayTestExecutionListener = new FlywayTestExecutionListener();
-
-        return flywayTestExecutionListener;
+    private FlywayTestExecutionListener getTestExecutionListener() {
+        return new FlywayTestExecutionListener();
     }
 
     // #tag::springCopy[]
