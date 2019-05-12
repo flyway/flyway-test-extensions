@@ -126,9 +126,8 @@ A step by step setup can be found [here](https://github.com/flyway/flyway-test-e
 
 ```java
 @ExtendWith({SpringExtension.class})
+@ExtendWith({FlywayTestExtension.class})
 @ContextConfiguration(locations = { "/context/simple_applicationContext.xml" })
-@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
-		FlywayTestExecutionListener.class })
 @FlywayTest         // as class annotation
 public class Junit5SpringTest ...
 
