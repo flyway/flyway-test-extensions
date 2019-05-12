@@ -26,6 +26,7 @@ import static org.hamcrest.core.Is.is;
 
 @ContextConfiguration(locations = { "/context/simple_applicationContext.xml" })
 @FlywayTestExtension
+@FlywayTest
 public class FlywayTestExtensionAnnotationTest extends BaseDBHelper {
     private int beforeTestCount;
 
@@ -64,7 +65,7 @@ public class FlywayTestExtensionAnnotationTest extends BaseDBHelper {
      * Made a clean init migrate usage before execution of test methods
      */
     @Test
-    @FlywayTest(locationsForMigrate = { "sampleTest5", "loadmsqlbefore" }, overrideLocations = true)
+    @FlywayTest(locationsForMigrate = { "sampletest5", "loadmsqlbefore" }, overrideLocations = true)
     public void loadMultibleSQLsOverrideLocations() throws Exception {
         int res = countCustomer();
 

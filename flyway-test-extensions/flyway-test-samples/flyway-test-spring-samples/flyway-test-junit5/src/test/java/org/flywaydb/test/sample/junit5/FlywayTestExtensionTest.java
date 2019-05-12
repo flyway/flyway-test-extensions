@@ -68,7 +68,7 @@ class FlywayTestExtensionTest extends BaseDBHelper {
      * Made a clean init migrate usage before execution of test methods
      */
     @Test
-    @FlywayTest(locationsForMigrate = { "sampleTest5", "loadmsqlbefore" }, overrideLocations = true, invokeCleanDB =
+    @FlywayTest(locationsForMigrate = { "sampletest5", "loadmsqlbefore" }, overrideLocations = true, invokeCleanDB =
             true)
     void loadMultibleSQLsOverrideLocations() throws Exception {
         int res = countCustomer();
