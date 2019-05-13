@@ -9,10 +9,10 @@ Test extensions for the Flyway project
 
 For Flyway's features, see the [Flyway Db Org Page](http://flywaydb.org/) 
 
-Version 5.2.1 Released 
+Version 5.2.4 Released 
 ----------------------
 
-<b>2019-05-12</b> flyway-test-extensions version <b>5.2.4</b> released.
+<b>2019-05-13</b> flyway-test-extensions version <b>5.2.4</b> released.
 
 Version number 5.2.x are used to show the dependency to Flyway version 5.2.x.
 
