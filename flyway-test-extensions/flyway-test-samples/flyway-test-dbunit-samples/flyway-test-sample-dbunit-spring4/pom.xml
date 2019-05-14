@@ -96,6 +96,12 @@
 			<version>${version.slf4j}</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
 	</dependencies>
 	
 

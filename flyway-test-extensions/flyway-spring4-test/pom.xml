@@ -69,6 +69,7 @@
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.h2database</groupId>
