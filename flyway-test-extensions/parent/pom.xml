@@ -76,9 +76,9 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <version.flyway>6.0.1</version.flyway>
-        <version.spring5>5.1.2.RELEASE</version.spring5>
+        <version.spring5>5.2.0.RELEASE</version.spring5>
         <version.spring3>3.2.18.RELEASE</version.spring3>
-        <version.spring4>4.3.23.RELEASE</version.spring4>
+        <version.spring4>4.3.25.RELEASE</version.spring4>
         <version.spring>${version.spring5}</version.spring>
         <version.maven>3.0.3</version.maven>
         <version.slf4j>1.5.6</version.slf4j>
