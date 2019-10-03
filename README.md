@@ -12,9 +12,9 @@ For Flyway's features, see the [Flyway Db Org Page](http://flywaydb.org/)
 Version 5.2.4 Released 
 ----------------------
 
-<b>2019-05-14</b> flyway-test-extensions version <b>5.2.4</b> released.
+<b>2019-10-03</b> flyway-test-extensions version <b>6.0.0</b> released.
 
-Version number 5.2.x are used to show the dependency to Flyway version 5.2.x.
+Version number 6.0.x are used to show the dependency to Flyway version 6.0.x.
 
 See also [Release Notes](https://github.com/flyway/flyway-test-extensions/wiki/Release-Notes) 
 
@@ -44,7 +44,6 @@ With this precondition, each test provides a reproducible database start point.
   * Spring 5.x sample (see [complete sample for usage together with Spring 5](https://github.com/flyway/flyway-test-extensions/tree/master/flyway-test-extensions/flyway-test-samples/flyway-test-spring-samples/flyway-test-sample-spring5) )
   * Spring 4.x sample (see [UsageFlywaySpringTest4](https://github.com/flyway/flyway-test-extensions/wiki/Usage-flyway-spring-test) )
   * Spring 3.x sample 
-  * SpringBoot 1 test example (see [FlywayTestApplicationTest](https://github.com/flyway/flyway-test-extensions/blob/master/flyway-test-extensions/flyway-test-samples/flyway-test-spring-samples/flyway-test-sample-spring-boot/sample-spring-boot-1/src/test/java/org/flywaydb/sample/test/spring/boot/flywaytest/FlywayTestApplicationTest.java) )
   * SpringBoot 2 test example (see [FlywayTestApplicationTest](https://github.com/flyway/flyway-test-extensions/blob/master/flyway-test-extensions/flyway-test-samples/flyway-test-spring-samples/flyway-test-sample-spring-boot/sample-spring-boot-2/src/test/java/org/flywaydb/sample/test/spring/boot2/flywaytest/FlywayTestApplicationTest.java) )
   * JUnit5 test example (see [Junit5SpringTest](https://github.com/flyway/flyway-test-extensions/blob/master/flyway-test-extensions/flyway-test-samples/flyway-test-spring-samples/flyway-test-junit5/src/test/java/org/flywaydb/sample/test/junit5/Junit5SpringTest.java) )
   * TestNG test example (see [BeforeMethodTest](https://github.com/flyway/flyway-test-extensions/blob/master/flyway-test-extensions/flyway-test-samples/flyway-test-spring-samples/flyway-test-testng/src/test/java/org/flywaydb/sample/test/testng/BeforeMethodTest.java) )
@@ -67,7 +66,7 @@ For a detail usage description see the [UsageFlywaySpringTest](https://github.co
     <dependency>
        <groupId>org.flywaydb.flyway-test-extensions</groupId>
        <artifactId>flyway-spring-test</artifactId>
-       <version>5.2.0</version>
+       <version>6.0.0</version>
        <scope>test</scope>
     </dependency>
 ```
@@ -169,12 +168,12 @@ public class MethodTest extends AbstractTestNGSpringContextTests {
 
 Project depend on
 -----------------
-* [Flyway](https://github.com/flyway/) (5.2.4)
-* [Spring Framework](http://www.springsource.org/) test, context, jdbc (5.1.1, 4.3.20, 3.2)
+* [Flyway](https://github.com/flyway/) (6.0.1)
+* [Spring Framework](http://www.springsource.org/) test, context, jdbc (5.2.0, 4.3.25, 3.2)
 
 Notes
 -----
-* The project depends on flyway version 5.2.4
+* The project depends on flyway version 6.0.1
 * The project will be supported until the extension will be integrated into the flyway project.
 * The project depends on Spring version 5.x (see flyway-spring5-test)
 * The project depends on Spring version 4.x (see flyway-spring4-test and flyway-dbunit-spring4-test)
