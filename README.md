@@ -9,7 +9,7 @@ Test extensions for the Flyway project
 
 For Flyway's features, see the [Flyway Db Org Page](http://flywaydb.org/) 
 
-Version 5.2.4 Released 
+Version 6.0.0 Released 
 ----------------------
 
 <b>2019-10-03</b> flyway-test-extensions version <b>6.0.0</b> released.
