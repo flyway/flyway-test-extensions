@@ -12,7 +12,7 @@ For Flyway's features, see the [Flyway Db Org Page](http://flywaydb.org/)
 Version 6.3.3 Released 
 ----------------------
 
-<b>2019-12-27</b> flyway-test-extensions version <b>6.3.0</b> released.
+<b>2020-04-19</b> flyway-test-extensions version <b>6.3.0</b> released.
 
 Version number 6.3.x are used to show the dependency to Flyway version 6.3.x.
 
