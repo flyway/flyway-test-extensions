@@ -5,8 +5,10 @@ name: Java CI with Maven
 on:
   push:
     branches: [ master ]
+    paths: flyway-test-extensions/**
   pull_request:
     branches: [ master ]
+    paths: flyway-test-extensions/**
 
 jobs:
   build:
