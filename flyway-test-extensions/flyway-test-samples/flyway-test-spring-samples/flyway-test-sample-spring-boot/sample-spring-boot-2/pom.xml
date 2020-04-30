@@ -32,8 +32,8 @@
     <name>Sample Flyway-Test-Extension Spring Boot 2</name>
     <description>Sample Flyway-Test-Extension with Spring Boot 2.x</description>
     <properties>
-        <spring.boot.version>2.2.2.RELEASE</spring.boot.version>
-        <spring.version>5.2.2.RELEASE</spring.version>
+        <spring.boot.version>2.2.6.RELEASE</spring.boot.version>
+        <spring.version>5.2.6.RELEASE</spring.version>
     </properties>
     <dependencies>
 
