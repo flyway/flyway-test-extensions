@@ -22,13 +22,13 @@
     <parent>
         <groupId>org.flywaydb.flyway-test-extensions.samples</groupId>
         <artifactId>flyway-test-samples-parent</artifactId>
-        <version>6.3.3-SNAPSHOT</version>
+        <version>6.4.0-SNAPSHOT</version>
         <relativePath>../flyway-test-samples-parent/pom.xml</relativePath>
     </parent>
 
     <groupId>org.flywaydb.flyway-test-extensions.samples.spring</groupId>
     <artifactId>flyway-test-spring-samples</artifactId>
-    <version>6.3.3-SNAPSHOT</version>
+    <version>6.4.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>${project.artifactId}</name>
     <description>
