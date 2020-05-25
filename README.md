@@ -169,7 +169,7 @@ public class MethodTest extends AbstractTestNGSpringContextTests {
 Project depend on
 -----------------
 * [Flyway](https://github.com/flyway/) (6.3.3)
-* [Spring Framework](http://www.springsource.org/) test, context, jdbc (5.2.2, 4.3.25, 3.2)
+* [Spring Framework](http://www.springsource.org/) test, context, jdbc (5.2.6, 4.3.25, 3.2)
 
 Notes
 -----
