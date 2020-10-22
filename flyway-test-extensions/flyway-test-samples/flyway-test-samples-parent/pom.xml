@@ -83,7 +83,7 @@
         <version.spring4>4.3.25.RELEASE</version.spring4>
         <version.spring>${version.spring5}</version.spring>
         <version.maven>3.0.3</version.maven>
-        <version.slf4j>1.5.6</version.slf4j>
+        <version.slf4j>1.7.0</version.slf4j>
         <version.log4j>1.2.16</version.log4j>
         <version.junit>4.13.1</version.junit>
         <version.commons.dbcp>1.4</version.commons.dbcp>
