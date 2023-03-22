@@ -22,7 +22,7 @@
     <parent>
         <groupId>org.flywaydb.flyway-test-extensions</groupId>
         <artifactId>parent</artifactId>
-        <version>7.0.0-SNAPSHOT</version>
+        <version>7.1.0-SNAPSHOT</version>
         <relativePath>../parent/pom.xml</relativePath>
     </parent>
 
