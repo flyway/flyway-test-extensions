@@ -43,7 +43,6 @@ With this precondition, each test provides a reproducible database start point.
 * Sample projects on how to use the annotations inside a unit testing environment
   * Spring 5.x sample (see [complete sample for usage together with Spring 5](https://github.com/flyway/flyway-test-extensions/tree/master/flyway-test-extensions/flyway-test-samples/flyway-test-spring-samples/flyway-test-sample-spring5) )
   * Spring 4.x sample (see [UsageFlywaySpringTest4](https://github.com/flyway/flyway-test-extensions/wiki/Usage-flyway-spring-test) )
-  * Spring 3.x sample 
   * SpringBoot 2 test example (see [FlywayTestApplicationTest](https://github.com/flyway/flyway-test-extensions/blob/master/flyway-test-extensions/flyway-test-samples/flyway-test-spring-samples/flyway-test-sample-spring-boot/sample-spring-boot-2/src/test/java/org/flywaydb/sample/test/spring/boot2/flywaytest/FlywayTestApplicationTest.java) )
   * JUnit5 test example (see [Junit5SpringTest](https://github.com/flyway/flyway-test-extensions/blob/master/flyway-test-extensions/flyway-test-samples/flyway-test-spring-samples/flyway-test-junit5/src/test/java/org/flywaydb/sample/test/junit5/Junit5SpringTest.java) )
   * TestNG test example (see [BeforeMethodTest](https://github.com/flyway/flyway-test-extensions/blob/master/flyway-test-extensions/flyway-test-samples/flyway-test-spring-samples/flyway-test-testng/src/test/java/org/flywaydb/sample/test/testng/BeforeMethodTest.java) )
@@ -177,5 +176,4 @@ Notes
 * The project will be supported until the extension will be integrated into the flyway project.
 * The project depends on Spring version 5.x (see flyway-spring5-test)
 * The project depends on Spring version 4.x (see flyway-spring4-test and flyway-dbunit-spring4-test)
-* The project depends on Spring version 3.2 (see flyways-swpring3-test and flyway-dbunit-spring3-test)
 * At the moment the code is tested with database H2 and Oracle.<br>Only the DBunit part contains database specific code. 

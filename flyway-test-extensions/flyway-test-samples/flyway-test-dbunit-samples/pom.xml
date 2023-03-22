@@ -59,7 +59,9 @@
 	<modules>
         <module>flyway-test-sample-dbunit-spring4</module>
         <module>flyway-test-sample-dbunit</module>
+        <!--
         <module>flyway-test-sample-dbunit-spring3</module>
+        -->
     </modules>
 
 	<distributionManagement>

@@ -59,11 +59,9 @@
         <module>parent</module>
         <module>flyway-test</module>
         <module>flyway-spring-test</module>
-        <module>flyway-spring3-test</module>
         <module>flyway-spring4-test</module>
         <module>flyway-spring5-test</module>
         <module>flyway-dbunit-test</module>
-        <module>flyway-dbunit-spring3-test</module>
         <module>flyway-dbunit-spring4-test</module>
     </modules>
 
