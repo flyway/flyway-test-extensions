@@ -76,7 +76,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <version.flyway>8.5.13</version.flyway>
-        <version.spring5>5.2.6.RELEASE</version.spring5>
+        <version.spring5>5.3.26</version.spring5>
         <version.spring3>3.2.18.RELEASE</version.spring3>
         <version.spring4>4.3.30.RELEASE</version.spring4>
         <version.spring>${version.spring5}</version.spring>
