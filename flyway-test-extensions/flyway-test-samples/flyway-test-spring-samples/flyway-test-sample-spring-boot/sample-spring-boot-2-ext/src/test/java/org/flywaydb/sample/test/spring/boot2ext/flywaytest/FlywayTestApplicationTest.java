@@ -61,4 +61,12 @@ public class FlywayTestApplicationTest {
                 is(5));
     }
 
+    @FlywayTest(invokeCleanDB = true)
+    @Test
+    public void singleLocation2() throws Exception {
+        assertThat(template.queryForObject(
+                        "SELECT COUNT(*) from PERSON", Integer.class),
+                is(3));
+    }
+
 }

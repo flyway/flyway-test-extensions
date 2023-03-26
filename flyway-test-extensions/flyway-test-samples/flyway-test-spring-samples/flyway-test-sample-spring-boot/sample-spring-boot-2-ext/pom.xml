@@ -33,7 +33,7 @@
     <description>Sample Flyway-Test-Extension with Spring Boot 2.x</description>
     <properties>
         <spring.boot.version>2.3.4.RELEASE</spring.boot.version>
-        <spring.version>5.2.7.RELEASE</spring.version>
+        <spring.version>5.3.26</spring.version>
     </properties>
     <dependencies>
 
@@ -101,7 +101,7 @@
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
-            <scope>provided</scope>
+       <!--     <scope>provided</scope>  -->
         </dependency>
         <dependency>
             <groupId>org.hsqldb</groupId>
@@ -115,6 +115,7 @@
             <version>${spring.boot.version}</version>
             <scope>test</scope>
             <exclusions>
+
                 <exclusion>
                     <groupId>org.springframework</groupId>
                     <artifactId>spring-test</artifactId>
@@ -125,6 +126,12 @@
                 </exclusion>
             </exclusions>
 
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+            <version>2.3.3</version>
         </dependency>
     </dependencies>
     <build>
@@ -141,6 +148,7 @@
                 <configuration>
                     <includes>
                         <include>**/*Tests.java</include>
+                        <include>**/*Test.java</include>
                     </includes>
                     <excludes>
                         <exclude>**/Abstract*.java</exclude>

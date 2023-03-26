@@ -15,17 +15,12 @@
  */
 package org.flywaydb.sample.test.spring.boot2ext;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.flyway.FlywayMigrationStrategy;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
@@ -48,38 +43,3 @@ public class SampleFlywayApplication implements CommandLineRunner {
 	}
 }
 
-@Repository
-interface PersonRepository extends CrudRepository<Person, Long> {
-
-}
-
-@Entity
-class Person {
-	@Id
-	@GeneratedValue
-	private Long id;
-	private String firstName;
-	private String lastName;
-
-	public String getFirstName() {
-		return this.firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return this.lastName;
-	}
-
-	public void setLastName(String lastname) {
-		this.lastName = lastname;
-	}
-
-	@Override
-	public String toString() {
-		return "Person [firstName=" + this.firstName + ", lastName=" + this.lastName
-				+ "]";
-	}
-}
