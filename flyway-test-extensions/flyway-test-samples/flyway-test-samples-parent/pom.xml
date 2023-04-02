@@ -77,7 +77,9 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <version.flyway>8.5.13</version.flyway>
+        <version.flyway8>8.5.13</version.flyway8>
+        <version.flyway9>9.16.1</version.flyway9>
+        <version.spring6>6.0.7</version.spring6>
         <version.spring5>5.3.26</version.spring5>
         <version.spring3>3.2.18.RELEASE</version.spring3>
         <version.spring4>4.3.30.RELEASE</version.spring4>
@@ -178,11 +180,6 @@
 
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>org.flywaydb</groupId>
-                <artifactId>flyway-core</artifactId>
-                <version>${version.flyway}</version>
-            </dependency>
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>

@@ -103,6 +103,7 @@
 		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-core</artifactId>
+			<version>${version.flyway8}</version>
 			<scope>provided</scope>
 		</dependency>
 

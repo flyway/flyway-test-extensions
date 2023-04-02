@@ -19,7 +19,10 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util-3.0.xsd
         http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
         http://www.springframework.org/schema/context
@@ -33,60 +36,55 @@
             system-properties-mode="OVERRIDE"/>
 
     <!-- flyway part -->
-    <bean id="flyway" class="org.flywaydb.core.Flyway" depends-on="flywayConfiguration">
-        <constructor-arg ref="flywayConfiguration"/>
-<!--
-TODO remove for issue #65
-        <property name="dataSource" ref="dataSourceRef"/>
-        <property name="locations" value="${flyway.locations}"/>
-        <property name="ignoreMissingMigrations" value="${flyway.ignoreMissingMigrations:false}"/>
-        <property name="ignoreFutureMigrations" value="${flyway.ignoreFutureMigrations:true}"/>
-        <property name="validateOnMigrate" value="${flyway.validateOnMigrate:true}"/>
-        <property name="outOfOrder" value="${flyway.outOfOrder:false}"/>
--->
-    </bean>
+    <!--
+    alternative one:
+    load flyway.properties with spring and add it to the factory class.
 
-    <bean id="flywayConfiguration" class="org.flywaydb.core.api.configuration.ClassicConfiguration" depends-on="dataSourceRef">
-        <property name="dataSource" ref="dataSourceRef"/>
-        <property name="locations" value="${flyway.locations}"/>
-<!--
-        <property name="ignoreMissingMigrations" value="${flyway.ignoreMissingMigrations:false}"/>
--->
-        <!--
-        <property name="ignoreFutureMigrations" value="${flyway.ignoreFutureMigrations:true}"/>
-        -->
-        <property name="validateOnMigrate" value="${flyway.validateOnMigrate:true}"/>
-        <property name="outOfOrder" value="${flyway.outOfOrder:false}"/>
-        <property name="cleanDisabled" value="false"/>
-    </bean>
+    <util:properties id="flyway.prop" location="/flyway.properties"/>
 
+    <bean id="flywayFactory" class="org.flywaydb.test.FlywayHelperFactory" depends-on="dataSourceRef">
+        <property name="flywayProperties" ref="flyway.prop"/>
+
+    </bean>
+    -->
+    <!--
+        alternative two
+
+        load flyway.properties with the factory class.
+    -->
+    <bean id="flywayFactory" class="org.flywaydb.test.FlywayHelperFactory" depends-on="dataSourceRef"/>
+
+    <bean id="flyway" class="org.flywaydb.core.Flyway" depends-on="dataSourceRef" factory-bean="flywayFactory"
+          factory-method="createFlyway">
+        <property name="dataSource" ref="dataSourceRef"/>
+    </bean>
 
     <!-- H2 Setup
-    -Djdbc.driver=org.h2.Driver
-	-Djdbc.url=jdbc:h2:./db/testCaseDb
-	-Djdbc.username=OC_MORE_TEST
-	-Djdbc.password=OC_MORE_TEST
-	
+    -Dflyway.driver=org.h2.Driver
+	-Dflyway.url=jdbc:h2:./db/testCaseDb
+	-Dflyway.user=OC_MORE_TEST
+	-Dflyway.password=OC_MORE_TEST
+
 	Oracle Setup
-	-Djdbc.driver=oracle.jdbc.driver.OracleDriver
-	-Djdbc.url=jdbc:oracle:thin:@${oracle.host}:${oracle.port}:${oracle.sid}
-	-Djdbc.username=OC_MORE_TEST
-	-Djdbc.password=OC_MORE_TEST
+	-Dflyway.driver=oracle.jdbc.driver.OracleDriver
+	-Dflyway.url=jdbc:oracle:thin:@${oracle.host}:${oracle.port}:${oracle.sid}
+	-Dflyway.username=OC_MORE_TEST
+	-Dflyway.password=OC_MORE_TEST
      -->
     <bean id="dataSourceRef" name="dataSource"
           class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 
         <property name="driverClassName">
-            <value>${jdbc.driver}</value>
+            <value>${flyway.driver}</value>
         </property>
         <property name="url">
-            <value>${jdbc.url}</value>
+            <value>${flyway.url}</value>
         </property>
         <property name="username">
-            <value>${jdbc.username}</value>
+            <value>${flyway.user}</value>
         </property>
         <property name="password">
-            <value>${jdbc.password}</value>
+            <value>${flyway.password}</value>
         </property>
         <property name="maxActive" value="-1"/>
 

@@ -49,12 +49,12 @@ TODO remove for issue #65
     <bean id="flywayConfiguration" class="org.flywaydb.core.api.configuration.ClassicConfiguration" depends-on="dataSourceRef">
         <property name="dataSource" ref="dataSourceRef"/>
         <property name="locations" value="${flyway.locations}"/>
-<!--
+
         <property name="ignoreMissingMigrations" value="${flyway.ignoreMissingMigrations:false}"/>
--->
-        <!--
+
+
         <property name="ignoreFutureMigrations" value="${flyway.ignoreFutureMigrations:true}"/>
-        -->
+        
         <property name="validateOnMigrate" value="${flyway.validateOnMigrate:true}"/>
         <property name="outOfOrder" value="${flyway.outOfOrder:false}"/>
         <property name="cleanDisabled" value="false"/>
