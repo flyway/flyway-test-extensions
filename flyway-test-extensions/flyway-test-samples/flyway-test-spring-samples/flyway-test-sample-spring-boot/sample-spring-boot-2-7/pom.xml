@@ -29,13 +29,19 @@
     </parent>
 
     <artifactId>flyway-test-sample-spring-boot-2-7</artifactId>
-    <name>Sample Flyway-Test-Extension Spring Boot 2.7 with Flyway Migration initializer</name>
+    <name>Sample Flyway-Test-Extension Spring Boot 2.7 with Flyway Migration initializer and Flyway 8</name>
     <description>Sample Flyway-Test-Extension with Spring Boot 2.x</description>
     <properties>
         <spring.boot.version>2.7.10</spring.boot.version>
         <spring.version>5.3.26</spring.version>
     </properties>
     <dependencies>
+
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+            <version>8.5.13</version>
+        </dependency>
 
         <dependency>
             <groupId>org.flywaydb.flyway-test-extensions</groupId>
@@ -46,6 +52,10 @@
                 <exclusion>
                     <groupId>org.springframework</groupId>
                     <artifactId>spring-test</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.flywaydb</groupId>
+                    <artifactId>flyway-core</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -100,11 +110,6 @@
             </exclusions>
         </dependency>
 
-        <dependency>
-            <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-core</artifactId>
-       <!--     <scope>provided</scope>  -->
-        </dependency>
         <dependency>
             <groupId>org.hsqldb</groupId>
             <artifactId>hsqldb</artifactId>
