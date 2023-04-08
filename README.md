@@ -9,12 +9,12 @@ Test extensions for the Flyway project
 
 For Flyway's features, see the [Flyway Db Org Page](http://flywaydb.org/) 
 
-Version 9.0.0 Released 
+Version 9.5.0 Released 
 ----------------------
 
-<b>2023-04-xx</b> flyway-test-extensions version <b>9.0.0</b> released.
+<b>2023-04-08</b> flyway-test-extensions version <b>9.5.0</b> released.
 
-Version number 9.0.x are used to show the dependency or compatibility to Flyway version 9.x.
+Version number 9.5.x are used to show the dependency or compatibility to Flyway version 9.5.x.
 The main feature can also be used with older features, see the corresponding examples.
 
 See also [Release Notes](https://github.com/flyway/flyway-test-extensions/wiki/Release-Notes) 
