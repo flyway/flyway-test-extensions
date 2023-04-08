@@ -4,6 +4,9 @@
 # 
 set -x
 
+# set GPG TTY
+export GPG_TTY=$(tty)
+
 ##  we do it in another directory 
 cd ../..
 mkdir -p flyway-test-extensions-release
