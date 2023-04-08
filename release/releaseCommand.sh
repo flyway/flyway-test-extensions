@@ -32,6 +32,10 @@ mvn -N versions:update-child-modules  -DnewVersion=$1
 
 # go back to build directory
 cd ..
+echo "*******************************************************"
+echo "For github deploy a personal access token is necessary!"
+echo "*******************************************************"
+echo " "
 
 ## deploy and tag version
 ### during release one of the test will always fail
