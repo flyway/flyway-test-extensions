@@ -32,7 +32,7 @@
 
         <spring.boot.version>3.1.5</spring.boot.version>
         <spring.version>6.0.7</spring.version>
-        <flyway9.version>9.16.1</flyway9.version>
+        <flyway9.version>9.22.3</flyway9.version>
     </properties>
 
     <parent>
