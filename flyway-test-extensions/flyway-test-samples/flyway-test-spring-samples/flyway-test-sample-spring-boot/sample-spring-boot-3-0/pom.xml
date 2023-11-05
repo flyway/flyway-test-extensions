@@ -62,7 +62,7 @@
         <dependency>
             <groupId>org.flywaydb.flyway-test-extensions</groupId>
             <artifactId>flyway-spring-test</artifactId>
-            <version>9.0.0-SNAPSHOT</version>
+            <version>10.0.0-SNAPSHOT</version>
             <scope>test</scope>
             <exclusions>
                 <exclusion>
