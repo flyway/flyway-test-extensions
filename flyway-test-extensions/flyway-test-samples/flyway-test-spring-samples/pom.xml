@@ -74,7 +74,7 @@
         <module>flyway-test-sample-spring-boot/sample-spring-boot-2-7</module>
         
         <module>flyway-test-sample-spring-boot/sample-spring-boot-3-0</module>
- <!--       <module>flyway-test-sample-spring-boot/sample-spring-boot-3-1</module>-->
+        <module>flyway-test-sample-spring-boot/sample-spring-boot-3-1</module>
         <module>flyway-test-junit5</module>
         <module>flyway-test-testng</module>
     </modules>

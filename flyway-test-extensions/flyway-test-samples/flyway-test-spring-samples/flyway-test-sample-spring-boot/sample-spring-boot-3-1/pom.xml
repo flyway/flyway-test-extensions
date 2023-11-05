@@ -22,23 +22,23 @@
     <modelVersion>4.0.0</modelVersion>
     <version>10.0.0-SNAPSHOT</version>
 
-    <artifactId>flyway-test-sample-spring-boot-3-0</artifactId>
-    <name>Sample Flyway-Test-Extension Spring Boot 3.0 and Flyway 9</name>
+    <artifactId>flyway-test-sample-spring-boot-3-1</artifactId>
+    <name>Sample Flyway-Test-Extension Spring Boot 3.1 and Flyway 9</name>
     <description>Sample Flyway-Test-Extension with Spring Boot 3.x</description>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
 
-        <spring.boot.version>3.0.5</spring.boot.version>
+        <spring.boot.version>3.1.5</spring.boot.version>
         <spring.version>6.0.7</spring.version>
-        <flyway.version>9.16.1</flyway.version>
+        <flyway9.version>9.16.1</flyway9.version>
     </properties>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.5</version>
+        <version>3.1.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <dependencies>
@@ -46,7 +46,7 @@
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
-            <version>${flyway.version}</version>
+            <version>${flyway9.version}</version>
         </dependency>
 
         <dependency>
