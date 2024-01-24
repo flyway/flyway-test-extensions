@@ -9,12 +9,12 @@ Test extensions for the Flyway project
 
 For Flyway's features, see the [Flyway Db Org Page](http://flywaydb.org/) 
 
-Version 9.5.0 Released 
+Version 10.0.0 Released 
 ----------------------
 
-<b>2023-04-08</b> flyway-test-extensions version <b>9.5.0</b> released.
+<b>2024-01-24</b> flyway-test-extensions version <b>10.0.0</b> released.
 
-Version number 9.5.x are used to show the dependency or compatibility to Flyway version 9.5.x.
+Version number 10.x are used to show the dependency or compatibility to Flyway version 10.x.
 The main feature can also be used with older features, see the corresponding examples.
 
 See also [Release Notes](https://github.com/flyway/flyway-test-extensions/wiki/Release-Notes) 
@@ -69,7 +69,7 @@ For a detail usage description see the [UsageFlywaySpringTest](https://github.co
     <dependency>
        <groupId>org.flywaydb.flyway-test-extensions</groupId>
        <artifactId>flyway-spring-test</artifactId>
-       <version>9.0.0</version>
+       <version>10.0.0</version>
        <scope>test</scope>
     </dependency>
 ```
@@ -171,12 +171,12 @@ public class MethodTest extends AbstractTestNGSpringContextTests {
 
 Project depend on
 -----------------
-* [Flyway](https://github.com/flyway/) (9.16.1), and show also examples for version 8.5.13
+* [Flyway](https://github.com/flyway/) (10.6.0), and show also examples for version 9.16.1 and 8.5.13
 * [Spring Framework](http://www.springsource.org/) test, context, jdbc (6.0.7, 5.2.6, 4.3.30)
 
 Notes
 -----
-* The project depends on flyway version 9.16.1
+* The project depends on flyway version 10.6.0
 * The project will be supported until the extension will be integrated into the flyway project.
 * The project depends on Spring version 6.x (see flyway-spring6-test)
 * The project depends on Spring version 5.x (see flyway-spring5-test)
