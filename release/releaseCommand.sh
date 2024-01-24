@@ -16,7 +16,7 @@ cd flyway-test-extensions-release
 rm -rf flyway-test-extensions
 
 ## clone lastest version from git hub
-git clone git@github.com/flyway/flyway-test-extensions.git
+git clone git@flyway.github.com/flyway/flyway-test-extensions.git
 
 ## change into mvn directory
 cd flyway-test-extensions/flyway-test-extensions
